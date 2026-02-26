@@ -1,0 +1,16 @@
+formulas:
+  rating: "'⭐⭐⭐⭐⭐'.slice(0, rating).split('').map(icon('star'))"
+views:
+  - type: cards
+    name: View
+    filters:
+      and:
+        - file.inFolder("books")
+    order:
+      - title
+      - author
+      - formula.rating
+    image: note.coverSmallUrl
+    imageAspectRatio: 1.45
+    imageFit: contain
+    cardSize: 150

@@ -1,0 +1,9 @@
+views:
+  - type: cards
+    name: Games
+    filters:
+      and:
+        - file.folder == "games"
+    image: note.image
+    imageAspectRatio: 0.45
+    cardSize: 280
