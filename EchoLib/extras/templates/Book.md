@@ -1,28 +1,21 @@
 ---
-author:
 title:
-alternative title:
+author:
+genres:
 cover:
 description:
-type:
-date: <% tp.date.now("YYYY-MM-DD-dddd") %>
-genres:
-status:
-total chapters:
+tags:
+  - books
+series:
+link:
+isbn:
 reading status:
-current chapter:
+total pages:
+current page:
 rating:
 read:
-official link:
-link:
+pdf/ebook:
 ---
-- Tags: [[Webcomic MOC]]
-- Author:
-<% await tp.file.move("/Sources/Books/" + tp.date.now("YYYY-MM-DD") + " 📚 " + tp.file.title) %>
-# [[<% tp.date.now("YYYY-MM-DD") + " 📚 " + tp.file.title %>]]
+# Quotes
 
-## Notes
-- 
 
-## Highlights
--
