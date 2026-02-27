@@ -8,6 +8,7 @@
     "type": "multitext",
     "rate": "number",
     "date": "text",
-    "total chapters": "number"
+    "total chapters": "number",
+    "media type": "text"
   }
 }

@@ -1,0 +1,25 @@
+views:
+  - type: table
+    name: quotes
+    filters:
+      and:
+        - file.folder == "quotes"
+    order:
+      - quote
+      - author
+      - reference
+      - tags
+  - type: table
+    name: quotes embeded
+    filters:
+      and:
+        - file.folder == "quotes"
+        - reference == this.file.name
+    order:
+      - quote
+      - author
+      - reference
+      - tags
+    sort:
+      - property: file.basename
+        direction: ASC

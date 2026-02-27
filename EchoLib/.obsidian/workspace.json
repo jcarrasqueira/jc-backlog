@@ -11,28 +11,26 @@
             "id": "34f51ef348f8e1b6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "bases",
               "state": {
-                "file": "extras/templates/Book.md",
-                "mode": "source",
-                "source": false
+                "file": "Books.base",
+                "viewName": "View"
               },
-              "icon": "lucide-file",
-              "title": "Book"
+              "icon": "lucide-layout-grid",
+              "title": "Books"
             }
           },
           {
             "id": "2116047d7fa13647",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "bases",
               "state": {
-                "file": "Book lib.md",
-                "mode": "source",
-                "source": false
+                "file": "Quotes.base",
+                "viewName": "quotes embeded"
               },
-              "icon": "lucide-file",
-              "title": "Book lib"
+              "icon": "lucide-table",
+              "title": "Quotes"
             }
           }
         ]
@@ -203,24 +201,28 @@
   },
   "active": "34f51ef348f8e1b6",
   "lastOpenFiles": [
-    "extras/templates/Quote.md",
-    "extras/templates/Webcomic.md",
-    "Book lib.md",
+    "extras/templates/Book.md",
+    "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
+    "quotes/OOC Warning - SVSS vol1.md",
+    "Quotes.base",
+    "quotes/new quote.md",
     "Books.base",
+    "Book lib.md",
+    "quotes/ed.md",
+    "extras/templates/Quote.md",
+    "quotes",
+    "extras/templates/Webcomic.md",
     "Untitled 1.base",
-    "Untitled.base",
     "Webcomic MOC.md",
     "books/new book.md",
     "Title.md",
     "Games.base",
     "games/Untitled.md",
-    "extras/templates/Book.md",
     "extras/templates/Quotes.md",
     "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 4 (Special Edition) - Mo Xiang Tong Xiu.md",
     "extras/pdf-ebook/books",
     "Template, Books.md",
     "games/Baldur's Gate 3 (2023).md",
-    "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
     "extras/pdf-ebook",
     "extras/images/book covers",
     "extras/images",
@@ -228,14 +230,11 @@
     "books/Untitled.md",
     "📚 Webcomic MOC.md",
     "extras/templates",
-    "extras",
     "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 2 - Mo Xiang Tong Xiu Xiao Tong Kong (Velinxi).md",
     "games/Hades (2020).md",
     "games/Cult of the Lamb (2022).md",
     "games/Clair Obscur - Expedition 33 (2025).md",
     "Books/Untitled.md",
-    "Notes/Books/Untitled.md",
-    "Book notes/Untitled.md",
-    "Books/Percy Jackson and the Lightning Thief (Book 1) - Rick Riordan.md"
+    "Notes/Books/Untitled.md"
   ]
 }
