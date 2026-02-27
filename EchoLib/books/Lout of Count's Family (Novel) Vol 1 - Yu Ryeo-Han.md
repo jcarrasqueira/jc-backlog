@@ -11,7 +11,7 @@ series:
 link: https://play.google.com/store/books/details?id=-u8WEQAAQBAJ
 isbn: "9798893735536"
 total pages: "403"
-reading status:
+reading status: to read
 current page:
 rating: 0
 read:

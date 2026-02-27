@@ -19,7 +19,7 @@ onlineRating: 96
 image: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg?t=1765505948
 released: true
 releaseDate: 08/03/2023
-played: false
+played: true
 personalRating: 0
 tags: mediaDB/game
 ---

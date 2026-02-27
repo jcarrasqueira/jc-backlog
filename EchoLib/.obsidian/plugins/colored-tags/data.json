@@ -11,7 +11,9 @@
   },
   "knownTags": {
     "books": 1,
+    "daily": 2,
     "danmei": 2,
+    "journal": 3,
     "mediadb": 3,
     "mpreg": 4,
     "mtxt": 5,
