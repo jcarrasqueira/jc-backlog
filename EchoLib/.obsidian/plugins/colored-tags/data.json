@@ -1,0 +1,26 @@
+{
+  "palette": {
+    "seed": 0,
+    "selected": "adaptive-soft",
+    "custom": "e12729-f37324-f8cc1b-72b043-007f4e"
+  },
+  "mixColors": true,
+  "transition": true,
+  "accessibility": {
+    "highTextContrast": false
+  },
+  "knownTags": {
+    "books": 1,
+    "danmei": 2,
+    "mediadb": 3,
+    "mpreg": 4,
+    "mtxt": 5,
+    "novel": 6,
+    "quote": 7,
+    "transmigration": 8,
+    "webcomics": 9,
+    "mediadb/game": 1
+  },
+  "tagColors": {},
+  "_version": 4
+}

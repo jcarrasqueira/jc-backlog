@@ -4,5 +4,8 @@
   "templater-obsidian",
   "obsidian-meta-bind-plugin",
   "dataview",
-  "obsidian-epub-plugin"
+  "obsidian-epub-plugin",
+  "pretty-properties",
+  "colored-tags",
+  "journals"
 ]
