@@ -12,7 +12,7 @@
   "localePreference": "default",
   "apiKey": "",
   "openPageOnCompletion": true,
-  "showCoverImageInSearch": true,
+  "showCoverImageInSearch": false,
   "enableCoverImageSave": true,
   "enableCoverImageEdgeCurl": true,
   "coverImagePath": "",

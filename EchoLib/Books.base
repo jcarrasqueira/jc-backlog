@@ -2,7 +2,7 @@ formulas:
   rating: "'⭐⭐⭐⭐⭐'.slice(0, rating).split('').map(icon('star'))"
 views:
   - type: cards
-    name: View
+    name: books
     filters:
       and:
         - file.inFolder("books")
@@ -10,7 +10,32 @@ views:
       - title
       - author
       - formula.rating
-    image: note.coverSmallUrl
+    image: note.cover
     imageAspectRatio: 1.45
     imageFit: contain
     cardSize: 150
+  - type: table
+    name: quotes
+    filters:
+      and:
+        - file.inFolder("quotes")
+    order:
+      - quote
+      - author
+      - reference
+      - genres
+      - tags
+  - type: table
+    name: quotes embedded
+    filters:
+      and:
+        - file.inFolder("quotes")
+        - reference == this.file.name
+    order:
+      - quote
+      - author
+      - reference
+      - genres
+      - tags
+    columnSize:
+      note.quote: 235

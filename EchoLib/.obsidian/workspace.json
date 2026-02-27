@@ -14,7 +14,7 @@
               "type": "bases",
               "state": {
                 "file": "Books.base",
-                "viewName": "View"
+                "viewName": "books"
               },
               "icon": "lucide-layout-grid",
               "title": "Books"
@@ -201,22 +201,27 @@
   },
   "active": "34f51ef348f8e1b6",
   "lastOpenFiles": [
+    "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu Xiao Tong Kong (Velinxi).md",
+    "books/new book.md",
+    "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 2 - Mo Xiang Tong Xiu Xiao Tong Kong (Velinxi).md",
+    "Quotes.base",
+    "Book lib.md",
+    "extras/templates/Webcomic.md",
     "extras/templates/Book.md",
+    "Books.base",
+    "quotes/test.md",
+    "quotes/test2.md",
+    "extras/templates/Quote.md",
+    "quotes/Untitled.md",
+    "Untitled.base",
+    "Games.base",
     "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
     "quotes/OOC Warning - SVSS vol1.md",
-    "Quotes.base",
-    "quotes/new quote.md",
-    "Books.base",
-    "Book lib.md",
     "quotes/ed.md",
-    "extras/templates/Quote.md",
     "quotes",
-    "extras/templates/Webcomic.md",
     "Untitled 1.base",
     "Webcomic MOC.md",
-    "books/new book.md",
     "Title.md",
-    "Games.base",
     "games/Untitled.md",
     "extras/templates/Quotes.md",
     "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 4 (Special Edition) - Mo Xiang Tong Xiu.md",
@@ -229,12 +234,7 @@
     "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 3 - Mo Xiang Tong Xiu Xiao Tong Kong (Velinxi).md",
     "books/Untitled.md",
     "📚 Webcomic MOC.md",
-    "extras/templates",
-    "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 2 - Mo Xiang Tong Xiu Xiao Tong Kong (Velinxi).md",
     "games/Hades (2020).md",
-    "games/Cult of the Lamb (2022).md",
-    "games/Clair Obscur - Expedition 33 (2025).md",
-    "Books/Untitled.md",
-    "Notes/Books/Untitled.md"
+    "games/Cult of the Lamb (2022).md"
   ]
 }

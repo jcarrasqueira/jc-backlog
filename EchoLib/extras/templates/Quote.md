@@ -5,6 +5,8 @@ reference:
 tags:
   - quote
 genres:
+page:
+notes:
 ---
 
 
