@@ -9,12 +9,12 @@
   "serviceProvider": "google",
   "naverClientId": "",
   "naverClientSecret": "",
-  "localePreference": "default",
+  "localePreference": "en",
   "apiKey": "",
   "openPageOnCompletion": true,
-  "showCoverImageInSearch": false,
+  "showCoverImageInSearch": true,
   "enableCoverImageSave": true,
   "enableCoverImageEdgeCurl": true,
-  "coverImagePath": "",
+  "coverImagePath": "extras/book covers",
   "askForLocale": true
 }

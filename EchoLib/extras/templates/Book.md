@@ -1,19 +1,21 @@
 ---
-title:
-author:
+title: "{{title}}"
+author: "{{author}}"
 genres:
-cover:
-description:
+  - "{{categories}}"
+cover: "{{coverUrl}}"
+description: "{{description}}"
 tags:
   - books
 series:
-link:
-isbn:
+link: "{{link}}"
+isbn: "{{isbn13}}"
+total pages: "{{totalPage}}"
 reading status:
-total pages:
 current page:
 rating:
 read:
+date read:
 pdf/ebook:
 ---
 ## Quotes

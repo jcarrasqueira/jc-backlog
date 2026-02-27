@@ -9,6 +9,7 @@
     "rate": "number",
     "date": "text",
     "total chapters": "number",
-    "media type": "text"
+    "media type": "text",
+    "date read": "date"
   }
 }
