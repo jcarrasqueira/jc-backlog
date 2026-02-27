@@ -11,6 +11,8 @@ views:
       - page
       - notes
     sort:
+      - property: quote
+        direction: DESC
       - property: reference
         direction: ASC
       - property: file.basename

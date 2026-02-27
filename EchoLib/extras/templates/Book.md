@@ -36,7 +36,6 @@ actions:
     fileName: new quote
     openNote: true
     openIfAlreadyExists: false
-
 ```
 
 ![[Quotes.base]]
