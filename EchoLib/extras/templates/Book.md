@@ -13,7 +13,7 @@ isbn: "{{isbn13}}"
 total pages: "{{totalPage}}"
 reading status:
 current page:
-rating:
+rating: 0
 read:
 date read:
 pdf/ebook:

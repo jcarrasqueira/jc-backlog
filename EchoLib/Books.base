@@ -31,6 +31,9 @@ views:
       - series
       - tags
       - total pages
+    sort:
+      - property: title
+        direction: DESC
     image: note.cover
     imageAspectRatio: 1.45
     imageFit: contain

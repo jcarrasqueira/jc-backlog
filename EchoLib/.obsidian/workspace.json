@@ -11,32 +11,14 @@
             "id": "2116047d7fa13647",
             "type": "leaf",
             "state": {
-              "type": "epub",
-              "state": {
-                "file": "extras/pdf-ebook/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.epub"
-              },
-              "icon": "doc-epub",
-              "title": "The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu"
-            }
-          }
-        ]
-      },
-      {
-        "id": "94ffaf6328a370fb",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "854f24c34c35f6c4",
-            "type": "leaf",
-            "state": {
               "type": "markdown",
               "state": {
-                "file": "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
+                "file": "EchoLib.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu"
+              "title": "EchoLib"
             }
           }
         ]
@@ -205,13 +187,34 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "2116047d7fa13647",
+  "active": "a4504db5d7760392",
   "lastOpenFiles": [
-    "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
-    "extras/pdf-ebook/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.epub",
-    "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg",
+    "Untitled",
     "Books.base",
-    "extras/pdf-ebook",
+    "books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.md",
+    "EchoLib.md",
+    "extras/templates/Book.md",
+    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.jpg",
+    "books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.md",
+    "extras/pdf-ebook/Xue Shan Fei Hu - The Disabled Tyrant_s Beloved Pet Fish_ Canji Baojun De Zhangxin Yu Chong (Novel) Vol. 4 (2025, Seven Seas) - libgen.li.epub",
+    "books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 3 - Xue Shan Fei Hu.md",
+    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.jpg",
+    "books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 2 - Xue Shan Fei Hu.md",
+    "books/Lout of Count's Family (Novel) Vol 1 - Yu Ryeo-Han.md",
+    "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
+    "books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 3 - Xue Shan Fei Hu.md",
+    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 3 - Xue Shan Fei Hu.jpg",
+    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 2 - Xue Shan Fei Hu.jpg",
+    "extras/pdf-ebook/Xue Shan Fei Hu - The Disabled Tyrant’s Beloved Pet Fish_ Canji Baojun De Zhangxin Yu Chong Vol. 3 (2024, Seven Seas Entertainment) - libgen.li.epub",
+    "extras/pdf-ebook/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.epub",
+    "extras/pdf-ebook/Yu Ryeo-Han - Lout of Count_s Family (Vol. 1).epub",
+    "extras/pdf-ebook/Yoo Ryeo Han - Trash of the Count_s Family (2022) - libgen.li.epub",
+    "extras/book covers/Lout of Count's Family (Novel) Vol 1 - Yu Ryeo-Han.jpg",
+    "extras/pdf-ebook/(Grisha 1) Bardugo, Leigh - Shadow and Bone.epub",
+    "extras/pdf-ebook/The_Scum_Villain_s_Self-Saving_System_Ren_Zha_Fanpai_Zijiu_Xitong_Vol_3.epub",
+    "extras/pdf-ebook/The_Scum_Villain_s_Self-Saving_System_Ren_Zha_Fanpai_Zijiu_Xitong_Vol_2.epub",
+    "extras/pdf-ebook/The_Scum_Villain_s_Self-1.epub",
+    "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg",
     "books/test2.md",
     "books/test4.md",
     "books/test3.md",
@@ -220,16 +223,10 @@
     "books/Percy Jackson and the Lightning Thief (Book 1) - Rick Riordan.md",
     "Percy Jackson and the Lightning Thief (Book 1) - Rick Riordan.jpg",
     "A Darker Shade of Magic Collector's Edition - V E Schwab.jpg",
-    "extras/book covers",
-    "extras/templates/Book.md",
     "/Percy Jackson and the Lightning Thief (Book 1) - Rick Riordan.jpg",
-    "Untitled.base",
     "/A Darker Shade of Magic Collector's Edition - V E Schwab.jpg",
     "2026-02-27.md",
     "Untitled.canvas",
-    "Quotes.base",
-    "Games.base",
-    "Book lib.md",
     "quotes/[Warning! OOC Warning! Shen Qingqiu would not take the initiative to visit Luo Binge.].md",
     "books/new book.md",
     "extras/templates/Webcomic.md",
@@ -238,15 +235,6 @@
     "quotes/Untitled.md",
     "quotes/OOC Warning - SVSS vol1.md",
     "quotes/ed.md",
-    "quotes",
-    "Untitled 1.base",
-    "Webcomic MOC.md",
-    "Title.md",
-    "games/Untitled.md",
-    "extras/templates/Quotes.md",
-    "extras/pdf-ebook/books",
-    "Template, Books.md",
-    "games/Baldur's Gate 3 (2023).md",
-    "books/Untitled.md"
+    "Webcomic MOC.md"
   ]
 }
