@@ -9,12 +9,15 @@ views:
       - quote
       - tags
       - page
-      - reference
+      - notes
     sort:
       - property: reference
         direction: ASC
       - property: file.basename
         direction: ASC
+    columnSize:
+      note.quote: 306
+      note.tags: 160
   - type: table
     name: quotes
     filters:

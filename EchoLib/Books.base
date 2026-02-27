@@ -15,27 +15,23 @@ views:
     imageFit: contain
     cardSize: 150
   - type: table
-    name: quotes
+    name: books table
     filters:
       and:
-        - file.inFolder("quotes")
+        - file.inFolder("books")
     order:
-      - quote
+      - title
       - author
-      - reference
       - genres
+      - isbn
+      - link
+      - pdf/ebook
+      - read
+      - reading status
+      - series
       - tags
-  - type: table
-    name: quotes embedded
-    filters:
-      and:
-        - file.inFolder("quotes")
-        - reference == this.file.name
-    order:
-      - quote
-      - author
-      - reference
-      - genres
-      - tags
-    columnSize:
-      note.quote: 235
+      - total pages
+    image: note.cover
+    imageAspectRatio: 1.45
+    imageFit: contain
+    cardSize: 150
