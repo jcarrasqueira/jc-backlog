@@ -3,5 +3,6 @@
   "obsidian-media-db-plugin",
   "templater-obsidian",
   "obsidian-meta-bind-plugin",
-  "dataview"
+  "dataview",
+  "obsidian-epub-plugin"
 ]

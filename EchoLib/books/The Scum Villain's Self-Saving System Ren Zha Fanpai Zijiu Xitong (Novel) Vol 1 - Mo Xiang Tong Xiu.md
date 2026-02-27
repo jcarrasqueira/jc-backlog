@@ -15,10 +15,10 @@ isbn: "9781685791131"
 total pages: "378"
 reading status:
 current page:
-rating:
+rating: 5
 read: true
 date read:
-pdf/ebook:
+pdf/ebook: obsidian://open?vault=EchoLib&file=extras%2Fpdf-ebook%2FThe%20Scum%20Villain's%20Self-Saving%20System%20Ren%20Zha%20Fanpai%20Zijiu%20Xitong%20(Novel)%20Vol%201%20-%20Mo%20Xiang%20Tong%20Xiu.epub
 ---
 ## Quotes
 ```meta-bind-button
