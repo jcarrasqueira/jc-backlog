@@ -4,40 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "720196c097778524",
+        "id": "3f761f5c6e6b7edf",
         "type": "tabs",
         "children": [
           {
-            "id": "0e1ff4ea774bcfbd",
+            "id": "4bc3a5378beccc6a",
             "type": "leaf",
             "state": {
-              "type": "bases",
+              "type": "markdown",
               "state": {
-                "file": "extras/bases/Pannel.base",
-                "viewName": "panels"
+                "file": "journal/uni/cloud computing/2026-03-01.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-grid",
-              "title": "Pannel"
+              "icon": "lucide-file",
+              "title": "2026-03-01"
             }
           }
         ]
       },
       {
-        "id": "763ebea613aa7487",
+        "id": "e0e087ca36b7a343",
         "type": "tabs",
         "children": [
           {
-            "id": "812a258d79bf7db9",
+            "id": "cd1a2785d6a8535f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "media/panels/Bloodlink test.md",
-                "mode": "source",
-                "source": false
+                "file": "journal/uni/cloud computing/project/CC2526-Project.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Bloodlink test"
+              "icon": "lucide-file-text",
+              "title": "CC2526-Project"
             }
           }
         ]
@@ -123,13 +122,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "media/panels/Bloodlink test.md",
+                "file": "journal/uni/cloud computing/2026-03-01.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Bloodlink test"
+              "title": "Outline of 2026-03-01"
             }
           },
           {
@@ -138,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "media/panels/Bloodlink test.md",
+                "file": "journal/uni/cloud computing/2026-03-01.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,7 +147,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Bloodlink test"
+              "title": "Backlinks for 2026-03-01"
             }
           },
           {
@@ -187,16 +186,19 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "812a258d79bf7db9",
+  "active": "4bc3a5378beccc6a",
   "lastOpenFiles": [
-    "extras/bases/Pannel.base",
+    "journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "journal/uni/cloud computing/2026-03-01.md",
+    "media/manga/Ao no Exorcist (2009).md",
+    "media/manga",
+    "Pasted image 20260301182959.png",
     "media/panels/Bloodlink test.md",
+    "extras/bases/Pannel.base",
     "extras/templates/Panel.md",
     "extras/bases/Quotes.base",
-    "journal/uni/cloud computing/project/CC2526-Project.pdf",
     "extras/imgs/pannels/test.jpg",
     "extras/templates/Book.md",
-    "Pasted image 20260301182959.png",
     "extras/templates/Webcomic.md",
     "extras/webcomic covers/blood_link.jpg",
     "extras/webcomic covers",
@@ -208,14 +210,11 @@
     "media/panels",
     "media/panels",
     "media/webcomics",
-    "extras/bases/Games.base",
     "media/books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 2 - Xue Shan Fei Hu.md",
     "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg",
-    "Media DB/manga/Ao no Exorcist (2009).md",
     "media/games/Hades (2020).md",
     "media/games/Clair Obscur - Expedition 33 (2025).md",
     "media/games/Baldur's Gate 3 (2023).md",
-    "journal/uni/cloud computing/2026-03-01.md",
     "extras/templates/Journal Entry.md",
     "journal/uni/cloud computing/2026-02-05.md",
     "journal/uni/cloud computing/2026-02-03.md",
