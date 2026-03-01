@@ -68,7 +68,7 @@
   "enableCustomDateFormat": false,
   "enableCustomDateFormatInBases": false,
   "enableRelativeDateColors": false,
-  "settingsTab": "BANNERS",
+  "settingsTab": "DATES",
   "enableTaskNotesCount": false,
   "allTNTasksCount": "tn_tasks",
   "completedTNTasksCount": "tn_tasks_completed",

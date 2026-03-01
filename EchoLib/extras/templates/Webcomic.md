@@ -6,7 +6,6 @@ cover:
 description:
 tags:
   - webcomics
-date: <% tp.date.now("YYYY-MM-DD-dddd") %>
 genres:
 status:
 total chapters:
@@ -17,8 +16,28 @@ read:
 official link:
 link:
 ---
-## Notes
-- 
+## Panels
+```meta-bind-button
+label: add panel
+icon: ""
+style: default
+class: ""
+cssStyle: ""
+backgroundImage: ""
+tooltip: ""
+id: new_panel
+hidden: false
+actions:
+  - type: templaterCreateNote
+    templateFile: extras/templates/Panel.md
+    folderPath: /
+    fileName: ""
+    openNote: true
+    openIfAlreadyExists: false
 
-## Highlights
--
+```
+
+
+## Notes
+
+

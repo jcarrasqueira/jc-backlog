@@ -18,10 +18,13 @@
     "mpreg": 4,
     "mtxt": 5,
     "novel": 6,
+    "panel": 7,
     "quote": 7,
     "transmigration": 8,
     "webcomics": 9,
-    "mediadb/game": 1
+    "mediadb/game": 1,
+    "mediadb/manga": 2,
+    "mediadb/manga/light-novel": 1
   },
   "tagColors": {},
   "_version": 4

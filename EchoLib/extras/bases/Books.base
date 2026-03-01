@@ -5,7 +5,7 @@ views:
     name: books
     filters:
       and:
-        - file.inFolder("books")
+        - file.inFolder("media/books")
     order:
       - title
       - author

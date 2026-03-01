@@ -3,7 +3,7 @@ views:
     name: Games
     filters:
       and:
-        - file.folder == "games"
+        - file.folder == "media/games"
     image: note.image
     imageAspectRatio: 0.45
     cardSize: 280

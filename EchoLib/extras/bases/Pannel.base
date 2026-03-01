@@ -1,9 +1,11 @@
+formulas:
+  Untitled: ""
 views:
   - type: table
     name: quotes embeded
     filters:
       and:
-        - file.folder == "media/quotes"
+        - file.folder == "quotes"
         - reference == this.file.name
     order:
       - quote
@@ -20,13 +22,15 @@ views:
     columnSize:
       note.quote: 306
       note.tags: 160
-  - type: table
-    name: quotes
+  - type: cards
+    name: panels
     filters:
       and:
-        - file.folder == "media/quotes"
+        - file.folder == "media/panels"
     order:
       - quote
       - author
       - reference
       - tags
+      - formula.Untitled
+    image: note.panel
