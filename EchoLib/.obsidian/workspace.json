@@ -13,6 +13,34 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "journal/uni/cloud computing/2026-03-02.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-03-02"
+            }
+          },
+          {
+            "id": "4f4758d3a0e95d2a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CC2526-Phase1-Group8"
+            }
+          },
+          {
+            "id": "8e672b3bdd9c530c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "journal/uni/cloud computing/2026-03-01.md",
                 "mode": "source",
                 "source": false
@@ -20,15 +48,9 @@
               "icon": "lucide-file",
               "title": "2026-03-01"
             }
-          }
-        ]
-      },
-      {
-        "id": "e0e087ca36b7a343",
-        "type": "tabs",
-        "children": [
+          },
           {
-            "id": "cd1a2785d6a8535f",
+            "id": "da236bff201c8f62",
             "type": "leaf",
             "state": {
               "type": "pdf",
@@ -122,13 +144,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-01.md",
+                "file": "journal/uni/cloud computing/2026-03-02.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 2026-03-01"
+              "title": "Outline of 2026-03-02"
             }
           },
           {
@@ -163,9 +185,37 @@
               "icon": "links-going-out",
               "title": "Outgoing links from Journal Entry"
             }
+          },
+          {
+            "id": "ca04b9a2ba3a4210",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "8ea7030ce8a77f9c",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -189,6 +239,8 @@
   "active": "4bc3a5378beccc6a",
   "lastOpenFiles": [
     "journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "journal/uni/cloud computing/2026-03-02.md",
+    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
     "journal/uni/cloud computing/2026-03-01.md",
     "media/manga/Ao no Exorcist (2009).md",
     "media/manga",
@@ -225,8 +277,6 @@
     "journal/uni/sa/2026-02-03.md",
     "journal/uni/sa/2026-02-04.md",
     "extras/templates/Daily Journal 1 1.md",
-    "journal/uni/sa/2026-02-20.md",
-    "journal/uni/cloud computing/2026-02-18.md",
     "extras/imgs/ECHOLib.png",
     "Pasted image 20260227191221.png",
     "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.jpg",
