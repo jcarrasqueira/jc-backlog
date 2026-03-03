@@ -1,80 +1,343 @@
-## 3. Use cases (services/endpoints)
+# 1️⃣ **IMDb Datasets (Non-Commercial Use)**
 
-You can later split these among group members.
+### 🔗 Source:
 
-- **UC1 – “Top‑N Personalized Recommendations”**
-    
-    - **Actor(s)**: Registered user of a client movie site
-        
-    - **Goal**: Get a list of movies they are likely to enjoy based on past ratings or watch history.
-        
-    - **Input**: User ID or explicit list of (movie_id, rating), optional filters (language, year, min rating).
-        
-    - **Output**: JSON list of recommended movies with scores, titles, genres, and reasons (e.g., “similar to movies you rated 5”).
-        
-- **UC2 – “Genre‑Focused Discovery”**
-    
-    - **Actor(s)**: User exploring the catalog
-        
-    - **Goal**: Discover highly rated or popular movies in one or more genres.
-        
-    - **Input**: Genre(s), sort criteria (average rating, popularity), paging parameters.
-        
-    - **Output**: List of movies with aggregated stats (average rating, number of ratings, year).
-        
-- **UC3 – “New User Warm‑Start Recs”**
-    
-    - **Actor(s)**: New user with no history
-        
-    - **Goal**: Receive initial suggestions quickly after answering a few questions.
-        
-    - **Input**: Short preference form (favourite genres, preferred era, a few liked movies) or no input at all.
-        
-    - **Output**: Initial recommendation list based on popularity + genres + simple similarity.
-        
-- **UC4 – “Catalog & Audience Analytics”**
-    
-    - **Actor(s)**: Content manager / platform admin
-        
-    - **Goal**: Understand what content works best to support decisions (promotions, licensing).
-        
-    - **Input**: Time window, optional filters (genre, year).
-        
-    - **Output**: Aggregated indicators (most rated movies, average rating per genre, rating distribution, top trending titles).
-        
-- **UC5 – “Similar Movies / ‘Because you watched…’”**
-    
-    - **Actor(s)**: User on a movie detail page
-        
-    - **Goal**: Get similar movies to the one they are viewing.
-        
-    - **Input**: Movie ID.
-        
-    - **Output**: List of similar movies based on co‑viewing / co‑rating patterns or shared genres/tags.
-        
+IMDb Datasets (official public dumps)
 
-## 4. Data cleaning & DB plan (short)
+### 📦 Format:
+- TSV (UTF-8 text)
+- Multiple relational files
+- Updated **daily**
+    
+### Size:
 
-- Import raw CSVs (`movies.csv`, `ratings.csv`, etc.) into a staging table in a relational DB.[](https://zenodo.org/records/8276077)​
+- Entire dump ≈ **3–5 GB uncompressed**
     
-- Detect missing or invalid values (e.g., invalid timestamps, unknown movie IDs in ratings) and either fix or discard.[](https://zenodo.org/records/8276077)​
+- Individual files range from hundreds of MBs to several GBs
     
-- Normalize into tables like:
+
+### 📁 Key Files:
+
+- `title.basics.tsv` → movies + TV shows metadata
     
-    - `movies(movie_id, title, year, genres, …)`
-        
-    - `users(user_id, …)` (even if user features are limited)
-        
-    - `ratings(user_id, movie_id, rating, timestamp)`
-        
-    - `tags(user_id, movie_id, tag, timestamp)`
-        
-- Add indexes on `ratings(user_id)`, `ratings(movie_id)`, and `movies(genres)` to support frequent queries.
-  
-  
+- `title.ratings.tsv` → ratings & vote counts
+    
+- `title.episode.tsv` → TV episode hierarchy
+    
+- `name.basics.tsv` → actors, directors, etc.
+    
+- `title.principals.tsv` → cast/crew mapping
+    
+
+### ✅ Why It Fits:
+
+✔ UTF-8 text  
+✔ Several GB  
+✔ Frequently updated  
+✔ Highly relational (perfect for data mining)  
+✔ Includes both TV & movies
+
+### 🚀 Use in Your Platform:
+
+- Unified catalog backend
+    
+- Popularity analytics
+    
+- Graph-based recommendation system (actor/genre connections)
+    
+- Time-series trend analysis
+    
+
+---
+
+# 2️⃣ **MovieLens 25M / 32M Dataset**
+
+### 🔗 Source:
+
+GroupLens Research
+
+### 📦 Format:
+
+- CSV
+    
+- Multiple files
+    
+
+### 📊 Size:
+
+- 25M dataset ≈ 1GB
+    
+- 32M dataset slightly larger
+    
+
+### 📁 Includes:
+
+- `ratings.csv`
+    
+- `movies.csv`
+    
+- `tags.csv`
+    
+- `links.csv`
+    
+
+### ✅ Why It Fits:
+
+✔ ~1GB  
+✔ Excellent for collaborative filtering  
+✔ Real user behavior data  
+✔ Timestamped interactions
+
+### ⚠ Limitation:
+
+Mostly movies (limited TV support)
+
+### 🚀 Use:
+
+- Train recommendation models
+    
+- Evaluate collaborative filtering
+    
+- Build personalized ranking systems
+    
+
+---
+
+# 3️⃣ **The Movie Database (TMDb) Full Exports / API Dumps**
+
+### 📦 Format:
+
+- JSON (convertible to CSV)
+    
+- UTF-8
+    
+- Multiple files
+    
+
+### 📊 Size:
+
+If you export full catalog + reviews + TV + movies:  
+→ Can exceed **1–2 GB**
+
+### 📁 Contains:
+
+- Movies
+    
+- TV Shows
+    
+- Genres
+    
+- Reviews
+    
+- Keywords
+    
+- Credits
+    
+- Popularity metrics
+    
+
+### ✅ Why It Fits:
+
+✔ Very recent data  
+✔ Both TV & Movies  
+✔ Rich metadata  
+✔ User ratings & reviews
+
+### 🚀 Use:
+
+- Content-based recommendations
+    
+- NLP sentiment analysis on reviews
+    
+- Popularity trends
+    
+- Genre embeddings
+    
+
+---
+
+# 4️⃣ **Common Crawl + Streaming Reviews Mining**
+
+If you need **large-scale recent reviews**, you can extract:
+
+- Movie/TV reviews from public sites
+    
+- Store as structured CSV
+    
+
+### 📊 Size:
+
+Easily 1–3GB of cleaned review data
+
+### 🚀 Use:
+
+- Sentiment analysis
+    
+- Topic modeling
+    
+- Review-based recommendations
+    
+
+---
+
+# 5️⃣ **Kaggle Large Movie + TV Datasets**
+
+Some relevant large datasets:
+
+### 🔹 “Movies Dataset (45k+ with metadata)”
+
+Often based on TMDb.
+
+### 🔹 “Netflix Prize Data”
+
+Large user-item interaction dataset (can reach GB scale when expanded)
+
+### 🔹 TV Show datasets (various)
+
+⚠ Many Kaggle datasets are <1GB individually — but you can combine multiple to reach required scale.
+
+---
+
+# 6️⃣ Netflix Prize Dataset
+
+Originally from:
+
+### Netflix
+
+### 📦 Format:
+
+- Text files
+    
+- User ratings per movie
+    
+
+### 📊 Size:
+
+~2GB
+
+### ✅ Excellent for:
+
+- Large-scale collaborative filtering
+    
+- Matrix factorization
+    
+- Distributed Spark training
+    
+
+⚠ Older dataset, but still valuable for large-scale modeling.
+
 ---
 
 
+## 🎬 1. **IMDb Official Datasets (TSV files)**
 
+**Description:** Official IMDb dumps updated daily — include titles, episodes, ratings, cast, crew, etc. All are plain TSV text files.
 
-  ```
+👉 **Download:** [IMDb Non‑Commercial Datasets – Official dump (TSV)](https://developer.imdb.com/non-commercial-datasets/?utm_source=chatgpt.com)  
+Direct data site: `https://datasets.imdbws.com/`
+
+> _Contains multiple files:_  
+> • `title.basics.tsv.gz`  
+> • `title.ratings.tsv.gz`  
+> • `title.episode.tsv.gz`  
+> • `name.basics.tsv.gz`  
+> • …and more
+
+**Best for:** Master catalog, metadata, ratings you can join across tables.
+
+---
+
+## 📊 2. **MovieLens Recommendation Datasets (CSV)**
+
+**Official MovieLens pages (GroupLens):**
+
+👉 **25M dataset (ratings + tags + genome):** [MovieLens 25M Dataset (GroupLens)](https://grouplens.org/datasets/movielens/25m/?utm_source=chatgpt.com)  
+👉 **32M dataset (larger, newer):** [MovieLens 32M Dataset (GroupLens)](https://grouplens.org/datasets/movielens/32m/?utm_source=chatgpt.com)
+
+These ZIPs contain CSVs like:
+
+- `ratings.csv`
+    
+- `movies.csv`
+    
+- `tags.csv`
+    
+- `links.csv`
+    
+- `genome_scores.csv`  
+    … which work great for recommendation models.
+    
+
+**Notes:**
+
+- ~25M+ interactions — good scale for analytics & modeling.
+    
+
+---
+
+## 📥 3. **Netflix Prize Dataset (User Ratings)**
+
+👉 **Download on Kaggle:** [Netflix Prize Dataset (Kaggle)](https://www.kaggle.com/datasets/netflix-inc/netflix-prize-data?utm_source=chatgpt.com)
+
+This dataset has:
+
+- user ratings for movies over time
+    
+- movie list + interactions
+    
+
+**Great for:** large-scale collaborative filtering research.
+
+---
+
+## 📌 4. **TMDb / The Movie Database (Metadata + API)**
+
+**Official API & Daily Exports:**  
+👉 **TMDb daily ID exports:** [TMDb Daily ID Exports (JSON)](https://developer.themoviedb.org/docs/daily-id-exports?utm_source=chatgpt.com)
+
+To get full metadata you’ll need:
+
+- a **free TMDb API key**
+    
+- tools to crawl data programmatically
+    
+
+If you want a pre-built CSV file instead, you can also find TMDb datasets mirrored on places like Kaggle (e.g., “TMDB Movie Metadata”), but the official sources are recommended for up-to-date data.
+
+---
+
+## 📜 5. **Useful Community / Research Datasets**
+
+These aren’t always as large as the above, but can be useful supplements:
+
+✔ **Multimodal MovieLens variants** — large enhanced datasets (e.g., with plots, posters, trailers) _linked to the original MovieLens_:  
+👉 Research release: M3L-10M & M3L-20M on Zenodo (multimodal features + links to original raw): [https://zenodo.org/records/18499145](https://zenodo.org/records/18499145)
+
+---
+
+## 🧠 Additional Tips for Building Your Platform
+
+### 📍 Combining Sources
+
+A common pipeline approach is:
+
+1. **Catalog metadata from IMDb / TMDb**
+    
+2. **User interactions from MovieLens & Netflix Prize**
+    
+3. **User reviews (scraped or collected via APIs like TMDb or external review sources)**
+    
+4. **Merge via title/IDs (IMDb ID common key)**
+    
+
+This gives you:
+
+- Large multi-file relational data
+    
+- Recent metadata + user ratings
+    
+- Multiple perspectives for analytics & exploration
+    
+
+---
+

@@ -4,11 +4,79 @@
     "type": "split",
     "children": [
       {
-        "id": "758bce03f59573c7",
+        "id": "5300350e8ea71365",
         "type": "tabs",
         "children": [
           {
-            "id": "0f2b8760e8ae7db0",
+            "id": "ba096b3433bea9df",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CC2526-Phase1-Group8"
+            }
+          },
+          {
+            "id": "2b4e6c7142768953",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "journal/uni/cloud computing/project/CC2526-Project.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "CC2526-Project"
+            }
+          }
+        ]
+      },
+      {
+        "id": "0339784c803b3e1a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c3276d486a49b104",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "cloud_entrega1_tiagopina.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "cloud_entrega1_tiagopina"
+            }
+          },
+          {
+            "id": "0132c1498f24cb2b",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Phase1_Cloud_Computing.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Phase1_Cloud_Computing"
+            }
+          },
+          {
+            "id": "88e7ede1b0000296",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira"
+            }
+          },
+          {
+            "id": "02812b1c89dcaaeb",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -21,27 +89,8 @@
               "title": "2026-03-02"
             }
           }
-        ]
-      },
-      {
-        "id": "5300350e8ea71365",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "95b0b8197b91fd9c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Untitled 2.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Untitled 2"
-            }
-          }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -98,7 +147,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "cb6df2ca199e9214",
@@ -217,15 +267,25 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "0f2b8760e8ae7db0",
+  "active": "ba096b3433bea9df",
   "lastOpenFiles": [
-    "Untitled 2.md",
-    "journal/uni/cloud computing/2026-03-02.md",
+    "Phase1_Cloud_Computing.pdf",
     "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "cloud_entrega1_tiagopina.pdf",
+    "journal/uni/cloud computing/2026-03-02.md",
+    "Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf",
     "journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "BDA2526_Group10_Report.pdf",
+    "Unconfirmed 900398.crdownload",
+    "Unconfirmed 431878.crdownload",
+    "Unconfirmed 40771.crdownload",
+    "Unconfirmed 499575.crdownload",
+    "journal/uni/cloud computing/2026-03-01.md",
+    "Untitled.md",
+    "Untitled 2.md",
+    "Untitled 1.md",
     "1. Searchable Media Catalog.md",
     "extras/pdf-ebook/(Grisha 1) Bardugo, Leigh - Shadow and Bone.epub",
-    "Books.base",
     "media/quotes/[Warning! OOC Warning! Shen Qingqiu would not take the initiative to visit Luo Binge.].md",
     "media/panels/Bloodlink test.md",
     "media/games/Untitled.md",
@@ -240,14 +300,6 @@
     "media/books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 3 - Xue Shan Fei Hu.md",
     "media/books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.md",
     "media/books/Lout of Count's Family (Novel) Vol 1 - Yu Ryeo-Han.md",
-    "media/quotes",
-    "media/panels",
-    "media/manga",
-    "media/games",
-    "media/books",
-    "media",
-    "journal/uni/cloud computing/project",
-    "journal/uni/cloud computing/2026-03-01.md",
     "extras/webcomic covers/blood_link.jpg",
     "extras/templates/Panel.md",
     "extras/templates/Journal Entry.md",
@@ -259,8 +311,6 @@
     "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.jpg",
     "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.jpg",
     "extras/book covers/Lout of Count's Family (Novel) Vol 1 - Yu Ryeo-Han.jpg",
-    "Untitled.md",
-    "Untitled 1.md",
     "EchoLib.md",
     "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu Xiao Tong Kong (Velinxi).md"
   ]
