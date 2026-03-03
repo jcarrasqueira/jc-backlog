@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3f761f5c6e6b7edf",
+        "id": "758bce03f59573c7",
         "type": "tabs",
         "children": [
           {
-            "id": "4bc3a5378beccc6a",
+            "id": "0f2b8760e8ae7db0",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,37 +20,15 @@
               "icon": "lucide-file",
               "title": "2026-03-02"
             }
-          },
+          }
+        ]
+      },
+      {
+        "id": "5300350e8ea71365",
+        "type": "tabs",
+        "children": [
           {
-            "id": "1fbe224f25739185",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Untitled.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Untitled"
-            }
-          },
-          {
-            "id": "5d84801125b648a8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Untitled 1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Untitled 1"
-            }
-          },
-          {
-            "id": "dd5dd6229c497254",
+            "id": "95b0b8197b91fd9c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -62,49 +40,8 @@
               "icon": "lucide-file",
               "title": "Untitled 2"
             }
-          },
-          {
-            "id": "4f4758d3a0e95d2a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CC2526-Phase1-Group8"
-            }
-          },
-          {
-            "id": "8e672b3bdd9c530c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "journal/uni/cloud computing/2026-03-01.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-03-01"
-            }
-          },
-          {
-            "id": "da236bff201c8f62",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "journal/uni/cloud computing/project/CC2526-Project.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "CC2526-Project"
-            }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -124,7 +61,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": true
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -136,7 +73,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#BOOKS",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -172,37 +109,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ef3a9d82a2cf03c0",
-            "type": "leaf",
-            "state": {
-              "type": "journal-calendar",
-              "state": {},
-              "icon": "calendar-days",
-              "title": "Calendar"
-            }
-          },
-          {
-            "id": "a00aaeee5ccbd687",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "Untitled 2.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Outline of Untitled 2"
-            }
-          },
-          {
             "id": "3c0d8e7c6b5d61a9",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-01.md",
+                "file": "extras/templates/Book.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -212,7 +124,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2026-03-01"
+              "title": "Backlinks for Book"
             }
           },
           {
@@ -221,16 +133,16 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "extras/templates/Journal Entry.md",
+                "file": "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Journal Entry"
+              "title": "Outgoing links from The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu"
             }
           },
           {
-            "id": "ca04b9a2ba3a4210",
+            "id": "b739b23a882b3a75",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -245,7 +157,7 @@
             }
           },
           {
-            "id": "8ea7030ce8a77f9c",
+            "id": "d0189cdb4e6a2142",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -257,8 +169,34 @@
               "icon": "lucide-archive",
               "title": "All properties"
             }
+          },
+          {
+            "id": "a00aaeee5ccbd687",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu"
+            }
+          },
+          {
+            "id": "4c0bffa2c4ea91d5",
+            "type": "leaf",
+            "state": {
+              "type": "journal-calendar",
+              "state": {},
+              "icon": "calendar-days",
+              "title": "Calendar"
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -279,54 +217,51 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "dd5dd6229c497254",
+  "active": "0f2b8760e8ae7db0",
   "lastOpenFiles": [
-    "Untitled 1.md",
     "Untitled 2.md",
-    "Untitled.md",
     "journal/uni/cloud computing/2026-03-02.md",
-    "journal/uni/cloud computing/project/CC2526-Project.pdf",
     "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
-    "journal/uni/cloud computing/2026-03-01.md",
-    "media/manga/Ao no Exorcist (2009).md",
-    "media/manga",
-    "Pasted image 20260301182959.png",
+    "journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "1. Searchable Media Catalog.md",
+    "extras/pdf-ebook/(Grisha 1) Bardugo, Leigh - Shadow and Bone.epub",
+    "Books.base",
+    "media/quotes/[Warning! OOC Warning! Shen Qingqiu would not take the initiative to visit Luo Binge.].md",
     "media/panels/Bloodlink test.md",
-    "extras/bases/Pannel.base",
-    "extras/templates/Panel.md",
-    "extras/bases/Quotes.base",
-    "extras/imgs/pannels/test.jpg",
-    "extras/templates/Book.md",
-    "extras/templates/Webcomic.md",
-    "extras/webcomic covers/blood_link.jpg",
-    "extras/webcomic covers",
-    "extras/Nova pasta",
-    "extras/imgs/pannels",
-    "extras/templates/Quote.md",
-    "EchoLib.md",
-    "media/webcomics/Untitled.md",
-    "media/panels",
-    "media/panels",
-    "media/webcomics",
-    "media/books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 2 - Xue Shan Fei Hu.md",
-    "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg",
+    "media/games/Untitled.md",
     "media/games/Hades (2020).md",
-    "media/games/Clair Obscur - Expedition 33 (2025).md",
+    "media/games/Cult of the Lamb (2022).md",
     "media/games/Baldur's Gate 3 (2023).md",
+    "media/games/Clair Obscur - Expedition 33 (2025).md",
+    "media/manga/Ao no Exorcist (2009).md",
+    "media/books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
+    "media/books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 2 - Xue Shan Fei Hu.md",
+    "media/books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.md",
+    "media/books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 3 - Xue Shan Fei Hu.md",
+    "media/books/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.md",
+    "media/books/Lout of Count's Family (Novel) Vol 1 - Yu Ryeo-Han.md",
+    "media/quotes",
+    "media/panels",
+    "media/manga",
+    "media/games",
+    "media/books",
+    "media",
+    "journal/uni/cloud computing/project",
+    "journal/uni/cloud computing/2026-03-01.md",
+    "extras/webcomic covers/blood_link.jpg",
+    "extras/templates/Panel.md",
     "extras/templates/Journal Entry.md",
-    "journal/uni/cloud computing/2026-02-05.md",
-    "journal/uni/cloud computing/2026-02-03.md",
-    "journal/uni/sa/2026-02-12.md",
-    "extras/templates/Weekly Journal.md",
-    "extras/templates/Monthly Journal.md",
-    "journal/uni/sa/2026-02-11.md",
-    "journal/uni/sa/2026-02-03.md",
+    "extras/imgs/pannels/test.jpg",
     "extras/imgs/ECHOLib.png",
-    "Pasted image 20260227191221.png",
-    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.jpg",
-    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.jpg",
+    "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg",
     "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 3 - Xue Shan Fei Hu.jpg",
     "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 2 - Xue Shan Fei Hu.jpg",
-    "Untitled.canvas"
+    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.jpg",
+    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.jpg",
+    "extras/book covers/Lout of Count's Family (Novel) Vol 1 - Yu Ryeo-Han.jpg",
+    "Untitled.md",
+    "Untitled 1.md",
+    "EchoLib.md",
+    "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu Xiao Tong Kong (Velinxi).md"
   ]
 }

@@ -34,4 +34,14 @@ TODO: insert project brief description
 ### 1. Business capability
 ## Use Cases
 ### 1. Use case
+### Use case
+- **description:**  
+- **actor:** 
+- **goal:** 
+- **business capability:** 
 ### 2. Use case
+### Use case
+- **description:**  
+- **actor:** 
+- **goal:** 
+- **business capability:** 
