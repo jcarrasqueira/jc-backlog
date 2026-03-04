@@ -1,0 +1,283 @@
+{
+  "main": {
+    "id": "dd4cb82dcae0fab2",
+    "type": "split",
+    "children": [
+      {
+        "id": "7f9cb3d2c64228e6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6a394663a63bd9aa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "EchoLib/journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CC2526-Phase1-Group8"
+            }
+          },
+          {
+            "id": "305bf2bca751cd8a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Untitled"
+            }
+          }
+        ]
+      },
+      {
+        "id": "705eb3d10189a44a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5cee378e66209957",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "EchoLib/journal/uni/cloud computing/project/CC2526-Project.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "CC2526-Project"
+            }
+          },
+          {
+            "id": "31ccdde2a2babd79",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "EchoLib/cloud_entrega1_tiagopina.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "cloud_entrega1_tiagopina"
+            }
+          },
+          {
+            "id": "5c258b4871d0e67a",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "EchoLib/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira"
+            }
+          },
+          {
+            "id": "f34a16eb3f9c4956",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "EchoLib/Phase1_Cloud_Computing.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Phase1_Cloud_Computing"
+            }
+          },
+          {
+            "id": "20ce01791ea88681",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "EchoLib/journal/uni/cloud computing/2026-03-02.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-03-02"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0b20d250931a66aa",
+    "type": "split",
+    "children": [
+      {
+        "id": "45b0ee182cc823d6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "880c7cb1b1099e7f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "a8a865912de73126",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "a4ccd0df87babe67",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bfa11b7c2b353aaa",
+    "type": "split",
+    "children": [
+      {
+        "id": "9ba4e94347b3642a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f0daf0aefdcbeedf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "EchoLib/journal/uni/SA.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for SA"
+            }
+          },
+          {
+            "id": "67fb7ed9f3df588c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "EchoLib/journal/uni/SA.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from SA"
+            }
+          },
+          {
+            "id": "fcf786942701df9b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "b9282a842bbe38cc",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "31fc607af3ae9820",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "EchoLib/journal/uni/SA.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of SA"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "6a394663a63bd9aa",
+  "lastOpenFiles": [
+    "EchoLib/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf",
+    "EchoLib/journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "EchoLib/cloud_entrega1_tiagopina.pdf",
+    "EchoLib/Phase1_Cloud_Computing.pdf",
+    "Untitled.md",
+    "EchoLib/journal/uni/cloud computing/2026-03-02.md",
+    "EchoLib/journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "EchoLib/journal/uni/SA.md",
+    "EchoLib/Untitled.md",
+    "EchoLib/Untitled 2.md",
+    "EchoLib/Untitled 1.md"
+  ]
+}
