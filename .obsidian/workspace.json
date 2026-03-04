@@ -36,63 +36,6 @@
             }
           }
         ]
-      },
-      {
-        "id": "705eb3d10189a44a",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "5cee378e66209957",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "EchoLib/journal/uni/cloud computing/project/CC2526-Project.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "CC2526-Project"
-            }
-          },
-          {
-            "id": "31ccdde2a2babd79",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "EchoLib/cloud_entrega1_tiagopina.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "cloud_entrega1_tiagopina"
-            }
-          },
-          {
-            "id": "f34a16eb3f9c4956",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "EchoLib/Phase1_Cloud_Computing.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "Phase1_Cloud_Computing"
-            }
-          },
-          {
-            "id": "20ce01791ea88681",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "EchoLib/journal/uni/cloud computing/2026-03-02.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-03-02"
-            }
-          }
-        ],
-        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -256,16 +199,16 @@
   },
   "active": "6a394663a63bd9aa",
   "lastOpenFiles": [
-    "EchoLib/journal/uni/cloud computing/2026-03-02.md",
+    "EchoLib/journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "Untitled.md",
     "EchoLib/journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "EchoLib/journal/uni/cloud computing/2026-03-02.md",
     "EchoLib/Phase1_Cloud_Computing.pdf",
     "EchoLib/cloud_entrega1_tiagopina.pdf",
-    "EchoLib/journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "EchoLib/Untitled 2.md",
     "EchoLib/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf",
-    "Untitled.md",
     "EchoLib/journal/uni/SA.md",
     "EchoLib/Untitled.md",
-    "EchoLib/Untitled 2.md",
     "EchoLib/Untitled 1.md"
   ]
 }
