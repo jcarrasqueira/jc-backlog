@@ -97,50 +97,65 @@ TODO: insert project brief description
 - **Expected outcome:** A structured view of audience reception, enabling more informed decisions regarding marketing strategies, trailers, sequels, creative adjustments, and campaign targeting.
 
 ### UC5. Review Fraud Detection
-- **actor:** Platform integrity system. 
-- **problem:** Protecting the integrity of public movie averages from "review bombing." 
-- **description:**
+- **Actor:** Platform integrity system. 
+- **Problem:** Protecting the integrity of public movie averages from "review bombing." 
+- **Description:**
 	1. The system uses anomaly detection algorithms (review bombing) to monitor the continuous flow of ratings. The process occurs in real time. 
 	2. When it identifies statistically abnormal peaks of extreme ratings from recent or suspicious accounts, the system automatically quarantines these ratings. 
-- **expected outcome:** Secured and credible platform public averages.
+- **Expected outcome:** Secured and credible platform public averages.
 
-### UC5. Gamification with Quests, Streaks, and Genre Exploration
-- **actor:** Registered User
-- **problem:** Even with good recommendations, some users lose motivation, fall into repetitive viewing habits, or stop interacting with the platform (e.g., stop rating, writing reviews, or exploring new content).
-- **description:**
+### UC6. Gamification with Quests, Streaks, and Genre Exploration
+- **Actor:** Registered User
+- **Problem:** Even with good recommendations, some users lose motivation, fall into repetitive viewing habits, or stop interacting with the platform (e.g., stop rating, writing reviews, or exploring new content).
+- **Description:**
 	1. The system introduces gamification mechanics inspired by apps that use streaks, quests, and milestones to increase retention, such as learning platforms and habit-tracking apps.
 	2. Daily, weekly, or seasonal missions are defined, for example:
 	  - *“Maintain a 3-day streak by watching at least 1 episode/movie per day”*
 	  - *“Watch 2 movies from a genre you rarely explore”*
 	  - *“Complete a trilogy or an entire season”*
 	  - *“Rate 5 titles you recently watched”*
-	1. The system automatically tracks progress using viewing history and ratings, adjusting quest difficulty based on the user’s actual behaviour to ensure goals are challenging yet achievable.
-	2. Rewards, in the initial phase, focus on intrinsic motivation and platform features:
+	3. The system automatically tracks progress using viewing history and ratings, adjusting quest difficulty based on the user’s actual behaviour to ensure goals are challenging yet achievable.
+	4. Rewards, in the initial phase, focus on intrinsic motivation and platform features:
 	   - Profile badges
 	   - Extra statistics (genre exploration maps, streak history)
 	   - Minor interface unlocks
 	   - Early access to some premium analytics features
-- **expected outcome:** Secured and credible platform public averages.
+- **Expected outcome:** Increased user retention, higher volume of user data (ratings, reviews, consumption diversity), and encouragement to explore new genres, which in turn improves the recommendation engine and enriches the analytics offered to studios.
 
+### UC7. Personalized Recommendations for Registered User
+- **Actor:** Registered user.
+- **Problem:** The user has difficulty finding movies and series that match their personal tastes.
+- **Description:** 
+    1. The system analyses the user’s rating history, preferred genres, similar movies/series rated by like-minded users, content popularity, and metadata. 
+    2. Based on this data, it generates a personalized list of recommendations.
+- **Expected Outcome:** A list of movies/series ordered by relevance.
 
+### UC8. Search titles
+- **Actor:** User.
+- **Problem:** The user wants to find movies or tv shows that match specific criteria but may struggle to locate them quickly.
+- **Description:** 
+   1. The user enters search terms or applies filters such as type (movie or tv show), genre, year range, or minimum rating. 
+   2. The system returns paginated results showing titles that match the search query.
+   3. The user can browse through pages of results and select a title for more details if desired.
+- **Expected outcome:** The user receives a clear, paginated list of movies/TV shows relevant to their search criteria, improving content discovery and efficiency in finding desired titles.
 
+### UC9. View Title Details
+- **Actor:** User
+- **Problem:** The user wants to access all relevant information about a specific movie or TV show to decide whether to watch it.
+- **Description:**
+    1. The user selects or requests a title by its unique ID.
+    2. The system retrieves and displays detailed information about the title, including:
+       - Title name
+       - Type (tv show or movie)
+       - Release date
+       - Number of seasons (if applicable)
+       - Genres
+       - Average rating
+       - Main cast
+       - Description or synopsis (if available)
+    3. The information is presented in a structured format that allows the user to quickly scan key details and make informed decisions.
+- **Expected outcome:** The user obtains complete and accurate details for any selected title, improving content discovery and supporting informed viewing choices.
 
-UC6. 
-Movie-Based Recommendations
-
-• actor: Anyuser. 
-
-• problem: The user wishes to find works similar to a specific movie title. 
-
-• description:
-
-The user selects a specific movie title. 
-
-The system calculates similarity based on genres, keywords, actors, and synopses of other movies. 
-
-The system uses similarity algorithms to provide a curated list of recommendations. 
-
-• expected outcome: A curated list of recommendations that are semantically similar to the selected film.
 
 ### Use case
 - **actor:**  Newly registered user.

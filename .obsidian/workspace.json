@@ -66,18 +66,6 @@
             }
           },
           {
-            "id": "5c258b4871d0e67a",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "EchoLib/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira"
-            }
-          },
-          {
             "id": "f34a16eb3f9c4956",
             "type": "leaf",
             "state": {
@@ -104,7 +92,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -268,13 +256,13 @@
   },
   "active": "6a394663a63bd9aa",
   "lastOpenFiles": [
-    "EchoLib/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf",
-    "EchoLib/journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
-    "EchoLib/journal/uni/cloud computing/project/CC2526-Project.pdf",
-    "EchoLib/cloud_entrega1_tiagopina.pdf",
-    "EchoLib/Phase1_Cloud_Computing.pdf",
-    "Untitled.md",
     "EchoLib/journal/uni/cloud computing/2026-03-02.md",
+    "EchoLib/journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "EchoLib/Phase1_Cloud_Computing.pdf",
+    "EchoLib/cloud_entrega1_tiagopina.pdf",
+    "EchoLib/journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "EchoLib/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf",
+    "Untitled.md",
     "EchoLib/journal/uni/SA.md",
     "EchoLib/Untitled.md",
     "EchoLib/Untitled 2.md",
