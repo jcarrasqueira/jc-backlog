@@ -1,8 +1,10 @@
 ---
 author:
+authors:
 title:
 alternative title:
 cover:
+released:
 description:
 tags:
   - webcomics
@@ -30,7 +32,7 @@ hidden: false
 actions:
   - type: templaterCreateNote
     templateFile: extras/templates/Panel.md
-    folderPath: /
+    folderPath: /media/panels
     fileName: ""
     openNote: true
     openIfAlreadyExists: false

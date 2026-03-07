@@ -1,7 +1,7 @@
 ---
 panel:
 author:
-reference: "<% tp.file.title %>"
+reference: "Untitled 2"
 tags:
   - panel
 genres:

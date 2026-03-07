@@ -35,8 +35,27 @@ actions:
     openNote: true
     openIfAlreadyExists: false
 ```
+```meta-bind-button
+label: new webcomic
+icon: ""
+style: default
+class: ""
+cssStyle: ""
+backgroundImage: ""
+tooltip: ""
+id: new_webcomic
+hidden: true
+actions:
+  - type: templaterCreateNote
+    templateFile: extras/templates/Webcomic.md
+    folderPath: media/webcomics
+    fileName: ""
+    openNote: true
+    openIfAlreadyExists: false
 
-`BUTTON[new_book]`  `BUTTON[new_quote]`
+```
+
+`BUTTON[new_book]`  `BUTTON[new_webcomic]`
 
 # BOOKS/NOVELS
 ![[Books.base]]

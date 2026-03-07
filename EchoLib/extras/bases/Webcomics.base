@@ -1,0 +1,40 @@
+formulas:
+  rating: "'⭐⭐⭐⭐⭐'.slice(0, rating).split('').map(icon('star'))"
+views:
+  - type: cards
+    name: books
+    filters:
+      and:
+        - file.inFolder("media/webcomics")
+    order:
+      - title
+      - author
+      - formula.rating
+    image: note.cover
+    imageAspectRatio: 1.45
+    imageFit: contain
+    cardSize: 150
+  - type: table
+    name: books table
+    filters:
+      and:
+        - file.inFolder("books")
+    order:
+      - title
+      - author
+      - genres
+      - isbn
+      - link
+      - pdf/ebook
+      - read
+      - reading status
+      - series
+      - tags
+      - total pages
+    sort:
+      - property: title
+        direction: ASC
+    image: note.cover
+    imageAspectRatio: 1.45
+    imageFit: contain
+    cardSize: 150

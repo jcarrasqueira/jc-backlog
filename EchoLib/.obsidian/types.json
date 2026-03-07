@@ -33,6 +33,9 @@
     "TQ_show_tree": "checkbox",
     "TQ_show_urgency": "checkbox",
     "journal-start-date": "date",
-    "journal-end-date": "date"
+    "journal-end-date": "date",
+    "author": "text",
+    "released": "text",
+    "alternative title": "multitext"
   }
 }
