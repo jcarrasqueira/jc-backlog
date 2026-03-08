@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "5fdc6c8c278c0dd4",
+        "id": "57c32626d428ca81",
         "type": "tabs",
         "children": [
           {
-            "id": "901607fae407402d",
+            "id": "29d14de54d9fc304",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+                "file": "EchoLib.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CC2526-Phase1-Group8"
+              "title": "EchoLib"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-08.md",
+                "file": "EchoLib.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2026-03-08"
+              "title": "Backlinks for EchoLib"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-08.md",
+                "file": "EchoLib.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 2026-03-08"
+              "title": "Outgoing links from EchoLib"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-08.md",
+                "file": "EchoLib.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 2026-03-08"
+              "title": "Outline of EchoLib"
             }
           },
           {
@@ -181,10 +181,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-08.md"
+                "file": "EchoLib.md"
               },
               "icon": "lucide-info",
-              "title": "File properties for 2026-03-08"
+              "title": "File properties for EchoLib"
             }
           }
         ],
@@ -209,91 +209,52 @@
       "templater-obsidian:Templater": false
     }
   },
-  "floating": {
-    "id": "e5b95eca193e61ab",
-    "type": "floating",
-    "children": [
-      {
-        "id": "c1473d41f6df8a04",
-        "type": "window",
-        "children": [
-          {
-            "id": "a4ace3762df1c1a9",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "bee39cd52ea9a7d5",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "journal/uni/cloud computing/2026-03-08.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "2026-03-08"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": -1486,
-        "y": 164,
-        "width": 601,
-        "height": 600,
-        "maximize": true,
-        "zoom": 0
-      }
-    ]
-  },
-  "active": "bee39cd52ea9a7d5",
+  "active": "29d14de54d9fc304",
   "lastOpenFiles": [
+    "extras/bases/Websites.base",
+    "media/websites/Novel Updates.md",
+    "EchoLib.md",
+    "media/novels/Desire.md",
+    "extras/templates/Novel.md",
+    "extras/novel covers/DESIRE-BL.jpg",
+    "extras/novel covers/Não confirmado 829605.crdownload",
+    "extras/novel covers",
+    "extras/Nova pasta",
+    "extras/templates/Webcomic.md",
+    "Untitled.base",
+    "extras/templates/Website.md",
+    "extras/templates/Book.md",
+    "extras/templates/Journal Entry.md",
+    "extras/templates/Panel.md",
+    "extras/templates/Panel as.md",
+    "extras/templates/Quote.md",
+    "media/websites/Chrysanthemum Garden.md",
+    "media/books/new book.md",
+    "media/series",
+    "media/websites",
+    "extras/bases/Webcomics 1.base",
+    "media/novels",
+    "books/new book.md",
+    "books",
     "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
-    "journal/uni/cloud computing/project/CC2526-Project.pdf",
     "journal/uni/cloud computing/2026-03-08.md",
-    "journal/uni/cloud computing/project/phase2/swagger.yaml",
-    "journal/uni/cloud computing/project/phase2/swagger",
-    "journal/uni/cloud computing/project/phase2",
-    "journal/uni/cloud computing/project/Nova pasta",
     "journal/uni/cloud computing/project/Untitled.md",
     "media/webcomics/Regas.md",
     "media/panels/Untitled 2.md",
     "media/panels/Untitled 1.md",
-    "extras/templates/Panel.md",
-    "extras/templates/Webcomic.md",
-    "extras/templates/Panel as.md",
     "extras/templates/Panel1.md",
     "media/panels/Untitled.md",
     "media/panels/test.md",
     "media/panels/{{file.name}} - {{date}}-{{time}}.md",
     "media/panels/tp.date.now('YYYYMMDD-HHmmss').md",
-    "new panel.md",
-    "media/panels/Bloodlink test.md",
-    "extras/templates/Quote.md",
-    "extras/templates/Untitled.md",
-    "extras/imgs/panels/Untitled.md",
-    "extras/templates/Journal Entry.md",
-    "extras/templates/Book.md",
-    "extras/bases/Quotes.base",
-    "EchoLib.md",
-    "extras/bases/Webcomics.base",
-    "extras/bases/Books.base",
-    "media/books/Lout of Count's Family (Novel) Vol 1 - Yu Ryeo-Han.md",
-    "extras/bases/Untitled.base",
-    "Untitled.md",
-    "extras/bases/Pannel.base",
     "extras/imgs/panels/images.jpg",
     "extras/webcomic covers/regas.jpg",
-    "books/new book.md",
     "extras/webcomic covers/blood_link.jpg",
     "extras/imgs/panels/test.jpg",
     "extras/imgs/ECHOLib.png",
     "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg",
     "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 3 - Xue Shan Fei Hu.jpg",
     "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 2 - Xue Shan Fei Hu.jpg",
-    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.jpg",
-    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 1 - Xue Shan Fei Hu.jpg"
+    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.jpg"
   ]
 }

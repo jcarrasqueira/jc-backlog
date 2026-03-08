@@ -13,7 +13,7 @@ actions:
   - type: templaterCreateNote
     templateFile: extras/templates/Book.md
     folderPath: /
-    fileName: books/new book
+    fileName: media/books/new book
     openNote: true
     openIfAlreadyExists: false
 ```
@@ -30,7 +30,7 @@ hidden: true
 actions:
   - type: templaterCreateNote
     templateFile: extras/templates/Quote.md
-    folderPath: quotes
+    folderPath: media/quotes
     fileName: new quote
     openNote: true
     openIfAlreadyExists: false
@@ -54,8 +54,48 @@ actions:
     openIfAlreadyExists: false
 
 ```
+```meta-bind-button
+label: new novel
+icon: ""
+style: default
+class: ""
+cssStyle: ""
+backgroundImage: ""
+tooltip: ""
+id: new_novel
+hidden: true
+actions:
+  - type: templaterCreateNote
+    templateFile: extras/templates/Novel.md
+    folderPath: media/novels
+    fileName: new novel
+    openNote: true
+    openIfAlreadyExists: false
 
-`BUTTON[new_book]`  `BUTTON[new_webcomic]`
+```
+
+```meta-bind-button
+label: new website
+icon: ""
+style: default
+class: ""
+cssStyle: ""
+backgroundImage: ""
+tooltip: ""
+id: new_website
+hidden: true
+actions:
+  - type: templaterCreateNote
+    templateFile: extras/templates/Website.md
+    folderPath: media/websites
+    fileName: new website
+    openNote: true
+    openIfAlreadyExists: false
+
+```
+`BUTTON[new_book]`  `BUTTON[new_webcomic]` `BUTTON[new_website]` `BUTTON[new_novel]`
+
+![[Websites.base]]
 
 # BOOKS/NOVELS
 ![[Books.base]]

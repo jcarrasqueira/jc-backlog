@@ -36,6 +36,7 @@
     "journal-end-date": "date",
     "author": "text",
     "released": "text",
-    "alternative title": "multitext"
+    "alternative title": "multitext",
+    "content type": "multitext"
   }
 }

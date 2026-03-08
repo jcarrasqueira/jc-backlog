@@ -7,7 +7,7 @@ cover:
 released:
 description:
 tags:
-  - webcomics
+  - novel
 genres:
 status:
 total chapters:
@@ -15,30 +15,30 @@ reading status:
 current chapter:
 rating: 0
 read:
-official link:
+novel update link:
 link:
 ---
-## Panels
+## Quotes
 ```meta-bind-button
-label: add panel
+label: new quote
 icon: ""
 style: default
 class: ""
 cssStyle: ""
 backgroundImage: ""
 tooltip: ""
-id: new_panel
+id: ""
 hidden: false
 actions:
   - type: templaterCreateNote
-    templateFile: extras/templates/Panel.md
-    folderPath: /media/panels
-    fileName: ""
+    templateFile: extras/templates/Quote.md
+    folderPath: /media/quotes
+    fileName: new quote
     openNote: true
     openIfAlreadyExists: false
-
 ```
 
+![[Quotes.base]]
 
 ## Notes
 

@@ -11,8 +11,10 @@
   },
   "knownTags": {
     "books": 1,
+    "cn": 2,
     "daily": 2,
     "danmei": 2,
+    "info": 3,
     "journal": 3,
     "manhwa": 4,
     "mediadb": 3,
@@ -23,6 +25,7 @@
     "quote": 7,
     "transmigration": 8,
     "webcomics": 9,
+    "website": 10,
     "mediadb/game": 1,
     "mediadb/manga": 2,
     "mediadb/manga/light-novel": 1

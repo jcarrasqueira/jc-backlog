@@ -1,0 +1,12 @@
+views:
+  - type: table
+    name: Websites
+    filters:
+      and:
+        - file.folder == "media/websites"
+    order:
+      - file.name
+      - url
+      - status
+      - content type
+      - description

@@ -32,7 +32,7 @@ hidden: false
 actions:
   - type: templaterCreateNote
     templateFile: extras/templates/Quote.md
-    folderPath: quotes
+    folderPath: /media/quotes
     fileName: new quote
     openNote: true
     openIfAlreadyExists: false
