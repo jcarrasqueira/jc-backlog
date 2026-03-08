@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "f7ef27a26ced8e56",
+        "id": "b0b76e3098cb31a0",
         "type": "tabs",
         "children": [
           {
-            "id": "25110ba2ee5788b1",
+            "id": "1ad24382e6e26333",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "journal/personal/2026-03-08.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "2026-03-08"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "journal/personal/2026-03-08.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for 2026-03-08"
             }
           },
           {
@@ -108,11 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "journal/personal/2026-03-08.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from 2026-03-08"
             }
           },
           {
@@ -150,12 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "journal/personal/2026-03-08.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of 2026-03-08"
             }
           },
           {
@@ -173,9 +180,11 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {},
+              "state": {
+                "file": "journal/personal/2026-03-08.md"
+              },
               "icon": "lucide-info",
-              "title": "File properties"
+              "title": "File properties for 2026-03-08"
             }
           }
         ],
@@ -183,8 +192,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -200,14 +208,28 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "25110ba2ee5788b1",
+  "active": "1ad24382e6e26333",
   "lastOpenFiles": [
+    "journal/uni/ml-25m.zip",
+    "media/webcomics/Ghost Window.md",
+    "journal/personal/2026-03-08.md",
+    "extras/webcomic covers/codename-ghost.jpg",
+    "extras/webcomic covers/Não confirmado 518717.crdownload",
+    "EchoLib.md",
+    "media/webcomics/Dog and Bird.md",
+    "extras/webcomic covers/gog_bird.webp",
+    "extras/webcomic covers/Não confirmado 3074.crdownload",
+    "media/webcomics/How To Survive As A Player.md",
+    "extras/webcomic covers/surviving-as-a-player.jpg",
+    "extras/webcomic covers/Não confirmado 816699.crdownload",
+    "media/webcomics/Candy YumYum.md",
+    "extras/webcomic covers/candy-yum.jpg",
+    "extras/webcomic covers/Não confirmado 174256.crdownload",
     "media/novels/Ai o Ataeru Kemonotachi.md",
     "extras/novel covers/beasts-giving-love.jpg",
     "extras/novel covers/Não confirmado 275193.crdownload",
     "extras/novel covers/9784799736616.jpg",
     "extras/novel covers/Não confirmado 995126.crdownload",
-    "EchoLib.md",
     "media/webcomics/Into The Rose Garden.md",
     "media/novels/Into The Rose Garden.md",
     "extras/bases/Webcomics.base",
@@ -219,10 +241,7 @@
     "extras/templates/Novel.md",
     "extras/novel covers/DESIRE-BL.jpg",
     "extras/novel covers/Não confirmado 829605.crdownload",
-    "extras/novel covers",
-    "extras/Nova pasta",
     "extras/templates/Webcomic.md",
-    "Untitled.base",
     "extras/templates/Website.md",
     "extras/templates/Book.md",
     "extras/templates/Journal Entry.md",
@@ -231,21 +250,11 @@
     "extras/templates/Quote.md",
     "media/websites/Chrysanthemum Garden.md",
     "media/books/new book.md",
-    "media/series",
     "books/new book.md",
     "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
     "journal/uni/cloud computing/2026-03-08.md",
     "journal/uni/cloud computing/project/Untitled.md",
-    "media/webcomics/Regas.md",
-    "media/panels/Untitled 2.md",
-    "media/panels/Untitled 1.md",
-    "extras/templates/Panel1.md",
-    "media/panels/Untitled.md",
     "extras/imgs/panels/images.jpg",
-    "extras/webcomic covers/regas.jpg",
-    "extras/webcomic covers/blood_link.jpg",
-    "extras/imgs/panels/test.jpg",
-    "extras/imgs/ECHOLib.png",
-    "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg"
+    "extras/webcomic covers/regas.jpg"
   ]
 }
