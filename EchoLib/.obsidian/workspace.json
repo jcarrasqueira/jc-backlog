@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "5300350e8ea71365",
+        "id": "5fdc6c8c278c0dd4",
         "type": "tabs",
         "children": [
           {
-            "id": "ff2de57c5e979926",
+            "id": "901607fae407402d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "media/webcomics/Regas.md",
+                "file": "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Regas"
+              "title": "CC2526-Phase1-Group8"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "extras/templates/Book.md",
+                "file": "journal/uni/cloud computing/2026-03-08.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Book"
+              "title": "Backlinks for 2026-03-08"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
+                "file": "journal/uni/cloud computing/2026-03-08.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu"
+              "title": "Outgoing links from 2026-03-08"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "media/webcomics/Regas.md",
+                "file": "journal/uni/cloud computing/2026-03-08.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Regas"
+              "title": "Outline of 2026-03-08"
             }
           },
           {
@@ -181,18 +181,19 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "media/webcomics/Regas.md"
+                "file": "journal/uni/cloud computing/2026-03-08.md"
               },
               "icon": "lucide-info",
-              "title": "File properties for Regas"
+              "title": "File properties for 2026-03-08"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -208,10 +209,57 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "ff2de57c5e979926",
+  "floating": {
+    "id": "e5b95eca193e61ab",
+    "type": "floating",
+    "children": [
+      {
+        "id": "c1473d41f6df8a04",
+        "type": "window",
+        "children": [
+          {
+            "id": "a4ace3762df1c1a9",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "bee39cd52ea9a7d5",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "journal/uni/cloud computing/2026-03-08.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "2026-03-08"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": -1486,
+        "y": 164,
+        "width": 601,
+        "height": 600,
+        "maximize": true,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "bee39cd52ea9a7d5",
   "lastOpenFiles": [
-    "media/panels/Untitled 2.md",
+    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "journal/uni/cloud computing/2026-03-08.md",
+    "journal/uni/cloud computing/project/phase2/swagger.yaml",
+    "journal/uni/cloud computing/project/phase2/swagger",
+    "journal/uni/cloud computing/project/phase2",
+    "journal/uni/cloud computing/project/Nova pasta",
+    "journal/uni/cloud computing/project/Untitled.md",
     "media/webcomics/Regas.md",
+    "media/panels/Untitled 2.md",
     "media/panels/Untitled 1.md",
     "extras/templates/Panel.md",
     "extras/templates/Webcomic.md",
@@ -237,17 +285,8 @@
     "Untitled.md",
     "extras/bases/Pannel.base",
     "extras/imgs/panels/images.jpg",
-    "extras/imgs/pannels/Não confirmado 397411.crdownload",
     "extras/webcomic covers/regas.jpg",
-    "extras/webcomic covers/Não confirmado 612342.crdownload",
-    "journal/uni/cloud computing/project/phase1/BDA2526_Group10_Report.pdf",
     "books/new book.md",
-    "books",
-    "Untitled 2.md",
-    "journal/uni/cloud computing/project/phase1/cloud_entrega1_tiagopina.pdf",
-    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
-    "journal/uni/SA.md",
-    "journal/uni/cloud computing/2026-03-02.md",
     "extras/webcomic covers/blood_link.jpg",
     "extras/imgs/panels/test.jpg",
     "extras/imgs/ECHOLib.png",

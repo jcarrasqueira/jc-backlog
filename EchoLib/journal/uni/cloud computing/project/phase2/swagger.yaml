@@ -1,0 +1,247 @@
+openapi: 3.0.0
+info:
+  title: "CC2526 Group8"
+  description: "A platform which offers unified catalog of movies, a public review system, and a personal watchlist to keep users organize all the titles they interact with. On top of this, the platform includes a recommendation system that suggests future watches based on each user's history."
+  version: "1.0.0"
+servers:
+  - url: "/api"
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        user_id:
+          type: string
+        email:
+          type: string
+          format: email
+        username:
+          type: string
+
+    UserDetails:
+      type: object
+      properties:
+        user_id:
+          type: string
+        email:
+          type: string
+          format: email
+        username:
+          type: string
+        gender:
+          type: string
+          enum: [M, F, NB, O]
+        age:
+          type: integer
+        password_hash:
+            type: string
+
+    UserRegistration:
+      type: object
+      required:
+        - email
+        - password
+        - username
+        - termsAccepted
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          description: Must have at least 10 characters and contain at least one number
+          minLength: 10
+          pattern: "^(?=.*\\d).{10,}$"
+        username:
+          type: string
+        gender:
+          type: string
+          enum: [M, F, NB, O]
+        age:
+          type: integer
+        termsAccepted:
+          type: boolean
+          description: Must be true to complete registration
+
+    Rating:
+      type: object
+      required:
+        - user_id
+        - movie_id
+        - review
+      properties:
+        user_id:
+          type: integer
+        movie_id: 
+          type: integer
+        rating:
+          type: integer
+        review:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+  parameters:
+    user_id:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+
+
+paths:
+  /users:
+    get:
+      summary: Retrieve all users
+      operationId: getUsers
+      tags:
+        - "User Registration"
+      responses:
+        '200':
+          description: List of users retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      summary: Register a new user
+      operationId: registerUser
+      tags:
+        - "User Registration"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRegistration"
+      responses:
+        '201':
+          description: User registered successfully
+        '400':
+          description: Invalid input (e.g., missing required fields, weak password)
+
+  /users/{user_id}:
+    get:
+      summary: Retrieve user details
+      operationId: getUser
+      tags:
+        - "User Registration"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '200':
+          description: User details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDetails"
+    put:
+      summary: Update user details
+      operationId: updateUser
+      tags:
+        - "User Registration"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserDetails"
+      responses:
+        '200':
+          description: User updated successfully
+    delete:
+      summary: Delete a user
+      operationId: deleteUser
+      tags:
+        - "User Registration"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '204':
+          description: User deleted successfully
+
+  /auth:
+    post:
+      summary: Authenticate user and generate a token
+      operationId: loginUser
+      tags:
+        - "User Authetication"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+      responses:
+        '200':
+          description: Authentication successful, token generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Invalid credentials
+
+  /auth/{user_id}:
+    post:
+      summary: Invalidate user token
+      operationId: logoutUser
+      tags:
+        - "User Authetication"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '200':
+          description: User logged out successfully
+        '401':
+          description: Unauthorized
+
+  /auth/verify:
+    get:
+      summary: Verify if the token is valid
+      operationId: verifyToken
+      tags:
+        - "User Authetication"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '200':
+          description: Token is valid
+        '401':
+          description: Invalid or expired token
+
+  /ratings:
+      get:
+        summary: Retrieve all ratings
+        operationId: getRatings
+        tags:
+          - "Review System"
+        responses:
+          '200':
+            description: List of users retrieved successfully
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Rating"
+
+
+
