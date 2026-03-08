@@ -101,7 +101,8 @@ actions:
 ![[Books.base]]
 
 # WEBCOMICS
-### MANHWA/MANHUA
+![[Webcomics.base]]
+
 
 # MANGA
 

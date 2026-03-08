@@ -10,12 +10,15 @@
     "highTextContrast": false
   },
   "knownTags": {
+    "bl": 1,
     "books": 1,
     "cn": 2,
     "daily": 2,
     "danmei": 2,
     "info": 3,
     "journal": 3,
+    "jp": 4,
+    "kr": 4,
     "manhwa": 4,
     "mediadb": 3,
     "mpreg": 4,

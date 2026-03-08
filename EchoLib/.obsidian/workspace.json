@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "57c32626d428ca81",
+        "id": "f7ef27a26ced8e56",
         "type": "tabs",
         "children": [
           {
-            "id": "29d14de54d9fc304",
+            "id": "25110ba2ee5788b1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "EchoLib.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "EchoLib"
+              "title": "New tab"
             }
           }
         ]
@@ -53,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "[link: \"\"]",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "EchoLib.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for EchoLib"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "EchoLib.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from EchoLib"
+              "title": "Outgoing links"
             }
           },
           {
@@ -156,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "EchoLib.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of EchoLib"
+              "title": "Outline"
             }
           },
           {
@@ -180,11 +173,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "EchoLib.md"
-              },
+              "state": {},
               "icon": "lucide-info",
-              "title": "File properties for EchoLib"
+              "title": "File properties"
             }
           }
         ],
@@ -209,11 +200,21 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "29d14de54d9fc304",
+  "active": "25110ba2ee5788b1",
   "lastOpenFiles": [
+    "media/novels/Ai o Ataeru Kemonotachi.md",
+    "extras/novel covers/beasts-giving-love.jpg",
+    "extras/novel covers/Não confirmado 275193.crdownload",
+    "extras/novel covers/9784799736616.jpg",
+    "extras/novel covers/Não confirmado 995126.crdownload",
+    "EchoLib.md",
+    "media/webcomics/Into The Rose Garden.md",
+    "media/novels/Into The Rose Garden.md",
+    "extras/bases/Webcomics.base",
+    "extras/novel covers/Into-The-Rose-Garden.jpg",
+    "extras/novel covers/Não confirmado 705913.crdownload",
     "extras/bases/Websites.base",
     "media/websites/Novel Updates.md",
-    "EchoLib.md",
     "media/novels/Desire.md",
     "extras/templates/Novel.md",
     "extras/novel covers/DESIRE-BL.jpg",
@@ -231,11 +232,7 @@
     "media/websites/Chrysanthemum Garden.md",
     "media/books/new book.md",
     "media/series",
-    "media/websites",
-    "extras/bases/Webcomics 1.base",
-    "media/novels",
     "books/new book.md",
-    "books",
     "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
     "journal/uni/cloud computing/2026-03-08.md",
     "journal/uni/cloud computing/project/Untitled.md",
@@ -244,17 +241,11 @@
     "media/panels/Untitled 1.md",
     "extras/templates/Panel1.md",
     "media/panels/Untitled.md",
-    "media/panels/test.md",
-    "media/panels/{{file.name}} - {{date}}-{{time}}.md",
-    "media/panels/tp.date.now('YYYYMMDD-HHmmss').md",
     "extras/imgs/panels/images.jpg",
     "extras/webcomic covers/regas.jpg",
     "extras/webcomic covers/blood_link.jpg",
     "extras/imgs/panels/test.jpg",
     "extras/imgs/ECHOLib.png",
-    "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg",
-    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 3 - Xue Shan Fei Hu.jpg",
-    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun de Zhangxin Yu Chong (Novel) Vol 2 - Xue Shan Fei Hu.jpg",
-    "extras/book covers/The Disabled Tyrant's Beloved Pet Fish Canji Baojun De Zhangxin Yu Chong (Novel) Vol 4 - Xue Shan Fei Hu.jpg"
+    "extras/book covers/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.jpg"
   ]
 }
