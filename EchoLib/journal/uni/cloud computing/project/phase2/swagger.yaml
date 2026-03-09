@@ -6,6 +6,12 @@ info:
 servers:
   - url: "/api"
 
+tags:
+  - name: "User Registration"
+  - name: "User Authetication"
+  - name: "User Preferences"
+  - name: "Review System"
+
 components:
   schemas:
     User:
@@ -164,6 +170,33 @@ components:
         tag:
           type: string
 
+    RatingEvaluation:
+      type: object
+      properties:
+        rating_id:
+          type: integer
+        valid:
+          type: boolean
+        evaluated_at:
+          type: string
+          format: date-time
+    
+    RatingCheck:
+      type: object
+      required:
+        - valid
+      properties:
+        valid:
+          type: boolean
+    
+    UserPreference:
+        type: object
+        required:
+          - genre
+        properties:
+          genre:
+            type: string
+
   parameters:
     user_id:
       name: user_id
@@ -218,6 +251,13 @@ components:
       name: tag_filter
       in: query
       required: false
+      schema:
+        type: string
+
+    genre:
+      name: genre
+      in: path
+      required: true
       schema:
         type: string
     
@@ -477,4 +517,101 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserRating"
+  
+  /users/{user_id}/preferences:
+    get:
+      summary: Retrieve user preferences
+      operationId: getUserPreferences
+      tags:
+        - "User Preferences"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '200':
+          description: User preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserPreference'
 
+    post:
+      summary: Add a user preference
+      operationId: addUserPreference
+      tags:
+        - "User Preferences"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPreference'
+      responses:
+        '201':
+          description: Preference added successfully
+
+  /users/{user_id}/preferences/{genre}:
+    delete:
+      summary: Remove a user preference
+      operationId: deleteUserPreference
+      tags:
+        - "User Preferences"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+        - $ref: "#/components/parameters/genre"
+      responses:
+        '204':
+          description: Preference removed successfully
+
+  /ratings/{rating_id}/evaluation:
+    get:
+      summary: Retrieve rating evaluation
+      operationId: getRatingEvaluation
+      tags:
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      responses:
+        '200':
+          description: Rating evaluation retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatingEvaluation'
+
+    post:
+      summary: Create rating evaluation
+      operationId: createRatingEvaluation
+      tags:
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RatingCheck'
+      responses:
+        '201':
+          description: Rating evaluation created successfully
+
+    put:
+      summary: Update rating evaluation
+      operationId: updateRatingEvaluation
+      tags:
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RatingCheck'
+      responses:
+        '200':
+          description: Rating evaluation updated successfully
