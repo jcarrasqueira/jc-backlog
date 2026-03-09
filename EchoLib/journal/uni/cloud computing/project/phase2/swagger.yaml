@@ -98,7 +98,8 @@ components:
       properties:
         rating_id:
           type: integer
-          enum: [1,2,3,4,5]
+          minimum: 1
+          maximum: 5
         movie_id: 
           type: integer
         rating:
@@ -123,9 +124,6 @@ components:
           type: integer
         review:
           type: string
-        timestamp:
-          type: string
-          format: date-time
         tag:
           type: string  
 
@@ -439,7 +437,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MovieRating"
+                type: array
+                items:
+                  $ref: "#/components/schemas/MovieRating"
     post:
       summary: Create a new rating
       operationId: createRating
