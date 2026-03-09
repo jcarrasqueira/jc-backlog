@@ -67,12 +67,16 @@ components:
     Rating:
       type: object
       required:
+        - rating_id
+        - rating
         - user_id
         - movie_id
-        - review
       properties:
-        user_id:
+        rating_id:
           type: integer
+          enum: [1,2,3,4,5]
+        user_id:
+          type: string
         movie_id: 
           type: integer
         rating:
@@ -82,6 +86,52 @@ components:
         timestamp:
           type: string
           format: date-time
+        tag:
+          type: string
+
+    UserRating:
+      type: object
+      required:
+        - rating_id
+        - rating
+        - movie_id
+      properties:
+        rating_id:
+          type: integer
+          enum: [1,2,3,4,5]
+        movie_id: 
+          type: integer
+        rating:
+          type: integer
+        review:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        tag:
+          type: string
+          
+    MovieRating:
+      type: object
+      required:
+        - rating_id
+        - rating
+        - user_id
+      properties:
+        rating_id:
+          type: integer
+          enum: [1,2,3,4,5]
+        user_id:
+          type: string
+        rating:
+          type: integer
+        review:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        tag:
+          type: string
 
   parameters:
     user_id:
@@ -90,6 +140,42 @@ components:
       required: true
       schema:
         type: string
+
+    rating_id:
+      name: rating_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    
+    movie_id:
+      name: movie_id
+      in: path
+      required: true
+      schema:
+        type: integer
+
+    rating_filter:
+      name: rating_filter
+      in: query
+      required: false
+      schema:
+        type: integer
+    
+    filter_by_year:
+      name: filter_by_year
+      in: query
+      required: false
+      schema:
+        type: integer
+    
+    tag_filter:
+      name: tag_filter
+      in: query
+      required: false
+      schema:
+        type: string
+    
 
 
 paths:
@@ -166,7 +252,7 @@ paths:
       responses:
         '204':
           description: User deleted successfully
-
+          
   /auth:
     post:
       summary: Authenticate user and generate a token
@@ -227,21 +313,42 @@ paths:
         '401':
           description: Invalid or expired token
 
+  /users/{user_id}/ratings/:
+    get:
+      summary: Retrieve user ratings
+      operationId: getUserRatings
+      tags:
+        - "User Reviews"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+        - $ref: '#/components/parameters/rating_filter'
+        - $ref: '#/components/parameters/filter_by_year'
+        - $ref: '#/components/parameters/tag_filter'
+      responses:
+        '200':
+          description: User ratings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserRating"
+
   /ratings:
       get:
         summary: Retrieve all ratings
         operationId: getRatings
         tags:
           - "Review System"
+        parameters:
+          - $ref: '#/components/parameters/rating_filter'
+          - $ref: '#/components/parameters/filter_by_year'
+          - $ref: '#/components/parameters/tag_filter'
         responses:
           '200':
-            description: List of users retrieved successfully
+            description: List of rating retrieved successfully
             content:
               application/json:
                 schema:
                   type: array
                   items:
                     $ref: "#/components/schemas/Rating"
-
-
 

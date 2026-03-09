@@ -4,24 +4,63 @@
     "type": "split",
     "children": [
       {
-        "id": "b0b76e3098cb31a0",
+        "id": "0339784c803b3e1a",
         "type": "tabs",
         "children": [
           {
-            "id": "1ad24382e6e26333",
+            "id": "c3276d486a49b104",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "cloud_entrega1_tiagopina.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "cloud_entrega1_tiagopina"
+            }
+          },
+          {
+            "id": "0132c1498f24cb2b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journal/personal/2026-03-08.md",
+                "file": "journal/uni/cloud computing/2026-03-08.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "2026-03-08"
             }
+          },
+          {
+            "id": "88e7ede1b0000296",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira"
+            }
+          },
+          {
+            "id": "02812b1c89dcaaeb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "journal/uni/cloud computing/2026-03-02.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-03-02"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -53,7 +92,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[link: \"\"]",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -78,7 +117,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 292.5,
+    "collapsed": true
   },
   "right": {
     "id": "cb6df2ca199e9214",
@@ -94,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "journal/personal/2026-03-08.md",
+                "file": "extras/templates/Book.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +144,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2026-03-08"
+              "title": "Backlinks for Book"
             }
           },
           {
@@ -113,12 +153,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "journal/personal/2026-03-08.md",
+                "file": "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 2026-03-08"
+              "title": "Outgoing links from The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu"
             }
           },
           {
@@ -156,13 +196,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "journal/personal/2026-03-08.md",
+                "file": "books/The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 2026-03-08"
+              "title": "Outline of The Scum Villain's Self-Saving System Ren Zha Fanpai Zijiu Xitong (Novel) Vol 1 - Mo Xiang Tong Xiu"
             }
           },
           {
@@ -174,25 +214,14 @@
               "icon": "calendar-days",
               "title": "Calendar"
             }
-          },
-          {
-            "id": "235f0a020c8a8392",
-            "type": "leaf",
-            "state": {
-              "type": "file-properties",
-              "state": {
-                "file": "journal/personal/2026-03-08.md"
-              },
-              "icon": "lucide-info",
-              "title": "File properties for 2026-03-08"
-            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -208,53 +237,53 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "1ad24382e6e26333",
+  "active": "0132c1498f24cb2b",
   "lastOpenFiles": [
-    "journal/uni/ml-25m.zip",
-    "media/webcomics/Ghost Window.md",
-    "journal/personal/2026-03-08.md",
-    "extras/webcomic covers/codename-ghost.jpg",
-    "extras/webcomic covers/Não confirmado 518717.crdownload",
-    "EchoLib.md",
-    "media/webcomics/Dog and Bird.md",
-    "extras/webcomic covers/gog_bird.webp",
-    "extras/webcomic covers/Não confirmado 3074.crdownload",
-    "media/webcomics/How To Survive As A Player.md",
-    "extras/webcomic covers/surviving-as-a-player.jpg",
-    "extras/webcomic covers/Não confirmado 816699.crdownload",
-    "media/webcomics/Candy YumYum.md",
-    "extras/webcomic covers/candy-yum.jpg",
-    "extras/webcomic covers/Não confirmado 174256.crdownload",
-    "media/novels/Ai o Ataeru Kemonotachi.md",
-    "extras/novel covers/beasts-giving-love.jpg",
-    "extras/novel covers/Não confirmado 275193.crdownload",
-    "extras/novel covers/9784799736616.jpg",
-    "extras/novel covers/Não confirmado 995126.crdownload",
-    "media/webcomics/Into The Rose Garden.md",
-    "media/novels/Into The Rose Garden.md",
-    "extras/bases/Webcomics.base",
-    "extras/novel covers/Into-The-Rose-Garden.jpg",
-    "extras/novel covers/Não confirmado 705913.crdownload",
-    "extras/bases/Websites.base",
+    "journal/uni/cloud computing/2026-03-02.md",
     "media/websites/Novel Updates.md",
-    "media/novels/Desire.md",
-    "extras/templates/Novel.md",
-    "extras/novel covers/DESIRE-BL.jpg",
-    "extras/novel covers/Não confirmado 829605.crdownload",
-    "extras/templates/Webcomic.md",
-    "extras/templates/Website.md",
-    "extras/templates/Book.md",
-    "extras/templates/Journal Entry.md",
-    "extras/templates/Panel.md",
-    "extras/templates/Panel as.md",
-    "extras/templates/Quote.md",
     "media/websites/Chrysanthemum Garden.md",
-    "media/books/new book.md",
-    "books/new book.md",
-    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "media/websites",
+    "media/webcomics/Regas.md",
+    "media/webcomics/Into The Rose Garden.md",
+    "media/webcomics/How To Survive As A Player.md",
+    "media/webcomics/Ghost Window.md",
+    "media/webcomics/Dog and Bird.md",
+    "media/webcomics/Candy YumYum.md",
+    "media/webcomics",
+    "media/panels/Untitled.md",
+    "media/panels/Untitled 2.md",
+    "media/panels/Untitled 1.md",
+    "media/novels/Into The Rose Garden.md",
+    "media/novels/Desire.md",
+    "media/novels/Ai o Ataeru Kemonotachi.md",
+    "media/novels",
+    "journal/uni/cloud computing/project/phase2/swagger.yaml",
+    "journal/uni/cloud computing/project/phase2",
+    "journal/uni/cloud computing/project/phase1/cloud_entrega1_tiagopina.pdf",
+    "journal/uni/cloud computing/project/phase1/Phase1_Cloud_Computing.pdf",
+    "journal/uni/cloud computing/project/phase1/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf",
+    "journal/uni/cloud computing/project/phase1/BDA2526_Group10_Report.pdf",
+    "journal/uni/cloud computing/project/phase1",
     "journal/uni/cloud computing/2026-03-08.md",
-    "journal/uni/cloud computing/project/Untitled.md",
+    "journal/personal/2026-03-08.md",
+    "extras/webcomic covers/surviving-as-a-player.jpg",
+    "extras/webcomic covers/regas.jpg",
+    "extras/webcomic covers/gog_bird.webp",
+    "extras/webcomic covers/codename-ghost.jpg",
+    "extras/webcomic covers/candy-yum.jpg",
+    "extras/templates/Website.md",
+    "extras/templates/Panel as.md",
+    "extras/templates/Novel.md",
+    "extras/novel covers/beasts-giving-love.jpg",
+    "extras/novel covers/Into-The-Rose-Garden.jpg",
+    "extras/novel covers/DESIRE-BL.jpg",
+    "extras/imgs/panels/test.jpg",
     "extras/imgs/panels/images.jpg",
-    "extras/webcomic covers/regas.jpg"
+    "journal/uni/cloud computing/2026-03-01.md",
+    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "Untitled.md",
+    "Untitled 2.md",
+    "Untitled 1.md",
+    "1. Searchable Media Catalog.md"
   ]
 }
