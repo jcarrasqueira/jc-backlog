@@ -110,7 +110,40 @@ components:
           format: date-time
         tag:
           type: string
-          
+    
+    CreateRating:
+      type: object
+      required:
+        - rating
+        - user_id
+      properties:
+        user_id: 
+          type: string
+        rating:
+          type: integer
+        review:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        tag:
+          type: string  
+
+    UpdateRating:
+      type: object
+      required:
+        - rating
+      properties:
+        rating:
+          type: integer
+        review:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        tag:
+          type: string  
+
     MovieRating:
       type: object
       required:
@@ -154,6 +187,20 @@ components:
       required: true
       schema:
         type: integer
+    
+    movie_filter:
+      name: movie
+      in: query
+      required: false
+      schema:
+        type: string
+
+    username_filter:
+      name: username
+      in: query
+      required: false
+      schema:
+        type: string
 
     rating_filter:
       name: rating_filter
@@ -176,8 +223,6 @@ components:
       schema:
         type: string
     
-
-
 paths:
   /users:
     get:
@@ -313,25 +358,6 @@ paths:
         '401':
           description: Invalid or expired token
 
-  /users/{user_id}/ratings/:
-    get:
-      summary: Retrieve user ratings
-      operationId: getUserRatings
-      tags:
-        - "User Reviews"
-      parameters:
-        - $ref: "#/components/parameters/user_id"
-        - $ref: '#/components/parameters/rating_filter'
-        - $ref: '#/components/parameters/filter_by_year'
-        - $ref: '#/components/parameters/tag_filter'
-      responses:
-        '200':
-          description: User ratings retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UserRating"
-
   /ratings:
       get:
         summary: Retrieve all ratings
@@ -339,6 +365,8 @@ paths:
         tags:
           - "Review System"
         parameters:
+          - $ref: '#/components/parameters/username_filter'
+          - $ref: '#/components/parameters/movie_filter'
           - $ref: '#/components/parameters/rating_filter'
           - $ref: '#/components/parameters/filter_by_year'
           - $ref: '#/components/parameters/tag_filter'
@@ -351,4 +379,102 @@ paths:
                   type: array
                   items:
                     $ref: "#/components/schemas/Rating"
+
+  /ratings/{rating_id}:
+    get:
+      summary: Retrieve rating by its id
+      operationId: getRating
+      tags:
+        - "Review System"
+      parameters:
+        - $ref: '#/components/parameters/rating_id'
+      responses:
+        '200':
+          description: Rating retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rating"
+    put:
+      summary: Update a specific rating
+      operationId: updateRating
+      tags:
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRating'
+      responses:
+        '200':
+          description: User updated successfully
+    delete:
+      summary: Delete a specific rating
+      operationId: deleteRating
+      tags:
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      responses:
+        '204':
+          description: User deleted successfully
+  
+  /movies/{movie_id}/ratings:
+    get:
+      summary: Retrieve movie ratings
+      operationId: getMovieRatings
+      tags:
+        - "Review System"
+      parameters:
+        - $ref: '#/components/parameters/movie_id'
+        - $ref: '#/components/parameters/rating_filter'
+        - $ref: '#/components/parameters/filter_by_year'
+        - $ref: '#/components/parameters/tag_filter'
+      responses:
+        '200':
+          description: Movie ratings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MovieRating"
+    post:
+      summary: Create a new rating
+      operationId: createRating
+      tags:
+        - "Review System"
+      parameters: 
+        - $ref: '#/components/parameters/movie_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRating'
+      responses:
+        '201':
+          description: Created movie rating successfully
+        '400':
+          description: Invalid input (e.g., missing required fields)
+  
+  /users/{user_id}/ratings/:
+    get:
+      summary: Retrieve user ratings
+      operationId: getUserRatings
+      tags:
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+        - $ref: '#/components/parameters/rating_filter'
+        - $ref: '#/components/parameters/filter_by_year'
+        - $ref: '#/components/parameters/tag_filter'
+      responses:
+        '200':
+          description: User ratings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserRating"
 
