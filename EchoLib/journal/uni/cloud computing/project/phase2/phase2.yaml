@@ -12,6 +12,7 @@ tags:
   - name: User Authentication
   - name: Movies
   - name: Review System
+  - name: Badge
 
 components:
   schemas:
@@ -265,6 +266,60 @@ components:
           type: string
         tag:
           type: string
+    Badge:
+      type: object
+      required:
+        - badge_id
+        - title
+      properties:
+        badge_id:
+          type: integer
+        title:
+          type: string
+        milestone:
+          type: integer
+        description:
+          type: string
+
+    BadgeCreate:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+        milestone:
+          type: integer
+        description:
+          type: string
+
+    BadgeUpdate:
+      type: object
+      description: All fields optional. Only provided fields will be updated.
+      properties:
+        title:
+          type: string
+        milestone:
+          type: integer
+        description:
+          type: string
+
+    UserBadge:
+      type: object
+      required:
+        - user_id
+        - badge
+        - awarded_at
+      properties:
+        user_id:
+          type: integer
+        badge:
+          $ref: "#/components/schemas/Badge"
+        milestone:
+          type: integer
+        awarded_at:
+          type: string
+          format: date-time
 
   parameters:
     user_id:
@@ -311,6 +366,7 @@ components:
       name: rating_id
       in: path
       required: true
+      description: Unique identifier of the rating
       schema:
         type: integer
 
@@ -329,6 +385,14 @@ components:
     rating:
       name: rating
       in: query
+      schema:
+        type: integer
+    
+    badge_id:
+      name: badge_id
+      in: path
+      required: true
+      description: Unique identifier of the badge
       schema:
         type: integer
 
