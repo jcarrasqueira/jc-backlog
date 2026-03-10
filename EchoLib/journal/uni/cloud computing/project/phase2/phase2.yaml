@@ -227,7 +227,7 @@ components:
         user_id:
           type: string
         movie_id:
-          type: integer
+          type: string
         rating:
           type: integer
           minimum: 1
@@ -274,6 +274,14 @@ components:
       schema:
         type: string
 
+    movie_id:
+      name: movie_id
+      in: path
+      required: true
+      description: Unique identifier of the movie
+      schema:
+        type: string
+  
     genre:
       name: genre
       in: query
@@ -306,14 +314,7 @@ components:
       schema:
         type: integer
 
-    movie_id:
-      name: movie_id
-      in: path
-      required: true
-      schema:
-        type: integer
-
-    username_filter:
+    username:
       name: username
       in: query
       schema:
@@ -325,23 +326,11 @@ components:
       schema:
         type: string
 
-    rating_filter:
+    rating:
       name: rating
       in: query
       schema:
         type: integer
-
-    filter_by_year:
-      name: year
-      in: query
-      schema:
-        type: integer
-
-    tag_filter:
-      name: tag
-      in: query
-      schema:
-        type: string
 
 paths:
   /users:
@@ -466,17 +455,144 @@ paths:
         '401':
           description: Invalid or expired token
 
+  /movies:
+    get:
+      summary: List Movies
+      description: Retrieve all movies, with optional filters by genre, release year, or tag.
+      operationId: get_movies
+      tags:
+        - "Movies"
+      parameters:
+        - $ref: "#/components/parameters/genre"
+        - $ref: "#/components/parameters/release_year"
+        - $ref: "#/components/parameters/tag"
+      responses:
+        "200":
+          description: Movies retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Movie"
+        "422":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+    post:
+      summary: Create Movie
+      description: Add a new movie.
+      operationId: create_movie_post
+      tags:
+        - "Movies"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MovieCreate"
+      responses:
+        "201":
+          description: Movie created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Movie"
+        "422":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+
+  /movies/{movie_id}:
+    get:
+      summary: Get Movie
+      description: Retrieve a single movie by its unique ID.
+      operationId: get_movie
+      tags:
+        - "Movies"
+      parameters:
+        - $ref: "#/components/parameters/movie_id"
+      responses:
+        "200":
+          description: Movie retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Movie"
+        "404":
+          description: Movie not found
+        "422":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+
+    put:
+      summary: Update Movie
+      description: Update one or more fields of an existing movie.
+      operationId: update_movie
+      tags:
+        - "Movies"
+      parameters:
+        - $ref: "#/components/parameters/movie_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MovieUpdate"
+      responses:
+        "200":
+          description: Movie updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Movie"
+        "404":
+          description: Movie not found
+        "422":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+
+    delete:
+      summary: Delete Movie
+      description: Permanently remove a movie from the database.
+      operationId: delete_movie
+      tags:
+        - "Movies"
+      parameters:
+        - $ref: "#/components/parameters/movie_id" 
+      responses:
+        "204":
+          description: Movie deleted successfully
+        "404":
+          description: Movie not found
+        "422":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
   /ratings:
     get:
       summary: Retrieve all ratings
       tags:
         - "Review System"
       parameters:
-        - $ref: "#/components/parameters/username_filter"
+        - $ref: "#/components/parameters/username"
         - $ref: "#/components/parameters/movie_filter"
-        - $ref: "#/components/parameters/rating_filter"
-        - $ref: "#/components/parameters/filter_by_year"
-        - $ref: "#/components/parameters/tag_filter"
+        - $ref: "#/components/parameters/rating"
+        - $ref: "#/components/parameters/genre"
+        - $ref: '#/components/parameters/release_year'
+        - $ref: "#/components/parameters/tag"
       responses:
         '200':
           description: Ratings retrieved
@@ -535,9 +651,9 @@ paths:
         - "Review System"
       parameters:
         - $ref: "#/components/parameters/movie_id"
-        - $ref: "#/components/parameters/rating_filter"
-        - $ref: "#/components/parameters/filter_by_year"
-        - $ref: "#/components/parameters/tag_filter"
+        - $ref: "#/components/parameters/rating"
+        - $ref: "#/components/parameters/release_year"
+        - $ref: "#/components/parameters/tag"
       responses:
         '200':
           description: Movie ratings retrieved
@@ -571,9 +687,10 @@ paths:
         - "Review System"
       parameters:
         - $ref: "#/components/parameters/user_id"
-        - $ref: "#/components/parameters/rating_filter"
-        - $ref: "#/components/parameters/filter_by_year"
-        - $ref: "#/components/parameters/tag_filter"
+        - $ref: "#/components/parameters/rating"
+        - $ref: "#/components/parameters/release_year"
+        - $ref: "#/components/parameters/genre"
+        - $ref: "#/components/parameters/tag"
       responses:
         '200':
           description: User ratings retrieved
