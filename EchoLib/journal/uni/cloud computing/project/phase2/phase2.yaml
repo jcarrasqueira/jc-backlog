@@ -1007,7 +1007,87 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
         '500':
           description: Internal server error
-          
+  
+  /users/{user_id}/badges:
+    get:
+      summary: List user badges
+      operationId: get_user_badges
+      description: Retrieve all badges awarded to a given user.
+      tags:
+        - Badges
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '200':
+          description: User badges retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserBadge'
+        '400':
+          description: Invalid user_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '404':
+          description: User not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal server error
+    post:
+      summary: Award badge to user
+      operationId: award_user_badge
+      description: Award an existing badge definition to a user.
+      tags:
+        - Badges
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - badge_id
+              properties:
+                badge_id:
+                  type: integer
+                  description: Identifier of the badge to award
+      responses:
+        '201':
+          description: Badge awarded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserBadge'
+        '400':
+          description: Invalid user_id or badge_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User or badge not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal server error
+
   /watchlists:
     get:
       summary: List watchlists
