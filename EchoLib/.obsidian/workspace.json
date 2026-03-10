@@ -209,8 +209,10 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "02812b1c89dcaaeb",
+  "active": "a4504db5d7760392",
   "lastOpenFiles": [
+    "journal/uni/cloud computing/project/phase2/swaggerv2.yaml",
+    "journal/uni/cloud computing/project/phase2/phase2.yaml",
     "journal/uni/cloud computing/2026-03-09.md",
     "journal/uni/cloud computing/2026-03-08.md",
     "journal/uni/cloud computing/2026-03-02.md",
@@ -239,7 +241,6 @@
     "journal/uni/cloud computing/project/phase1/Phase1_Cloud_Computing.pdf",
     "journal/uni/cloud computing/project/phase1/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf",
     "journal/uni/cloud computing/project/phase1/BDA2526_Group10_Report.pdf",
-    "journal/uni/cloud computing/project/phase1",
     "extras/webcomic covers/surviving-as-a-player.jpg",
     "extras/webcomic covers/regas.jpg",
     "extras/webcomic covers/gog_bird.webp",
@@ -255,7 +256,6 @@
     "extras/imgs/panels/images.jpg",
     "journal/uni/cloud computing/2026-03-01.md",
     "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
-    "Untitled.md",
-    "Untitled 2.md"
+    "Untitled.md"
   ]
 }

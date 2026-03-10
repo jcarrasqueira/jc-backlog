@@ -1,0 +1,428 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Movies API",
+    "description": "REST API for managing movies, including genres, tags and IMBD references.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/movies": {
+      "get": {
+        "summary": "List Movies",
+        "operationId": "get_movies",
+        "description": "Retrieve all movies, with optional filters by genre, release year, or tag.",
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by genre"
+          },
+          {
+            "name": "release_year",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1888
+            },
+            "description": "Filter by release year"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "required": false,
+            "schema": {
+                "type": "integer"
+            },
+            "description": "Filter by a specific tag"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movies retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Movie"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Movie",
+        "operationId": "create_movie_post",
+        "description": "Add a new movie.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovieCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Movie created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Movie"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies/{movie_id}": {
+      "get": {
+        "summary": "Get Movie",
+        "operationId": "get_movie",
+        "description": "Retrieve a single movie by its unique ID.",
+        "parameters": [
+          {
+            "name": "movie_id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier of the movie",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movie retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Movie"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Movie not found"
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Movie",
+        "operationId": "update_movie",
+        "description": "Update one or more fields of an existing movie.",
+        "parameters": [
+          {
+            "name": "movie_id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifierof the movie",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovieUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Movie updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Movie"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Movie not found"
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Movie",
+        "operationId": "delete_movie",
+        "description": "Permanently remove a movie from the database.",
+        "parameters": [
+          {
+            "name": "movie_id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier of the movie",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Movie deleted successfully"
+          },
+          "404": {
+            "description": "Movie not found"
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Movie": {
+        "type": "object",
+        "title": "Movie",
+        "required": [
+          "movie_id",
+          "movie_title",
+          "release_year"
+        ],
+        "properties": {
+          "movie_id": {
+            "type": "string",
+            "title": "Movie ID"
+          },
+          "movie_title": {
+            "type": "string",
+            "title": "Movie Title",
+            "examples": ["Inception"]
+          },
+          "genres": {
+            "type": "array",
+            "title": "Genres",
+            "items": {
+              "type": "string"
+            },
+            "examples": ["Action", "Sci-Fi", "Thriller"]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": ["A thief who steals corporate secrets through dream-sharing technology."]
+          },
+          "imdb_url": {
+            "type": "string",
+            "format": "uri",
+            "title": "IMBD URL",
+            "examples": ["https://www.imdb.com/title/tt1375666/"]
+          },
+          "release_year": {
+            "type": "integer",
+            "minimum": 1888,
+            "title": "Release Year"
+          },
+          "tags": {
+            "type": "array",
+            "title": "Tags",
+            "items": {
+              "type": "string"
+            },
+            "examples": ["mind-bending", "dreams", "heist"]
+          }
+        }
+      },
+      "MovieCreate": {
+        "type": "object",
+        "title": "MovieCreate",
+        "required": [
+          "movie_title",
+          "release_year"
+        ],
+        "properties": {
+          "movie_title": {
+            "type": "string",
+            "title": "Movie Title",
+            "examples": ["Inception"]
+          },
+          "genres": {
+            "type": "array",
+            "title": "Genres",
+            "items": {
+              "type": "string"
+            },
+            "examples": ["Action", "Sci-Fi", "Thriller"]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": ["A thief who steals corporate secrets through dream-sharing technology."]
+          },
+          "imdb_url": {
+            "type": "string",
+            "format": "uri",
+            "title": "IMBD URL",
+            "examples": ["https://www.imdb.com/title/tt1375666/"]
+          },
+          "release_year": {
+            "type": "integer",
+            "minimum": 1888,
+            "title": "Release Year"
+          },
+          "tags": {
+            "type": "array",
+            "title": "Tags",
+            "items": {
+              "type": "string"
+            },
+            "examples": ["mind-bending", "dreams", "heist"]
+          }
+        }
+      },
+      "MovieUpdate": {
+        "type": "object",
+        "title": "MovieUpdate",
+        "description": "All fields are optional. Only provided fields will be updated.",
+        "properties": {
+          "movie_title": {
+            "type": "string",
+            "title": "Movie Title"
+          },
+          "genres": {
+            "type": "array",
+            "title": "Genres",
+            "items": {
+              "type": "string"
+            },
+            "examples": ["Action", "Sci-Fi", "Thriller"]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": ["A thief who steals corporate secrets through dream-sharing technology."]
+          },
+          "imdb_url": {
+            "type": "string",
+            "format": "uri",
+            "title": "IMBD URL"
+          },
+          "release_year": {
+            "type": "integer",
+            "minimum": 1888,
+            "title": "Release Year"
+          },
+          "tags": {
+            "type": "array",
+            "title": "Tags",
+            "items": {
+              "type": "string"
+            },
+            "examples": ["mind-bending", "dreams", "heist"]
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

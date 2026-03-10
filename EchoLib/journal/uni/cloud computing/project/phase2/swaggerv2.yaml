@@ -1,0 +1,511 @@
+openapi: 3.1.0
+info:
+  title: "CC2526 Group8 API"
+  description: >
+    A platform offering a unified movie catalog, public review system,
+    personal watchlists, and personalized recommendations.
+  version: "1.1.0"
+
+servers:
+  - url: /api
+
+tags:
+  - name: User Registration
+  - name: User Authentication
+  - name: User Preferences
+  - name: Review System
+
+components:
+  schemas:
+
+    User:
+      type: object
+      properties:
+        user_id:
+          type: string
+        email:
+          type: string
+          format: email
+        username:
+          type: string
+
+    UserDetails:
+      type: object
+      properties:
+        user_id:
+          type: string
+        email:
+          type: string
+          format: email
+        username:
+          type: string
+        gender:
+          type: string
+          enum: [M, F, NB, O]
+        age:
+          type: integer
+
+    UserRegistration:
+      type: object
+      required: [email, password, username, termsAccepted]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 10
+          pattern: "^(?=.*\\d).{10,}$"
+        username:
+          type: string
+        gender:
+          type: string
+          enum: [M, F, NB, O]
+        age:
+          type: integer
+        termsAccepted:
+          type: boolean
+
+    Rating:
+      type: object
+      required: [rating_id, rating, user_id, movie_id]
+      properties:
+        rating_id:
+          type: integer
+        user_id:
+          type: string
+        movie_id:
+          type: integer
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        review:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        tag:
+          type: string
+
+    CreateRating:
+      type: object
+      required: [rating]
+      properties:
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        review:
+          type: string
+        tag:
+          type: string
+
+    UpdateRating:
+      type: object
+      properties:
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        review:
+          type: string
+        tag:
+          type: string
+
+    RatingEvaluation:
+      type: object
+      properties:
+        rating_id:
+          type: integer
+        valid:
+          type: boolean
+        evaluated_at:
+          type: string
+          format: date-time
+
+    RatingCheck:
+      type: object
+      required: [valid]
+      properties:
+        valid:
+          type: boolean
+
+    UserPreference:
+      type: object
+      required: [genre]
+      properties:
+        genre:
+          type: string
+
+  parameters:
+    user_id:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+
+    rating_id:
+      name: rating_id
+      in: path
+      required: true
+      schema:
+        type: integer
+
+    movie_id:
+      name: movie_id
+      in: path
+      required: true
+      schema:
+        type: integer
+
+    username_filter:
+      name: username
+      in: query
+      schema:
+        type: string
+
+    movie_filter:
+      name: movie
+      in: query
+      schema:
+        type: string
+
+    rating_filter:
+      name: rating
+      in: query
+      schema:
+        type: integer
+
+    filter_by_year:
+      name: year
+      in: query
+      schema:
+        type: integer
+
+    tag_filter:
+      name: tag
+      in: query
+      schema:
+        type: string
+
+    genre:
+      name: genre
+      in: path
+      required: true
+      schema:
+        type: string
+
+paths:
+
+  /users:
+    get:
+      summary: Retrieve all users
+      tags: [User Registration]
+      responses:
+        '200':
+          description: Users retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+
+    post:
+      summary: Register a new user
+      tags: [User Registration]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRegistration"
+      responses:
+        '201':
+          description: User registered successfully
+        '400':
+          description: Invalid input
+
+  /users/{user_id}:
+    get:
+      summary: Retrieve user details
+      tags: [User Registration]
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '200':
+          description: User details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDetails"
+
+    put:
+      summary: Update user details
+      tags: [User Registration]
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserDetails"
+      responses:
+        '200':
+          description: User updated successfully
+
+    delete:
+      summary: Delete a user
+      tags: [User Registration]
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '204':
+          description: User deleted successfully
+
+  /auth:
+    post:
+      summary: Authenticate user
+      tags: [User Authentication]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Invalid credentials
+
+  /auth/logout:
+    post:
+      summary: Logout user (invalidate token)
+      tags: [User Authentication]
+      responses:
+        '200':
+          description: Token invalidated
+
+  /auth/verify:
+    get:
+      summary: Verify token validity
+      tags: [User Authentication]
+      responses:
+        '200':
+          description: Token is valid
+        '401':
+          description: Invalid or expired token
+
+  /ratings:
+    get:
+      summary: Retrieve all ratings
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/username_filter"
+        - $ref: "#/components/parameters/movie_filter"
+        - $ref: "#/components/parameters/rating_filter"
+        - $ref: "#/components/parameters/filter_by_year"
+        - $ref: "#/components/parameters/tag_filter"
+      responses:
+        '200':
+          description: Ratings retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Rating"
+
+  /ratings/{rating_id}:
+    get:
+      summary: Retrieve rating by ID
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      responses:
+        '200':
+          description: Rating retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rating"
+
+    put:
+      summary: Update rating
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateRating"
+      responses:
+        '200':
+          description: Rating updated
+
+    delete:
+      summary: Delete rating
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      responses:
+        '204':
+          description: Rating deleted
+
+  /movies/{movie_id}/ratings:
+    get:
+      summary: Retrieve ratings for a movie
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/movie_id"
+        - $ref: "#/components/parameters/rating_filter"
+        - $ref: "#/components/parameters/filter_by_year"
+        - $ref: "#/components/parameters/tag_filter"
+      responses:
+        '200':
+          description: Movie ratings retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Rating"
+
+    post:
+      summary: Create a rating for a movie
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/movie_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRating"
+      responses:
+        '201':
+          description: Rating created
+
+  /users/{user_id}/ratings:
+    get:
+      summary: Retrieve ratings by a user
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+        - $ref: "#/components/parameters/rating_filter"
+        - $ref: "#/components/parameters/filter_by_year"
+        - $ref: "#/components/parameters/tag_filter"
+      responses:
+        '200':
+          description: User ratings retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Rating"
+
+  /users/{user_id}/preferences:
+    get:
+      summary: Retrieve user preferences
+      tags: [User Preferences]
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '200':
+          description: Preferences retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserPreference"
+
+    post:
+      summary: Add a user preference
+      tags: [User Preferences]
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPreference"
+      responses:
+        '201':
+          description: Preference added
+
+  /users/{user_id}/preferences/{genre}:
+    delete:
+      summary: Remove a user preference
+      tags: [User Preferences]
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+        - $ref: "#/components/parameters/genre"
+      responses:
+        '204':
+          description: Preference removed
+
+  /ratings/{rating_id}/evaluation:
+    get:
+      summary: Retrieve rating evaluation
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      responses:
+        '200':
+          description: Evaluation retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RatingEvaluation"
+
+    post:
+      summary: Create rating evaluation
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RatingCheck"
+      responses:
+        '201':
+          description: Evaluation created
+
+    put:
+      summary: Update rating evaluation
+      tags: [Review System]
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RatingCheck"
+      responses:
+        '200':
+          description: Evaluation updated
