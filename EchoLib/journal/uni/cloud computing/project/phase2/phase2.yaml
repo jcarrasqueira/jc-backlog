@@ -448,18 +448,24 @@ components:
     username:
       name: username
       in: query
+      required: false
+      description: Filter by username
       schema:
         type: string
 
     movie_filter:
       name: movie
       in: query
+      required: false
+      description: Filter by movie name
       schema:
         type: string
 
     rating:
       name: rating
       in: query
+      required: false
+      description: Filter by rating
       schema:
         type: integer
     
@@ -740,6 +746,7 @@ paths:
       summary: Retrieve all ratings
       description: Returns all ratings in the system. Supports optional filtering by
         username, movie title, rating value, genre, release year, or tag.
+      operationId: get_ratings
       tags:
         - "Review System"
       parameters:
@@ -771,6 +778,7 @@ paths:
     get:
       summary: Retrieve rating by ID
       description: Returns a single rating using its unique identifier.
+      operationId: get_rating
       tags: 
         - "Review System"
       parameters:
@@ -802,6 +810,7 @@ paths:
     put:
       summary: Update a rating
       description: Updates one or more fields of an existing rating.
+      operationId: put_rating
       tags: 
         - "Review System"
       parameters:
@@ -835,6 +844,7 @@ paths:
     delete:
       summary: Delete a rating
       description: Permanently removes a rating from the system.
+      operationId: delete_rating
       tags: 
         - "Review System"
       parameters:
@@ -862,6 +872,8 @@ paths:
   /movies/{movie_id}/ratings:
     get:
       summary: Retrieve ratings for a movie
+      description: Returns all ratings associated with a specific movie. Supports optional filtering by rating value, release year, or tag.
+      operationId: get_movie_rating
       tags: 
         - "Review System"
       parameters:
@@ -881,6 +893,8 @@ paths:
 
     post:
       summary: Create a rating for a movie
+      description: Creates a new rating for the specified movie.
+      operationId: post_rating
       tags: 
         - "Review System"
       parameters:
@@ -898,6 +912,9 @@ paths:
   /users/{user_id}/ratings:
     get:
       summary: Retrieve ratings by a user
+      description: Returns all ratings submitted by a specific user. Supports optional
+        filtering by rating value, release year, genre, or tag.
+      operationId: get_user_ratings
       tags: 
         - "Review System"
       parameters:
