@@ -738,6 +738,8 @@ paths:
   /ratings:
     get:
       summary: Retrieve all ratings
+      description: Returns all ratings in the system. Supports optional filtering by
+        username, movie title, rating value, genre, release year, or tag.
       tags:
         - "Review System"
       parameters:
@@ -756,10 +758,19 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Rating"
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+        '500':
+          description: Internal server error
 
   /ratings/{rating_id}:
     get:
       summary: Retrieve rating by ID
+      description: Returns a single rating using its unique identifier.
       tags: 
         - "Review System"
       parameters:
@@ -771,9 +782,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Rating"
+        '400':
+          description: Invalid rating_id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+        '404':
+          description: Rating not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+        '500':
+          description: Internal server error
 
     put:
-      summary: Update rating
+      summary: Update a rating
+      description: Updates one or more fields of an existing rating.
       tags: 
         - "Review System"
       parameters:
@@ -787,9 +815,26 @@ paths:
       responses:
         '200':
           description: Rating updated
+        '400':
+          description: Invalid update payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+        '404':
+          description: Rating not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+        '500':
+          description: Internal server error
 
     delete:
-      summary: Delete rating
+      summary: Delete a rating
+      description: Permanently removes a rating from the system.
       tags: 
         - "Review System"
       parameters:
@@ -797,6 +842,22 @@ paths:
       responses:
         '204':
           description: Rating deleted
+        '400':
+          description: Invalid rating_id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+        '404':
+          description: Rating not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+        '500':
+          description: Internal server error
 
   /movies/{movie_id}/ratings:
     get:
