@@ -1,0 +1,67 @@
+ 
+components:
+  schemas: 
+    RatingEvaluation:
+      type: object
+      properties:
+        rating_id:
+          type: integer
+        valid:
+          type: boolean
+        evaluated_at:
+          type: string
+          format: date-time
+
+    RatingCheck:
+      type: object
+      required: [valid]
+      properties:
+        valid:
+          type: boolean
+  
+  /ratings/{rating_id}/evaluation:
+    get:
+      summary: Retrieve rating evaluation
+      tags: 
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      responses:
+        '200':
+          description: Evaluation retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RatingEvaluation"
+
+    post:
+      summary: Create rating evaluation
+      tags: 
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RatingCheck"
+      responses:
+        '201':
+          description: Evaluation created
+
+    put:
+      summary: Update rating evaluation
+      tags: 
+        - "Review System"
+      parameters:
+        - $ref: "#/components/parameters/rating_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RatingCheck"
+      responses:
+        '200':
+          description: Evaluation updated

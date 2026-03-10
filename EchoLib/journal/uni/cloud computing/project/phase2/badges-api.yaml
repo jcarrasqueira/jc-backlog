@@ -1,0 +1,266 @@
+openapi: 3.1.0
+info:
+  title: Badges API
+  description: >
+    REST API for managing badges and user badges in the movie recommendation
+    platform, including badge definitions and awarded badges for each user.
+  version: 1.0.0
+
+paths:
+    /badges:
+    get:
+      summary: List badges
+      operationId: get_badges
+      description: Retrieve all badge definitions.
+      tags:
+        - Badges
+      responses:
+        '200':
+          description: Badges retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Badge'
+        '500':
+          description: Internal server error
+    post:
+      summary: Create badge
+      operationId: create_badge
+      description: Create a new badge definition.
+      tags:
+        - Badges
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BadgeCreate'
+      responses:
+        '201':
+          description: Badge created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Badge'
+        '400':
+          description: Invalid badge data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Badge with same title already exists
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal server error
+
+    /badges/{badge_id}:
+    get:
+      summary: Get badge
+      operationId: get_badge
+      description: Retrieve a single badge definition by its unique ID.
+      tags:
+        - Badges
+      parameters:
+        - name: badge_id
+          in: path
+          required: true
+          description: Unique identifier of the badge
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Badge retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Badge'
+        '400':
+          description: Invalid badge_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '404':
+          description: Badge not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal server error
+    put:
+      summary: Update badge
+      operationId: update_badge
+      description: Update one or more fields of an existing badge.
+      tags:
+        - Badges
+      parameters:
+        - name: badge_id
+          in: path
+          required: true
+          description: Unique identifier of the badge
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BadgeUpdate'
+      responses:
+        '200':
+          description: Badge updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Badge'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '404':
+          description: Badge not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal server error
+    delete:
+      summary: Delete badge
+      operationId: delete_badge
+      description: Permanently remove a badge definition.
+      tags:
+        - Badges
+      parameters:
+        - name: badge_id
+          in: path
+          required: true
+          description: Unique identifier of the badge
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Badge deleted successfully
+        '400':
+          description: Invalid badge_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '404':
+          description: Badge not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal server error
+
+    /users/{user_id}/badges:
+    get:
+      summary: List user badges
+      operationId: get_user_badges
+      description: Retrieve all badges awarded to a given user.
+      tags:
+        - Badges
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: Unique identifier of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User badges retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserBadge'
+        '400':
+          description: Invalid user_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '404':
+          description: User not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal server error
+    post:
+      summary: Award badge to user
+      operationId: award_user_badge
+      description: Award an existing badge definition to a user.
+      tags:
+        - Badges
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: Unique identifier of the user
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - badge_id
+              properties:
+                badge_id:
+                  type: integer
+                  description: Identifier of the badge to award
+      responses:
+        '201':
+          description: Badge awarded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserBadge'
+        '400':
+          description: Invalid user_id or badge_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User or badge not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal server error

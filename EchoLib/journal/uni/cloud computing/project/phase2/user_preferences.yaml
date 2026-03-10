@@ -1,0 +1,71 @@
+components:
+  schemas:
+    UserPreference:
+      type: object
+      required: 
+       - genre
+      properties:
+        genre:
+          type: string
+
+  parameters:
+    user_id:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+
+    genre:
+      name: genre
+      in: path
+      required: true
+      schema:
+        type: string  
+
+/users/{user_id}/preferences:
+    get:
+      summary: Retrieve user preferences
+      tags: 
+        - "User Preferences"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        '200':
+          description: Preferences retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserPreference"
+
+    post:
+      summary: Add a user preference
+      tags: 
+        - "User Preferences"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPreference"
+      responses:
+        '201':
+          description: Preference added
+
+/users/{user_id}/preferences/{genre}:
+  delete:
+    summary: Remove a user preference
+    tags: 
+      - "User Preferences"
+    parameters:
+      - $ref: "#/components/parameters/user_id"
+      - $ref: "#/components/parameters/genre"
+    responses:
+      '204':
+        description: Preference removed
+
+

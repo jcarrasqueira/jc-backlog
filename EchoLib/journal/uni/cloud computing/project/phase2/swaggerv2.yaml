@@ -198,11 +198,11 @@ components:
         type: string
 
 paths:
-
   /users:
     get:
       summary: Retrieve all users
-      tags: [User Registration]
+      tags: 
+        - "User Registration"
       responses:
         '200':
           description: Users retrieved successfully
@@ -215,7 +215,8 @@ paths:
 
     post:
       summary: Register a new user
-      tags: [User Registration]
+      tags: 
+        - "User Registration"
       requestBody:
         required: true
         content:
@@ -231,7 +232,8 @@ paths:
   /users/{user_id}:
     get:
       summary: Retrieve user details
-      tags: [User Registration]
+      tags: 
+        - "User Registration"
       parameters:
         - $ref: "#/components/parameters/user_id"
       responses:
@@ -244,7 +246,8 @@ paths:
 
     put:
       summary: Update user details
-      tags: [User Registration]
+      tags: 
+        - "User Registration"
       parameters:
         - $ref: "#/components/parameters/user_id"
       requestBody:
@@ -259,7 +262,8 @@ paths:
 
     delete:
       summary: Delete a user
-      tags: [User Registration]
+      tags: 
+        - "User Registration"
       parameters:
         - $ref: "#/components/parameters/user_id"
       responses:
@@ -269,7 +273,8 @@ paths:
   /auth:
     post:
       summary: Authenticate user
-      tags: [User Authentication]
+      tags: 
+        - "User Authentication"
       requestBody:
         required: true
         content:
@@ -298,7 +303,8 @@ paths:
   /auth/logout:
     post:
       summary: Logout user (invalidate token)
-      tags: [User Authentication]
+      tags:
+        - "User Authentication"
       responses:
         '200':
           description: Token invalidated
@@ -306,7 +312,8 @@ paths:
   /auth/verify:
     get:
       summary: Verify token validity
-      tags: [User Authentication]
+      tags: 
+        - "User Authentication"
       responses:
         '200':
           description: Token is valid
@@ -316,7 +323,8 @@ paths:
   /ratings:
     get:
       summary: Retrieve all ratings
-      tags: [Review System]
+      tags:
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/username_filter"
         - $ref: "#/components/parameters/movie_filter"
@@ -336,7 +344,8 @@ paths:
   /ratings/{rating_id}:
     get:
       summary: Retrieve rating by ID
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/rating_id"
       responses:
@@ -349,7 +358,8 @@ paths:
 
     put:
       summary: Update rating
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/rating_id"
       requestBody:
@@ -364,7 +374,8 @@ paths:
 
     delete:
       summary: Delete rating
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/rating_id"
       responses:
@@ -374,7 +385,8 @@ paths:
   /movies/{movie_id}/ratings:
     get:
       summary: Retrieve ratings for a movie
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/movie_id"
         - $ref: "#/components/parameters/rating_filter"
@@ -392,7 +404,8 @@ paths:
 
     post:
       summary: Create a rating for a movie
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/movie_id"
       requestBody:
@@ -408,7 +421,8 @@ paths:
   /users/{user_id}/ratings:
     get:
       summary: Retrieve ratings by a user
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/user_id"
         - $ref: "#/components/parameters/rating_filter"
@@ -427,7 +441,8 @@ paths:
   /users/{user_id}/preferences:
     get:
       summary: Retrieve user preferences
-      tags: [User Preferences]
+      tags: 
+        - "User Preferences"
       parameters:
         - $ref: "#/components/parameters/user_id"
       responses:
@@ -442,7 +457,8 @@ paths:
 
     post:
       summary: Add a user preference
-      tags: [User Preferences]
+      tags: 
+        - "User Preferences"
       parameters:
         - $ref: "#/components/parameters/user_id"
       requestBody:
@@ -458,7 +474,8 @@ paths:
   /users/{user_id}/preferences/{genre}:
     delete:
       summary: Remove a user preference
-      tags: [User Preferences]
+      tags: 
+        - "User Preferences"
       parameters:
         - $ref: "#/components/parameters/user_id"
         - $ref: "#/components/parameters/genre"
@@ -469,7 +486,8 @@ paths:
   /ratings/{rating_id}/evaluation:
     get:
       summary: Retrieve rating evaluation
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/rating_id"
       responses:
@@ -482,7 +500,8 @@ paths:
 
     post:
       summary: Create rating evaluation
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/rating_id"
       requestBody:
@@ -497,7 +516,8 @@ paths:
 
     put:
       summary: Update rating evaluation
-      tags: [Review System]
+      tags: 
+        - "Review System"
       parameters:
         - $ref: "#/components/parameters/rating_id"
       requestBody:
