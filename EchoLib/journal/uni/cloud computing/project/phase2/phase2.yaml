@@ -274,6 +274,31 @@ components:
       schema:
         type: string
 
+    genre:
+      name: genre
+      in: query
+      required: false
+      description: Filter by genre
+      schema:
+        type: string
+
+    release_year:
+      name: release_year
+      in: query
+      required: false
+      description: Filter by release year
+      schema:
+        type: integer
+        minimum: 1888
+    
+    tag:
+      name: tag
+      in: query
+      required: false
+      description: Filter by a specific tag
+      schema:
+        type: integer
+    
     rating_id:
       name: rating_id
       in: path
