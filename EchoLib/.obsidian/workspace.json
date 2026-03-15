@@ -8,33 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "c3276d486a49b104",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "cloud_entrega1_tiagopina.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "cloud_entrega1_tiagopina"
-            }
-          },
-          {
             "id": "02812b1c89dcaaeb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-08.md",
-                "mode": "preview",
+                "file": "journal/uni/cloud computing/project/CC2526-Phase3-Group8.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-03-08"
+              "title": "CC2526-Phase3-Group8"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -189,11 +176,12 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 298.5
+    "width": 298.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -209,8 +197,68 @@
       "templater-obsidian:Templater": false
     }
   },
+  "floating": {
+    "id": "4c77889aa3136351",
+    "type": "floating",
+    "children": [
+      {
+        "id": "095fcd0038ba9fea",
+        "type": "window",
+        "children": [
+          {
+            "id": "3d0b660df77cf031",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "66c5cd98c6ac78bc",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "CC2526-Phase1-Group8"
+                }
+              },
+              {
+                "id": "2a6282cebf12b190",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "journal/uni/cloud computing/project/CC2526-Project.pdf"
+                  },
+                  "icon": "lucide-file-text",
+                  "title": "CC2526-Project"
+                }
+              }
+            ],
+            "currentTab": 1
+          }
+        ],
+        "direction": "vertical",
+        "x": 1078,
+        "y": 0,
+        "width": 842,
+        "height": 1032,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
   "active": "02812b1c89dcaaeb",
   "lastOpenFiles": [
+    "journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "journal/uni/cloud computing/project/CC2526-Phase3-Group8.md",
+    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "journal/uni/cloud computing/phase3.md",
+    "journal/uni/cloud computing/2026-03-15.md",
+    "journal/uni/cloud computing/2026-03-09.md",
+    "journal/uni/cloud computing/project/phase2/Não confirmado 526239.crdownload",
+    "journal/uni/cloud computing/2026-03-08.md",
     "journal/uni/cloud computing/project/phase2/watchlist_subscription.yaml",
     "journal/uni/cloud computing/project/phase2/Unconfirmed 816262.crdownload",
     "journal/uni/cloud computing/project/phase2/badges-api.yaml",
@@ -218,8 +266,6 @@
     "journal/uni/cloud computing/project/phase2/swaggerv2.yaml",
     "journal/uni/cloud computing/project/phase2/phase2.yaml",
     "journal/uni/cloud computing/project/phase2/movies-api.yaml",
-    "journal/uni/cloud computing/2026-03-09.md",
-    "journal/uni/cloud computing/2026-03-08.md",
     "journal/uni/cloud computing/2026-03-02.md",
     "journal/personal/2026-03-08.md",
     "EchoLib.md",
@@ -232,15 +278,12 @@
     "media/webcomics/Ghost Window.md",
     "media/webcomics/Dog and Bird.md",
     "media/webcomics/Candy YumYum.md",
-    "media/webcomics",
     "media/panels/Untitled.md",
     "media/panels/Untitled 2.md",
     "media/panels/Untitled 1.md",
     "media/novels/Into The Rose Garden.md",
     "media/novels/Desire.md",
     "media/novels/Ai o Ataeru Kemonotachi.md",
-    "media/novels",
-    "journal/uni/cloud computing/project/phase2/swagger.yaml",
     "extras/webcomic covers/surviving-as-a-player.jpg",
     "extras/webcomic covers/regas.jpg",
     "extras/webcomic covers/gog_bird.webp",
@@ -248,14 +291,10 @@
     "extras/webcomic covers/candy-yum.jpg",
     "extras/templates/Website.md",
     "extras/templates/Panel as.md",
-    "extras/templates/Novel.md",
     "extras/novel covers/beasts-giving-love.jpg",
     "extras/novel covers/Into-The-Rose-Garden.jpg",
     "extras/novel covers/DESIRE-BL.jpg",
     "extras/imgs/panels/test.jpg",
-    "extras/imgs/panels/images.jpg",
-    "journal/uni/cloud computing/2026-03-01.md",
-    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
-    "Untitled.md"
+    "extras/imgs/panels/images.jpg"
   ]
 }
