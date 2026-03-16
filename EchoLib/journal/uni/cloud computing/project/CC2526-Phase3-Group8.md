@@ -48,10 +48,25 @@ Tiago Pina, 66101
 ### FR. List user badges
 
 ## Watchlists
-### FR8. CRUD Watchlists
 ### FR. Create Watchlist
+- Users must be able to create a new watchlist by providing a title.
+- Users should be able to add multiple movies to the watchlist after creation.
+- The system must validate that the title is not empty.
+
 ### FR. Edit Watchlist
-### FR. List User Watchlists
+- Users must add or remove movies from watchlists.
+- Users must be able to rename a watchlist, as long as the new title does not duplicate another watchlist they own.
+- The system must prevent adding the same movie twice.
+
+### FR. Delete Watchlist
+- Users must be able to delete a watchlist they own.
+- Deleting a watchlist must also remove all associated movie entries.
+- The system must ensure that only the owner can delete their watchlist.
+
+### FR. Retrieve User Watchlists
+- Users must be able to retrieve all their watchlists and their contents.
+- Users must be able to retrieve a single watchlist by its ID.
+- Users should be able to filter the contents of a watchlist by genre.
 
 ## Subscriptions
 ### FR. Subscribe to plan
@@ -103,9 +118,10 @@ end
 
 UI -->|REST/HTTPS| API
 
-API --> DB
+API --> |READ/WRITES| DB
 DB <--> DBbackup
 ``` 
+
 
 
 ```mermaid
@@ -146,20 +162,21 @@ description:
 
 ### Microservices
 
-| Microservice     | Description                                                                            | Communication |
-| ---------------- | -------------------------------------------------------------------------------------- | ------------- |
-| User Management  | Includes user admin operations (CRUD), user profiles and user registration             |               |
-| Movie Catalog    | Movie CRUD operations, Movie listing and details, as well as movie search with filters |               |
-| Review System    | Ratings, reviews and average scores updates                                            |               |
-| Badges           | Badge definitions and awarding                                                         |               |
-| Watchlists       | Create and manage wathclists                                                           |               |
-| Subscriptions    | Subcriptions lifecycle                                                                 |               |
-| Recomendation    | Hybrid recommendations, genre families and personalised recommendations                |               |
-| Fraud Detection  | Fraud detection, fraud rating treatment                                                |               |
-| Studio Analytics | NLP sentiment, topic/tag modeling, dashboards                                          |               |
+| Microservice     | Description                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| User Management  | Includes user admin operations (CRUD), user profiles and user registration             |
+| Movie Catalog    | Movie CRUD operations, Movie listing and details, as well as movie search with filters |
+| Review System    | Ratings, reviews and average scores updates                                            |
+| Badges           | Badge definitions and awarding                                                         |
+| Watchlists       | Create and manage wathclists                                                           |
+| Subscriptions    | Subcriptions lifecycle                                                                 |
+| Recomendation    | Hybrid recommendations, genre families and personalised recommendations                |
+| Fraud Detection  | Fraud detection, fraud rating treatment                                                |
+| Studio Analytics | NLP sentiment, topic/tag modeling, dashboards                                          |
 
 ### Database
 
 ### Protocols
 - **REST/HTTPS** for all client–server communication
+- 
 ### Deployment
