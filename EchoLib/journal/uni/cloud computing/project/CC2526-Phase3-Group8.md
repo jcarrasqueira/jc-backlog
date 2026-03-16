@@ -78,6 +78,37 @@ Tiago Pina, 66101
 ## Architecture Diagram
 
 ```mermaid
+flowchart LR
+
+subgraph Client["Frontend (Web/Mobile)"]
+    UI[User Interface]
+end
+
+subgraph API["Backend API (FastAPI)"]
+    UserManagement["User Management"]
+    MovieCatalog["Movie Catalog"]
+    ReviewSystem["Review System"]
+    Badges["Badges"]
+    Watchlists["Watchlists"]
+    Subscriptions["Subscriptions"]
+    Recommendations["Recommendations"]
+    StudioAnalytics["Studio Analytics"]
+    FraudDetection["Fraud Detection"]
+end
+
+subgraph Databases["Databases"]
+    DB[(Main Database)]
+    DBbackup[(Backup Database)]
+end
+
+UI -->|REST/HTTPS| API
+
+API --> DB
+DB <--> DBbackup
+``` 
+
+
+```mermaid
 graph TD;
     ClientApps[Client Apps] -->|HTTP/REST| APIGatewayLayer[API Gateway Layer]
     APIGatewayLayer -->|gRPC| Services
