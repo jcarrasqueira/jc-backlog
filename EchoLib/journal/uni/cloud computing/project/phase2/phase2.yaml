@@ -234,7 +234,7 @@ components:
         tag:
           type: string
 
-    CreateRating:
+    RatingCreate:
       type: object
       required:
         - rating
@@ -617,7 +617,7 @@ paths:
 
   /movies:
     get:
-      summary: List Movies
+      summary: List movies
       description: Retrieve all movies, with optional filters by genre, release year, or tag.
       operationId: get_movies
       tags:
@@ -642,7 +642,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
     post:
-      summary: Create Movie
+      summary: Create movie
       description: Add a new movie.
       operationId: create_movie_post
       tags:
@@ -669,7 +669,7 @@ paths:
 
   /movies/{movie_id}:
     get:
-      summary: Get Movie
+      summary: Get movie
       description: Retrieve a single movie by its unique ID.
       operationId: get_movie
       tags:
@@ -693,7 +693,7 @@ paths:
                 $ref: "#/components/schemas/HTTPValidationError"
 
     put:
-      summary: Update Movie
+      summary: Update movie
       description: Update one or more fields of an existing movie.
       operationId: update_movie
       tags:
@@ -723,7 +723,7 @@ paths:
                 $ref: "#/components/schemas/HTTPValidationError"
 
     delete:
-      summary: Delete Movie
+      summary: Delete movie
       description: Permanently remove a movie from the database.
       operationId: delete_movie
       tags:
@@ -904,7 +904,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateRating"
+              $ref: "#/components/schemas/RatingCreate"
       responses:
         '201':
           description: Rating created

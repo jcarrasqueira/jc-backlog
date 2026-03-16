@@ -175,7 +175,7 @@ paths:
         '500':
           description: Internal server error
 
-    /users/{user_id}/badges:
+  /users/{user_id}/badges:
     get:
       summary: List user badges
       operationId: get_user_badges

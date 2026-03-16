@@ -23,14 +23,12 @@
             "id": "02812b1c89dcaaeb",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-08.md",
-                "mode": "preview",
-                "source": false
+                "file": "journal/uni/cloud computing/project/CC2526-Project.pdf"
               },
-              "icon": "lucide-file",
-              "title": "2026-03-08"
+              "icon": "lucide-file-text",
+              "title": "CC2526-Project"
             }
           }
         ],
@@ -211,6 +209,9 @@
   },
   "active": "02812b1c89dcaaeb",
   "lastOpenFiles": [
+    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
+    "journal/uni/cloud computing/project/CC2526-Project.pdf",
+    "journal/uni/cloud computing/2026-03-08.md",
     "journal/uni/cloud computing/project/phase2/watchlist_subscription.yaml",
     "journal/uni/cloud computing/project/phase2/Unconfirmed 816262.crdownload",
     "journal/uni/cloud computing/project/phase2/badges-api.yaml",
@@ -219,7 +220,6 @@
     "journal/uni/cloud computing/project/phase2/phase2.yaml",
     "journal/uni/cloud computing/project/phase2/movies-api.yaml",
     "journal/uni/cloud computing/2026-03-09.md",
-    "journal/uni/cloud computing/2026-03-08.md",
     "journal/uni/cloud computing/2026-03-02.md",
     "journal/personal/2026-03-08.md",
     "EchoLib.md",
@@ -239,8 +239,6 @@
     "media/novels/Into The Rose Garden.md",
     "media/novels/Desire.md",
     "media/novels/Ai o Ataeru Kemonotachi.md",
-    "media/novels",
-    "journal/uni/cloud computing/project/phase2/swagger.yaml",
     "extras/webcomic covers/surviving-as-a-player.jpg",
     "extras/webcomic covers/regas.jpg",
     "extras/webcomic covers/gog_bird.webp",
@@ -255,7 +253,6 @@
     "extras/imgs/panels/test.jpg",
     "extras/imgs/panels/images.jpg",
     "journal/uni/cloud computing/2026-03-01.md",
-    "journal/uni/cloud computing/project/CC2526-Phase1-Group8.md",
     "Untitled.md"
   ]
 }
