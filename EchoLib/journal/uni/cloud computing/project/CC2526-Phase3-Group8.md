@@ -38,11 +38,11 @@ Tiago Pina, 66101
     - average rating (calculated from user reviews)
     - main cast (list of names)
     - director(s)
-    - synopse or description
+    - synopsis or description
     - runtime (duration in minutes)
     - parental rating (e.g. PG-13)
     - list of streaming platforms where the movie is currently available
-- If the requested movie does not exist, the system must return an error message. (?)
+- If the requested movie does not exist, the system must return an error message (e.g.  *"movie provided doesn't exist"*).
 
 ### FR5. Movie Search
 - System must provide a text search endpoint for users to search for movies using keywords and/or filters.
@@ -54,7 +54,6 @@ Tiago Pina, 66101
 - Search results must support pagination and sorting by relevance, release date and rating.
 - System must handle empty search queries gracefully (e.g., return popular or recently added movies).
 - System must log search metrics (most searched terms, most used filters, etc.) for later analysis (can feed into the recommendation system).
-- If the query is empty (no terms and no filters), the system must return a list of popular or recently added movies, configurable by administrators.
 
 ### FR6. Movie List
 - System must provide a list of movies with browsing options, including:
@@ -63,14 +62,14 @@ Tiago Pina, 66101
     - filters by genre and year
 - The response must include, for each movie: title, poster URL, year, list of genres, and average rating.
 - User must be able to click on a movie to access its details.
-- The default listing (without filters) must be sorted by descending release date (newest movies first). (?)
+- The default listing (without filters) must be sorted by descending release date (newest movies first).
 
 ### FR7. Movie CRUD
 - System must allow only authorized administrators to create, read, update, and delete operations on movie entries.
 - Movie creation/update must be validate:
     - title must be non-empty
-    - release date must be a valid date
-    - runtime > 0
+    - release date must be a valid date (> 1887)
+    - runtime > 0 (value in minutes)
     - at least one genre must be selected
     - poster URL must be a valid URL
     - parental rating must be one of the allowed values
@@ -81,12 +80,12 @@ Tiago Pina, 66101
 
 ## Review System
 ### FR8. Rating CRUD
-- Only authenticated users must be able to submit, edit, or delete thir own reviews. 
-- A review must contain a rating (integer from 1 to 10) and an optional text review (max 2000 characters).
+- Only authenticated users must be able to submit, edit, or delete their own reviews. 
+- A review must contain a rating (integer from 1 to 5) and an optional text review (max 2000 characters).
 - The system must enforce uniqueness: a user can have only one review per movie. If a new review is submitted for the same movie, the previous one is replaced (no version history).
-- Editing is only allowed by the review author and must update the updatedAt timestamp. (?)
-- Deletion must be physical (hard delete) from the reviews table, but must preserve the movie and user records. (?)
-- Upon any rating change (create, update, delete), the system must trigger an asynchronous recalculation of the movie's average rating.
+- Editing is only allowed by the review author and must update the *updatedAt* timestamp.
+- Deletion must be physical (hard delete) from the reviews table, but must preserve the movie and user records.
+- Upon any rating change (create, update, delete), the system must trigger a recalculation of the movie's average rating.
 
 ### FR9. Ratings List
 - System must allow retrieval of all ratings and reviews for a specific movie.
@@ -95,8 +94,8 @@ Tiago Pina, 66101
     - sortable by date, rating, or helpfulness
     - optional filters: only with text, only without text
 - For each rating, the system must display:
-    - the user (anonymized or username)
-    - rating (1-10)
+    - the user (username)
+    - rating (1-5)
     - review text (if exists)
     - creation/update timestamp
 - The system must not list reviews marked as fraudulent for regular users.
@@ -107,6 +106,7 @@ Tiago Pina, 66101
 - The updated average rating must be stored in the movie catalog database for quick retrieval.
 - Only ratings not marked as fraudulent should contribute to the average.
 - For movies with many reviews (>1000), the system may update the average approximately to avoid overload, but the final version must be consistent.
+
 ## Badges
 ### FR11. CRUD badges (system)
 - System must allow administrators to create, read, update and delete badge definitions (e.g., “Explorer”, “Streak Master”).  
