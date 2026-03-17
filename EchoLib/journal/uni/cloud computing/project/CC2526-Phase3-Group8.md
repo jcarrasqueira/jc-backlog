@@ -269,29 +269,44 @@ graph TD;
     end
 ```
 
-
 ## Architecture Description 
-description: 
+- The system follows a modular, service‑oriented architecture designed for a cloud‑native environment.
+- Each functional domain (movies, ratings, watchlists, analytics, etc.) is implemented as an independent backend service.
+- All services are exposed through a unified API Gateway, which acts as the single public entry point.
+
+- This architecture directly reflects the functional requirements defined earlier and supports future deployment on Kubernetes.
 
 ### API Gateway
+The API Gateway is responsible for:
+- Routing incoming REST requests to the appropriate backend service
+- Enforcing authentication (OAuth2.0)
+- Providing a single stable endpoint for all clients
+- Applying request validation and basic rate limiting
 
+This ensures that clients interact with a single, consistent API, regardless of internal service structure.
 ### Microservices
+- Each service corresponds to a functional domain and maps directly to the OpenAPI specification and functional requirements.
 
-| Microservice     | Description                                                                            |
-| ---------------- | -------------------------------------------------------------------------------------- |
-| User Management  | Includes user admin operations (CRUD), user profiles and user registration             |
-| Movie Catalog    | Movie CRUD operations, Movie listing and details, as well as movie search with filters |
-| Review System    | Ratings, reviews and average scores updates                                            |
-| Badges           | Badge definitions and awarding                                                         |
-| Watchlists       | Create and manage wathclists                                                           |
-| Subscriptions    | Subcriptions lifecycle                                                                 |
-| Recomendation    | Hybrid recommendations, genre families and personalised recommendations                |
-| Fraud Detection  | Fraud detection, fraud rating treatment                                                |
-| Studio Analytics | NLP sentiment, topic/tag modeling, dashboards                                          |
-
-### Database
+| Microservice     | Description                                                             |
+| ---------------- | ----------------------------------------------------------------------- |
+| User Management  | Registration, authentication, profile updates, OAuth2 integration       |
+| Movie Catalog    | Movie CRUD, search, filtering, metadata retrieval                       |
+| Review System    | Ratings, reviews and average scores recalculation                       |
+| Badges           | Badge definitions, awarding logic, user achievements                    |
+| Watchlists       | CRUD watchlists, add/remove movies, filtering                           |
+| Subscriptions    | Subscription lifecycle, plan management, premium access control         |
+| Recomendation    | Hybrid recommendations, genre families and personalised recommendations |
+| Fraud Detection  | Anomaly detection, review bombing mitigation, quarantine logic          |
+| Studio Analytics | NLP sentiment analysis, topic extraction, user cluster analytics        |
+### Databases
+#### Main Database (PostgreSQL or something else)
+- responsible for storing data such as users, movies, ratings, watchlists, badges, subscriptions.
+- supports high‑frequency reads/writes and ensures data consistency.
+#### Backup Databases
+- responsible for performing periodic backups to the main database
+- ensuring redundancy of the main database for disaster recovery
 
 ### Protocols
 - **REST/HTTPS** for all client–server communication
-- 
-### Deployment
+- **SQL** for databases 
+- **REST** for backend services 
