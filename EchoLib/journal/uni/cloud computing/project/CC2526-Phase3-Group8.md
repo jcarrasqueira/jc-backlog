@@ -172,12 +172,11 @@ Tiago Pina, 66101
 - New users must be able to search and select 3 to 5 reference movies.
 - The system must build a preference vector based on the user's explicit genre choices, reference titles, and similarities with other users.
 - The system must generate tailored homepage shelves such as "Based on Your Genres", "Based on Your Favourite Titles" for the user's first session.
-- Users must be able to filter these initial recommendations based on the streaming platforms they own.
 
 ### FR23. Personalized Recommendations
-- System must analyze a user’s rating history, preferred genres, and interactions to calculate personalized movie and series recommendations.
-- System must order the recommended titles by relevance and probability of user satisfaction.
-- System must update recommendations dynamically as the user rates new titles or alters their watchlists.
+- System must analyse a user’s rating history, preferred genres, and interactions to calculate personalized movie and series recommendations.
+- System must order the recommended titles by year (ascending order).
+- System must update recommendations as the user rates new titles or alters their watchlists.
 
 ### FR24. Genre Family Exploration
 - System must group movies into "genre families" by analysing genre co-occurrence and overall user consumption patterns.
@@ -188,11 +187,9 @@ Tiago Pina, 66101
 ### FR25. Detect Inconsistent Consumption
 - System must continuously monitor user interactions (views, ratings, reviews) to detect anomalous patterns that may indicate fraud, compromised accounts, or bot activity.
 - Anomaly detection should consider, among others:
-    - sudden spikes in activity within a short period
-    - extreme ratings (e.g. 1 or 10) coming from new recent accounts or accounts with very little history
-    - unusual device or geographic location patterns
-    - coordinated behavior across multiple accounts (e.g., same IP address, similar timings)
-    - significant deviations from a user's typical behavior profile (viewing times, preferred genres, rating distribution, etc.)
+    - sudden spikes in activity within a short period of pre-established account.
+    - extreme ratings (e.g. 1 or 5) coming from new recent accounts or accounts with very little history
+    - significant deviations from a user's typical behaviour profile (viewing times, preferred genres, rating distribution, etc.)
 - System must distinguish between potentially malicious patterns and genuine shifts in taste, using adaptative models where feasible.
 - Detected anomalies must be flagged for further analysis or automatic action.
 
