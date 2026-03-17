@@ -1,3 +1,5 @@
+# Cloud Native Application - Phase 3
+
 ### Group
 Joana Carrasqueira, 64414
 Leonor Silva, 59811
@@ -94,63 +96,20 @@ Tiago Pina, 66101
 
 ## Badges
 ### FR. CRUD badges (system)
-- System must allow administrators to create, read, update and delete badge definitions (e.g., “Explorer”, “Streak Master”).  
-- Each badge definition must include at least: unique identifier, title, milestone rule and optional description.  
-- System must validate that badge titles are unique across all badge definitions.  
-- Deleting a badge definition must not remove historical records of badges already awarded to users, but must prevent the badge from being awarded in the future (up to debate).  
-
 ### FR. Award Badges
-- System must automatically evaluate user activity (ratings, watchlists, viewing streaks, genre exploration, etc.) to determine when a user meets a badge milestone.  
-- When a milestone is met, the system must award the corresponding badge to the user and store the award timestamp.  
-- System must expose an operation to manually award or revoke badges for administrative purposes (e.g., correcting errors or running special campaigns).  
-- Awarded badges must be visible in the user profile and retrievable via the badges API endpoints.  
-
 ### FR. List user badges
-- System must allow retrieval of all badges awarded to a specific user, including badge details (title, milestone) and award date.  
-- System must support pagination of user badges when a user has a large number of awarded badges.  
-- System must support filtering user badges by badge type (e.g., exploration, streak) and by time window (e.g., badges earned in the last 30 days).  
 
 ## Watchlists
+### FR8. CRUD Watchlists
 ### FR. Create Watchlist
-- Users must be able to create a new watchlist by providing a title.
-- Users should be able to add multiple movies to the watchlist after creation.
-- The system must validate that the title is not empty.
-
 ### FR. Edit Watchlist
-- Users must add or remove movies from watchlists.
-- Users must be able to rename a watchlist, as long as the new title does not duplicate another watchlist they own.
-- The system must prevent adding the same movie twice.
-
-### FR. Delete Watchlist
-- Users must be able to delete a watchlist they own.
-- Deleting a watchlist must also remove all associated movie entries.
-- The system must ensure that only the owner can delete their watchlist.
-
-### FR. Retrieve User Watchlists
-- Users must be able to retrieve all their watchlists and their contents.
-- Users must be able to retrieve a single watchlist by its ID.
-- Users should be able to filter the contents of a watchlist by genre.
+### FR. List User Watchlists
 
 ## Subscriptions
 ### FR. Subscribe to plan
-- System must allow users to subscribe to a paid plan that unlocks premium features (e.g., advanced analytics, streaming subscription optimizer, early access to new tools) (up to debate).  
-- System must support at least one recurring plan (e.g., monthly) and store subscription start date, plan type and current status.  
-- System must validate payment or external billing confirmation before activating a subscription.  
-
 ### FR. Manage subscription plan
-- Users must be able to view their current subscription status, including plan type, renewal date and payment status.  
-- Users must be able to upgrade, downgrade or cancel their subscription from within the platform.  
-- System must ensure that subscription changes are reflected in access control to premium features without requiring user re‑registration.  
-
 ### FR. Premium Access
-- System must restrict access to selected premium features (such as detailed dashboards, subscription optimizer and advanced gamification insights) to users with an active premium subscription.  
-- For each request to a premium endpoint, the system must validate the user’s subscription status through the Subscriptions service.  
-- If the subscription is expired or cancelled, the system must deny access and return an appropriate error, suggesting re‑subscription.  
-
 ### FR. CRUD Subscriptions
-- System must provide administrative operations to create, read, update and cancel subscriptions for support and correction purposes.  
-- System must log all subscription lifecycle events (creation, renewal, cancellation, plan changes) for auditing and billing reconciliation.  
-- System must ensure that subscription records remain consistent with the external payment provider, handling asynchronous callbacks or webhooks when necessary in later phases.
 
 ## Recommendation
 ### FR. Initial Profile Recommendations
@@ -170,7 +129,7 @@ Tiago Pina, 66101
 - System must calculate and categorize each user's consumption into highly explored and underexplored genre families.
 - System must generate distinct discovery shelves for the user interface, such as "Comfort Zone" and "Explore Something New"
 
-## Fraud Detection
+## Fraud Detection (UC3, UC5)
 ### FR. Detect Inconsistent Consumption
 - System must continuously monitor user interactions (views, ratings, reviews) to detect anomalous patterns that may indicate fraud, compromised accounts, or bot activity.
 - Anomaly detection should consider, among others:
@@ -206,38 +165,6 @@ Tiago Pina, 66101
 
 # Application Architecture
 ## Architecture Diagram
-
-```mermaid
-flowchart LR
-
-subgraph Client["Frontend (Web/Mobile)"]
-    UI[User Interface]
-end
-
-subgraph API["Backend API (FastAPI)"]
-    UserManagement["User Management"]
-    MovieCatalog["Movie Catalog"]
-    ReviewSystem["Review System"]
-    Badges["Badges"]
-    Watchlists["Watchlists"]
-    Subscriptions["Subscriptions"]
-    Recommendations["Recommendations"]
-    StudioAnalytics["Studio Analytics"]
-    FraudDetection["Fraud Detection"]
-end
-
-subgraph Databases["Databases"]
-    DB[(Main Database)]
-    DBbackup[(Backup Database)]
-end
-
-UI -->|REST/HTTPS| API
-
-API --> |READ/WRITES| DB
-DB <--> DBbackup
-``` 
-
-
 
 ```mermaid
 graph TD;
@@ -277,21 +204,20 @@ description:
 
 ### Microservices
 
-| Microservice     | Description                                                                            |
-| ---------------- | -------------------------------------------------------------------------------------- |
-| User Management  | Includes user admin operations (CRUD), user profiles and user registration             |
-| Movie Catalog    | Movie CRUD operations, Movie listing and details, as well as movie search with filters |
-| Review System    | Ratings, reviews and average scores updates                                            |
-| Badges           | Badge definitions and awarding                                                         |
-| Watchlists       | Create and manage wathclists                                                           |
-| Subscriptions    | Subcriptions lifecycle                                                                 |
-| Recomendation    | Hybrid recommendations, genre families and personalised recommendations                |
-| Fraud Detection  | Fraud detection, fraud rating treatment                                                |
-| Studio Analytics | NLP sentiment, topic/tag modeling, dashboards                                          |
+| Microservice     | Description                                                                            | Communication |
+| ---------------- | -------------------------------------------------------------------------------------- | ------------- |
+| User Management  | Includes user admin operations (CRUD), user profiles and user registration             |               |
+| Movie Catalog    | Movie CRUD operations, Movie listing and details, as well as movie search with filters |               |
+| Review System    | Ratings, reviews and average scores updates                                            |               |
+| Badges           | Badge definitions and awarding                                                         |               |
+| Watchlists       | Create and manage wathclists                                                           |               |
+| Subscriptions    | Subcriptions lifecycle                                                                 |               |
+| Recomendation    | Hybrid recommendations, genre families and personalised recommendations                |               |
+| Fraud Detection  | Fraud detection, fraud rating treatment                                                |               |
+| Studio Analytics | NLP sentiment, topic/tag modeling, dashboards                                          |               |
 
 ### Database
 
 ### Protocols
 - **REST/HTTPS** for all client–server communication
-- 
 ### Deployment

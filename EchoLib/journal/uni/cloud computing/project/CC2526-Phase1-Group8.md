@@ -137,9 +137,9 @@ Tiago Pina, 66101
 - **Actor:** User.
 - **Problem:** The user wants to find movies that match specific criteria but may struggle to locate them quickly.
 - **Description:** 
-   1. The user enters search terms or applies filters such as genre, year range, or minimum rating. 
-   2. The system returns paginated results showing titles that match the search query.
-   3. The user can browse through pages of results and select a title for more details if desired.
+	   1. The user enters search terms or applies filters such as genre, year range, or minimum rating. 
+	   2. The system returns paginated results showing titles that match the search query.
+	   3. The user can browse through pages of results and select a title for more details if desired.
 - **Expected outcome:** The user receives a clear, paginated list of movies relevant to their search criteria, improving content discovery and efficiency in finding desired titles.
 
 ### UC9. View Movie Details
