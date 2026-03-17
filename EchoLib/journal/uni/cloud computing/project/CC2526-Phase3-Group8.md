@@ -98,29 +98,28 @@ Tiago Pina, 66101
     - rating (1-5)
     - review text (if exists)
     - creation/update timestamp
-- The system must not list reviews marked as fraudulent for regular users.
+- The system must not list reviews marked as fraudulent (highest level) for regular users.
 
 ### FR10. Recalculate Movie Rating
 - System must maintain an accurate average rating for each movie based on all submitted ratings.
-- Recalculation must be performed asynchronously after each rating change (create, update, or delete) to prevent performance degradation.
+- Recalculation must be performed after each rating change (create, update, or delete) to prevent performance degradation.
 - The updated average rating must be stored in the movie catalog database for quick retrieval.
-- Only ratings not marked as fraudulent should contribute to the average.
-- For movies with many reviews (>1000), the system may update the average approximately to avoid overload, but the final version must be consistent.
+- Only ratings not marked as fraudulent (highest level) should contribute to the average.
 
 ## Badges
-### FR11. CRUD badges (system)
+### FR11. Badges CRUD
 - System must allow administrators to create, read, update and delete badge definitions (e.g., “Explorer”, “Streak Master”).  
 - Each badge definition must include at least: unique identifier, title, milestone rule and optional description.  
 - System must validate that badge titles are unique across all badge definitions.  
-- Deleting a badge definition must not remove historical records of badges already awarded to users, but must prevent the badge from being awarded in the future (up to debate).  
+- Deleting a badge definition must not remove historical records of badges already awarded to users, but must prevent the badge from being awarded in the future.  
 
 ### FR12. Award Badges
 - System must automatically evaluate user activity (ratings, watchlists, viewing streaks, genre exploration, etc.) to determine when a user meets a badge milestone.  
 - When a milestone is met, the system must award the corresponding badge to the user and store the award timestamp.  
 - System must expose an operation to manually award or revoke badges for administrative purposes (e.g., correcting errors or running special campaigns).  
-- Awarded badges must be visible in the user profile and retrievable via the badges API endpoints.  
+- Awarded badges must be visible (if user allows) in the user profile and retrievable via the badges API endpoints.  
 
-### FR13. List user badges
+### FR13. List User Badges
 - System must allow retrieval of all badges awarded to a specific user, including badge details (title, milestone) and award date.  
 - System must support pagination of user badges when a user has a large number of awarded badges.  
 - System must support filtering user badges by badge type (e.g., exploration, streak) and by time window (e.g., badges earned in the last 30 days).  
@@ -142,30 +141,30 @@ Tiago Pina, 66101
 - The system must ensure that only the owner can delete their watchlist.
 
 ### FR17. Retrieve User Watchlists
-- Users must be able to retrieve all their watchlists and their contents.
-- Users must be able to retrieve a single watchlist by its ID.
+- System must be able to retrieve all their watchlists and their contents.
+- System must be able to retrieve a single watchlist by its ID.
 - Users should be able to filter the contents of a watchlist by genre.
 
 ## Subscriptions
-### FR18. Subscribe to plan
-- System must allow users to subscribe to a paid plan that unlocks premium features (e.g., advanced analytics, streaming subscription optimizer, early access to new tools) (up to debate).  
+### FR18. Subscribe to Plan
+- System must allow users to subscribe to a paid plan that unlocks premium features (e.g., advanced analytics, early access to new tools).  
 - System must support at least one recurring plan (e.g., monthly) and store subscription start date, plan type and current status.  
 - System must validate payment or external billing confirmation before activating a subscription.  
 
-### FR19. Manage subscription plan
+### FR19. Manage Subscription Plan
 - Users must be able to view their current subscription status, including plan type, renewal date and payment status.  
-- Users must be able to upgrade, downgrade or cancel their subscription from within the platform.  
-- System must ensure that subscription changes are reflected in access control to premium features without requiring user re‑registration.  
+- Users must be able to upgrade their free plan.
+- Users must be able downgrade or cancel their paid subscription from within the platform.  
+- System must ensure that subscription changes are reflected in access control to premium features.  
 
 ### FR20. Premium Access
-- System must restrict access to selected premium features (such as detailed dashboards, subscription optimizer and advanced gamification insights) to users with an active premium subscription.  
+- System must restrict access to selected premium features (such as detailed dashboards and advanced gamification insights) to users with an active premium subscription.  
 - For each request to a premium endpoint, the system must validate the user’s subscription status through the Subscriptions service.  
 - If the subscription is expired or cancelled, the system must deny access and return an appropriate error, suggesting re‑subscription.  
 
-### FR21. CRUD Subscriptions
+### FR21. Subscriptions CRUD 
 - System must provide administrative operations to create, read, update and cancel subscriptions for support and correction purposes.  
 - System must log all subscription lifecycle events (creation, renewal, cancellation, plan changes) for auditing and billing reconciliation.  
-- System must ensure that subscription records remain consistent with the external payment provider, handling asynchronous callbacks or webhooks when necessary in later phases.
 
 ## Recommendation
 ### FR22. Initial Profile Recommendations
