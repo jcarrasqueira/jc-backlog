@@ -188,10 +188,16 @@ Tiago Pina, 66101
 - System must continuously monitor user interactions (views, ratings, reviews) to detect anomalous patterns that may indicate fraud, compromised accounts, or bot activity.
 - Anomaly detection should consider, among others:
     - sudden spikes in activity within a short period of pre-established account.
-    - extreme ratings (e.g. 1 or 5) coming from new recent accounts or accounts with very little history
-    - significant deviations from a user's typical behaviour profile (viewing times, preferred genres, rating distribution, etc.)
-- System must distinguish between potentially malicious patterns and genuine shifts in taste, using adaptative models where feasible.
-- Detected anomalies must be flagged for further analysis or automatic action.
+    - extreme ratings (e.g. 1 or 5) coming from new recent accounts or accounts with very little history.
+- Detected anomalies must be persisted in a *fraud_alerts* table with: 
+    - activated rule type
+    - affected entity (ratingId, userId, movieId)
+    - timestamp
+    - severity (low, medium, high) defined by rule
+- The system must support automatic action modes by severity:
+    - high severity → automatically quarantine the rating
+    - medium severity → send notification to admin
+    - low severity → only log for analysis
 
 ### FR26. Review Fraud Treatment
 - When a rating or review is identified as potentially fraudulent (e.g., part of review bombing), the system must quarantine it:
@@ -199,6 +205,7 @@ Tiago Pina, 66101
     - Store quarantine metadata (reason, timestamp, user)
 - Quarantined items must be reviewed by administrators, who can either restore them or permanently mark them as fraudulent.
 - The system must maintain a log of all fraud detection events and actions taken.
+- When an item is restored, the system must trigger a movie average recalculation event (because it now counts again).
 
 ## Studio Analytics
 ### FR27. Sentiment Analysis
@@ -207,7 +214,7 @@ Tiago Pina, 66101
 - System must aggregate these sentiment metrics to calculate an overall sentiment score for each movie or series.
 
 ### FR28. Topic Extraction
-- System must analyze reviews to extract frequently mentioned topics (e.g., plot, acting, special effects, pacing).
+- System must analyse reviews to extract frequently mentioned topics (e.g., plot, acting, special effects, pacing).
 - System must generate automated summaries highlighting the most frequent strengths and weaknesses mentioned by the audience.
 
 ### FR29. User Cluster Analytics 
@@ -225,7 +232,7 @@ subgraph ClientApps["Frontend (Web/Mobile)"]
     Client[User Interface]
 end
 
-subgraph API["Backend API (FastAPI)"]
+subgraph Services
     UserManagement["User Management"]
     MovieCatalog["Movie Catalog"]
     ReviewSystem["Review System"]
@@ -242,44 +249,12 @@ subgraph Databases["Databases"]
     DBbackup[(Backup Database)]
 end
 
-Client -->|REST/HTTPS| API
 
-API --> |READ/WRITES| DB
+Client -->|REST/HTTPS| APIGateway["API Gateway"] --> Services
+
+Services --> |READ/WRITES| DB
 DB <--> DBbackup
 ``` 
-
-
-
-
-```mermaid
-graph TD;
-    ClientApps[Client Apps] -->|HTTP/REST| APIGatewayLayer[API Gateway Layer]
-    APIGatewayLayer -->|gRPC| Services
-    
-    UserManagement -->|Reads/Writes| DB[(PostgreSQL)]
-    MovieCatalog -->|Reads/Writes| DB[(PostgreSQL)]
-    ReviewSystem -->|Reads/Writes| DB[(PostgreSQL)]
-    Badges -->|Reads/Writes| DB[(PostgreSQL)]
-    Watchlist -->|Reads/Writes| DB[(PostgreSQL)]
-    Subscriptions -->|Reads| DB[(PostgreSQL)]
-    Recommendations -->|Reads/Writes| DB[(PostgreSQL)]
-    FraudDetection -->|Reads/Writes| DB[(PostgreSQL)]
-    StudioAnalytics -->|Reads/Writes| DB[(PostgreSQL)]
-    
-    DB[(PostgreSQL)] <--> BackupDB[(PostgreSQL)]
-    
-    subgraph Services
-       UserManagement
-       MovieCatalog
-       ReviewSystem
-       Badges
-       Watchlist
-       Subscriptions
-       Recommendations
-       FraudDetection
-       StudioAnalytics
-    end
-```
 
 ## Architecture Description 
 - The system follows a modular, service‑oriented architecture designed for a cloud‑native environment.
