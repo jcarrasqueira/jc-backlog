@@ -256,6 +256,7 @@ Services --> |READ/WRITES| DB
 DB <--> DBbackup
 ``` 
 
+
 ## Architecture Description 
 - The system follows a modular, service‑oriented architecture designed for a cloud‑native environment.
 - Each functional domain (movies, ratings, watchlists, analytics, etc.) is implemented as an independent backend service.
@@ -282,7 +283,7 @@ This ensures that clients interact with a single, consistent API, regardless of 
 | Badges           | Badge definitions, awarding logic, user achievements                    |
 | Watchlists       | CRUD watchlists, add/remove movies, filtering                           |
 | Subscriptions    | Subscription lifecycle, plan management, premium access control         |
-| Recomendation    | Hybrid recommendations, genre families and personalised recommendations |
+| Recommendations  | Hybrid recommendations, genre families and personalised recommendations |
 | Fraud Detection  | Anomaly detection, review bombing mitigation, quarantine logic          |
 | Studio Analytics | NLP sentiment analysis, topic extraction, user cluster analytics        |
 ### Databases
