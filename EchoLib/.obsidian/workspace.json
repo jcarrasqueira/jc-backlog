@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journal/uni/cloud computing/2026-03-28.md",
+                "file": "journal/uni/cloud computing/env.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-03-28"
+              "title": "env"
             }
           }
         ]
@@ -198,8 +198,11 @@
   },
   "active": "46de2e31b791ead0",
   "lastOpenFiles": [
-    "journal/uni/cloud computing/2026-03-25.md",
     "journal/uni/cloud computing/2026-03-28.md",
+    "journal/uni/cloud computing/env.md",
+    "journal/uni/cloud computing/project/env/Untitled.md",
+    "journal/uni/cloud computing/project/env",
+    "journal/uni/cloud computing/2026-03-25.md",
     "journal/uni/cloud computing/CC2526-Phase3-Group8.md",
     "journal/uni/cloud computing/project/phase3/CC2526-Phase3-Group8.md",
     "journal/uni/cloud computing/project/phase3/CC2526-Phase3-Group8-leonor.md",
