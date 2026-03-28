@@ -13,12 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journal/uni/cloud computing/env.md",
+                "file": "journal/uni/cloud computing/2026-03-28.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "env"
+              "title": "2026-03-28"
+            }
+          }
+        ]
+      },
+      {
+        "id": "48083eecd714cc61",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d00d2180270ec503",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "journal/uni/cloud computing/project/CC2526-Project.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "CC2526-Project"
             }
           }
         ]
@@ -180,7 +198,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -198,6 +217,7 @@
   },
   "active": "46de2e31b791ead0",
   "lastOpenFiles": [
+    "journal/uni/cloud computing/project/CC2526-Project.pdf",
     "journal/uni/cloud computing/2026-03-28.md",
     "journal/uni/cloud computing/env.md",
     "journal/uni/cloud computing/project/env/Untitled.md",
@@ -210,7 +230,6 @@
     "journal/uni/cloud computing/project/phase3/CC2526-Phase3-Group8-tiago-pina.md",
     "journal/uni/cloud computing/project/phase3/CC2526_Phase3_Group8-tiago-pereira.md",
     "journal/uni/cloud computing/project/phase3/phase3.md",
-    "journal/uni/cloud computing/project/CC2526-Project.pdf",
     "journal/uni/cloud computing/2026-03-22.md",
     "journal/uni/cloud computing/project/phase1/CC2526-Phase1-Group8.md",
     "journal/uni/cloud computing/project/phase1/BDA2526_Group10_Report.pdf",
