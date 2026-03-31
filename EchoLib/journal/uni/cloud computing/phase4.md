@@ -53,14 +53,16 @@ http://localhost:<review-rest-port>/docs
 ``` 
 
 ##### Postman examples
-
-###### Get movie ratings
-```json
-GET http://localhost:<review-rest-port>/movies/296/ratings
+###### Get Ratings (with filters)
 ```
-
+GET http://localhost:<review-rest-port>/ratings?user_id=1&min_rating=3&max_rating=4
+```
+###### Get rating
+```
+GET http://localhost:<review-rest-port>/ratings/10
+```
 ###### Post rating
-```json
+```
 POST http://localhost:<review-rest-port>/ratings
 Content-Type: application/json
 
@@ -73,8 +75,18 @@ Content-Type: application/json
 }
 ``` 
 
-###### update movie rating
-```json
+###### Delete rating
+```
+DELETE http://localhost:<review-rest-port>/ratings/10
+```
+
+###### Get movie ratings
+```
+GET http://localhost:<review-rest-port>/movies/296/ratings
+```
+
+###### Update movie rating
+```
 PUT http://localhost:<review-rest-port>/ratings/10
 Content-Type: application/json
 
@@ -84,5 +96,35 @@ Content-Type: application/json
 }
 ``` 
 
+###### Post a movie rating
+```
+POST /movies/3/ratings
+Content-Type: application/json
 
+{
+  "user_id": 20,
+  "rating": 4.0,
+  "review": "Very fun movie",
+  "tag": "fun"
+}
+```
+
+###### Get user ratings
+``` 
+GET http://localhost:<review-rest-port>/users/1/ratings?min_rating=3&max_rating=4
+```
+
+#### GRPC
+In project base directory run:
+```
+docker exec -it review-service bash
+```
+
+then run the test client inside the container:
+```
+python grpc/rating_test.py
+```
+
+what should appear:
+![[rating_test.png|500]]
 

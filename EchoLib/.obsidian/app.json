@@ -7,5 +7,6 @@
     "downscalePercent": 100
   },
   "propertiesInDocument": "hidden",
-  "showUnsupportedFiles": false
+  "showUnsupportedFiles": false,
+  "alwaysUpdateLinks": true
 }
