@@ -1,3 +1,5 @@
+*Joana Carrasqueira, 64414* 
+*branch: jcarrasqueira*
 # Cloud Computing — Phase 4 Implementation
 The microservices implement in this phase were the following:
 - **Review Service** (Review system): manages user reviews, ratings, sentiment, and topic metadata 
@@ -115,6 +117,12 @@ GET http://localhost:<review-rest-port>/users/1/ratings?min_rating=3&max_rating=
 ```
 
 #### GRPC
+| gRPC Method Name    | Description                                                                         |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| **GetRatings**      | Returns ratings with optional filters: *user_id, movie_id, min_rating, max_rating.* |
+| **GetMovieRatings** | Returns all ratings for a specific movie.                                           |
+| **GetUserRatings**  | Returns all ratings for a specific user.                                            |
+
 In project base directory run:
 ```
 docker exec -it review-service bash
@@ -128,3 +136,76 @@ python grpc/rating_test.py
 what should appear:
 ![[rating_test.png|500]]
 
+### Recommendation Service
+#### REST
+| Method | Endpoint                                     | Description                         |
+| ------ | -------------------------------------------- | ----------------------------------- |
+| POST   | /users/{user_id}/preferences                 | Create a user genre preference      |
+| GET    | /users/{user_id}/preferences                 | Get all preferences for a user      |
+| DELETE | /users/{user_id}/preferences/{genre_id}      | Delete a user preference            |
+| POST   | /users/{user_id}/reference-movies            | Add a reference movie for a user    |
+| GET    | /users/{user_id}/reference-movies            | Get all reference movies for a user |
+| DELETE | /users/{user_id}/reference-movies/{movie_id} | Delete a reference movie for a user |
+##### SwaggerUI
+```
+http://localhost:<recommendation-rest-port>/docs
+``` 
+
+##### Postman examples
+###### Post user preference
+```
+POST http://localhost:<recommendation-rest-port>/users/1/preferences
+Content-Type: application/json
+
+{
+  "genre_id": 18,
+  "preference_type": "like"
+}
+``` 
+
+###### Get user preferences
+```
+GET http://localhost:<recommendation-rest-port>/users/45885/preferences 
+```
+
+###### Delete user preference
+```
+DELETE http://localhost:<recommendation-rest-port>/users/1/preferences/18
+``` 
+
+###### Add a reference movie
+```
+POST http://localhost:<recommendation-rest-port>/users/90/reference-movies?movie_id=2
+```
+
+###### Get reference movies
+```
+GET http://localhost:<recommendation-rest-port>/users/90/reference-movies
+```
+
+###### Delete a reference movie
+```
+DELETE http://localhost:<recommendation-rest-port>/users/1/reference-movies/18
+```
+
+#### GRPC
+| gRPC Method Name         | Description                                         |
+| ------------------------ | --------------------------------------------------- |
+| **CreateUserPreference** | Creates a new user preference for a specific genre. |
+| **GetUserPreferences**   | Returns all genre preferences for a specific user.  |
+| **DeleteUserPreference** | Deletes a user’s preference for a specific genre.   |
+| **AddReferenceMovie**    | Adds a reference movie for a user.                  |
+| **GetReferenceMovies**   | Returns all reference movies for a specific user.   |
+| **DeleteReferenceMovie** | Deletes a reference movie for a user.               |
+In project base directory run:
+```
+docker exec -it recommendations-service bash
+```
+
+then run the test client inside the container:
+```
+python grpc/recommendations_test.py
+``` 
+
+what should appear:
+![[rec_test.png|500]]
