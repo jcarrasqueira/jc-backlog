@@ -2,11 +2,8 @@
 pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-//import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract DecentralizedFinance is ERC20 {
-    //using Counters for Counters.Counter;
-    Counters.Counter public loanIDCounter;
     address private owner;
 
     uint256 public balance; // balance of contract in Wei
@@ -17,6 +14,7 @@ contract DecentralizedFinance is ERC20 {
     uint256 public dexSwapRate; // how many Wei a DEX costs
     
     uint256 public nextLoanId = 1;
+   //nextLoanId++;
 
     struct Loan {
         address borrower;
@@ -32,18 +30,17 @@ contract DecentralizedFinance is ERC20 {
 
     event loanCreated(address borrower, uint256 amount, uint256 deadline);
 
-    constructor(uint256 _dexSwapRate, uint256 _paymentCycle, uint256 _interest, uint256 _terminationFee) ERC20("DEX", "DEX") {
+    constructor(uint256 _dexSwapRate, uint256 _paymentCycle, uint256 _interest, uint256 _termination) ERC20("DEX", "DEX") {
         owner = msg.sender;
 
         dexSwapRate = _dexSwapRate;
         paymentCycle = _paymentCycle;
         interest = _interest;
-        terminationFee = _terminationFee;
+        termination = _termination;
 
         _mint(address(this), 10**18);
     }
 
-// cyclepayment = amount x intest /deadline
     function buyDex() external payable {
         require(msg.value > 0, "No ETH sent");
 
@@ -62,12 +59,21 @@ contract DecentralizedFinance is ERC20 {
         uint256 refund = msg.value - cost;
 
         if (refund > 0) {
-            payable(msg.sender).transfer(refund);
+            (bool success, ) = msg.sender.call{value: refund}("");
+            require(success, "Refund failed");
         }
     }
+    
+    function sellDex() external { //uint256 dexAmount
+        uint256 dexAmount = balanceOf(msg.sender);
+        require(dexAmount >= 0, "Insufficient DEX to sell");
 
-    function sellDex(uint256 dexAmount) external {
-        // TODO: implement this
+        uint256 ethAmount = dexAmount * dexSwapRate;
+        require(address(this).balance >= ethAmount, "Contract does not have enough ETH");
+
+        _transfer(msg.sender, address(this), dexAmount);
+
+        payable(msg.sender).transfer(ethAmount);
     }
 
     function loan(uint256 dexAmount, uint256 deadline) external {
@@ -76,4 +82,5 @@ contract DecentralizedFinance is ERC20 {
     }
 
     //TODO: implement the rest
+
 }
