@@ -27,7 +27,7 @@ contract DecentralizedFinance is ERC20 {
     mapping(uint256 => Loan) public loans;
     
     mapping(uint256 => bool) public active;              // whether loan is active or not
-    mapping(uint256 => uint256) public startTime;        // time loan started
+    //mapping(uint256 => uint256) public startTime;        // time loan started
     mapping(uint256 => uint256) public nextPayment;      // timestamp when next interest payment is due
     //mapping(uint256 => uint256) public paymentAmount;    // interest payment owed each cycle (in wei)
     mapping(uint256 => uint256) public cyclesPaid;       // how many cycles have been paid so far
@@ -132,11 +132,7 @@ contract DecentralizedFinance is ERC20 {
         require(currentLoan.borrower != address(0), "Loan does not exist");
         require(active[loanID], "Loan is not active");
         require(msg.sender == currentLoan.borrower, "Only borrower can pay");
-
-        if(block.timestamp > nextPayment[loanID]){ // to avoid more payments since loan passed the deadline
-            active[loanID] == false;
-            revert("Payment missed: Loan terminated and collateral lost");
-        }
+        require(block.timestamp <= nextPayment[loanID], "Payment deadline passed");
 
         // cycle Payment = amount x interest / deadline
         uint256 duePayment = (currentLoan.amount * interest) / currentLoan.deadline;
@@ -161,28 +157,23 @@ contract DecentralizedFinance is ERC20 {
         }
     }
 
+    function checkLoan(uint256 loanID) external onlyOwner returns (string memory status, Loan memory) {
+        require(loans[loanID].borrower != address(0), "Loan does not exist");
+        
+        if(block.timestamp > nextPayment[loanID] && active[loanID]){
+            active[loanID] = false;
+            status = "Terminated - Collateral Lost";
+            Loan memory expiredLoan = loans[loanID];
 
-
-    function checkLoan(uint256 loanId) external view onlyOwner returns (Loan memory) {
-        require(loans[loanId].borrower != address(0), "Loan does not exist");
-
-        uint256 paymentDeadline = startTime[loanId] + (loans[loanId].deadline * paymentCycle);
-
-        if(block.timestamp > paymentDeadline && active[loanId]){
-            Loan memory expiredLoan = loans[loanId];
-
-           delete loans[loanId];
-
-           delete active[loanId];
-           delete startTime[loanId];
-           delete nextPayment[loanId];
-           delete paymentAmount[loanId];
-           delete cyclesPaid[loanId];
-
-            return expiredLoan;
-
-        }else{
-            return loans[loanId];
+            return (status, expiredLoan);
+        }
+        else if(active[loanID]){
+            status = "Active";
+            return (status, loans[loanID]);
+        }
+        else{
+            status = "Terminated";
+            return (status, loans[loanID]);
         }
     }
 
