@@ -27,6 +27,9 @@ contract DecentralizedFinance is ERC20 {
     }
 
     mapping(uint256 => Loan) public loans;
+    
+    mapping(uint256 => bool) public active;
+    mapping(uint256 => uint256) public startTime;
     mapping(uint256 => uint256) public nextPayment;      // timestamp when next interest payment is due
     mapping(uint256 => uint256) public paymentAmount;    // interest payment owed each cycle (in wei)
     mapping(uint256 => uint256) public cyclesPaid;       // how many cycles have been paid so far
@@ -83,7 +86,7 @@ contract DecentralizedFinance is ERC20 {
         require(success, "ETH transfer failed");
     }
 
-    function loan(uint256 dexAmount, uint256 deadline) external {
+    function loan(uint256 dexAmount, uint256 deadline) external returns(uint256 loanID){
         require(dexAmount > 0, "No DEX sent"); // checks collateral
         require(balanceOf(msg.sender) >= dexAmount , "Client doesn't own enough DEX for this loan."); // checks user balance
         require(deadline > 0 && deadline <= maxLoanDuration, "Invalid deadline"); // checks for deadline
@@ -98,24 +101,20 @@ contract DecentralizedFinance is ERC20 {
         
         _transfer(msg.sender, address(this), dexAmount);
 
-        Loan memory newLoan;
-        newLoan.borrower = msg.sender;
-        newLoan.collateral = dexAmount;
-        newLoan.amount = loanAmount;
-        newLoan.deadline = deadline;
-        //newLoan.startTime = block.timestamp;
-        //newLoan.paidCycles = 0;
-        //newLoan.active = true;
-        
-        cyclePayment = loanAmount
-        uint256 loanID = nextLoanID;
+        loanID = nextLoanID;
         nextLoanID++;
+        
+        loans[loanID] = Loan(msg.sender, dexAmount, loanAmount, deadline); // loan mapping
 
+        // auxiliary mappings
         nextPayment[loanID] = block.timestamp + paymentCycle;
-        paymentAmount[loanID] = interestPerCycle;
+        paymentAmount[loanID] = (loanAmount * interest) / deadline;
+        startTime[loanID] = block.timestamp;
+        active[loanID] = true;
         cyclesPaid[loanID] = 0;
-
-        emit loanCreated(msg.sender, loanAmount, deadline);
+        
+        emit loanCreated(msg.sender, loanAmount, deadline); //event emission
+        
         return loanID;
 
     }
