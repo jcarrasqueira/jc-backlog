@@ -7,13 +7,13 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract DecentralizedFinance is ERC20 {
 
     address private owner;
-    uint256 private nextLoanID = 1;
-
-    uint256 public balance; // balance of contract in Wei
+    uint256 private nextLoanID;
+    uint256 private balance; // balance of contract in Wei
+    
     uint256 public paymentCycle; // payment cycle duration  == periocity
     uint256 public interest; // interest rate -> 10 = 10%
     uint256 public termination; // termination fee
-    uint256 public maxLoanDuration = 10; // in cycles
+    uint256 public maxLoanDuration; // in cycles
     uint256 public dexSwapRate; // how many Wei a DEX costs
     
     struct Loan {
@@ -21,9 +21,6 @@ contract DecentralizedFinance is ERC20 {
         uint256 collateral; // amount dex as collatera;
         uint256 amount; // loan amount in wei
         uint256 deadline; // deadline of loan, number of periods
-        //uint256 startTime; // start of loan
-        //uint256 paidCycles; // amount of cycles
-        //bool active;
     }
 
     mapping(uint256 => Loan) public loans;
@@ -39,6 +36,9 @@ contract DecentralizedFinance is ERC20 {
 
     constructor(uint256 _dexSwapRate, uint256 _paymentCycle, uint256 _interest, uint256 _termination) ERC20("DEX", "DEX") {
         owner = msg.sender;
+        balance = balanceOf(owner);
+        nextLoanID = 1;
+        maxLoanDuration = 10; //later add a setter for contract owner
 
         dexSwapRate = _dexSwapRate;
         paymentCycle = _paymentCycle;
@@ -124,18 +124,29 @@ contract DecentralizedFinance is ERC20 {
         return loanID;
     }
 
-    function makePayment(uint256 loanId) external payable  {
-        Loan current_loan = loans[loanId];
-        require(!ln.isBasedNft, "Should not be nft loan");
-        require(ln.amount > 0, "Loan is not active");
-        //require(msg.sender == ln.borrower, "Not your loan to pay");
-        require(cyclesPaid[loanId] < totalCycles[loanId], "All cycles already paid");
+    function makePayment(uint256 loanID) external payable  {
+        require(loanID > 0 && loanID < nextLoanID, "Loan doesn't exist.");
+        require(active[loanID], "Not a valid Loan.");
+        
+        Loan memory currentLoan = loans[loanID];
+        //require(!current_loan.isBasedNft, "Should not be nft loan"); // only add if nft loans implemented
+        require(msg.sender == currentLoan.borrower, "Not your loan to pay"); // only the borrower must pay their loan
+        require(cyclesPaid[loanID] < currentLoan.deadline, "All cycles already paid"); 
+        
+        uint256 dueAmount = paymentAmount[loanID];
+        require(msg.value == dueAmount, "Incorrect interest payment amount");
+        require(block.timestamp >= nextPayment[loanID], "Payment not due yet");
+
+        cyclesPaid[loanID] += 1;
+        nextPayment[loanID] = block.timestamp + paymentCycle;
+        
+
+
         require(block.timestamp <= ln.deadline, "Loan past deadline");
 
         uint256 dueTime = nextPayment[loanId];
         //require(block.timestamp >= dueTime, "Too early for this payment");
-        uint256 dueAmount = paymentAmount[loanId];
-        require(msg.value == dueAmount, "Incorrect interest payment amount");
+        
 
         cyclesPaid[loanId] += 1;
 
@@ -175,10 +186,6 @@ contract DecentralizedFinance is ERC20 {
         return balanceOf(msg.sender);
     }
 
-    function checkLoan(uint256 loanId) external view onlyOwner returns (Loan memory) {
-        require(loans[loanId].borrower != address(0), "Loan does not exist");
-        return loans[loanId];
-    }
     
    
 }
