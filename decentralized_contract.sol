@@ -2,14 +2,11 @@
 pragma solidity ^0.8.30;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-// import "@openzeppelin/contracts/utils/Counters.sol"; not importing correctly
 
 contract DecentralizedFinance is ERC20 {
-
     address private owner;
     uint256 private nextLoanID = 1;
     uint256 private balance; // balance of contract in Wei
-    
     
     uint256 public paymentCycle; // payment cycle duration  == periocity
     uint256 public interest; // interest rate -> 10 = 10%
@@ -19,17 +16,14 @@ contract DecentralizedFinance is ERC20 {
     
     struct Loan {
         address borrower; // adress of borrower
-        uint256 collateral; // amount dex as collatera;
+        uint256 collateral; // amount dex as collateral
         uint256 amount; // loan amount in wei
         uint256 deadline; // deadline of loan, number of periods
     }
 
-    mapping(uint256 => Loan) public loans;
-    
+    mapping(uint256 => Loan) public loans;               // loan mapping
     mapping(uint256 => bool) public active;              // whether loan is active or not
-    //mapping(uint256 => uint256) public startTime;        // time loan started
     mapping(uint256 => uint256) public nextPayment;      // timestamp when next interest payment is due
-    //mapping(uint256 => uint256) public paymentAmount;    // interest payment owed each cycle (in wei)
     mapping(uint256 => uint256) public cyclesPaid;       // how many cycles have been paid so far
 
     event loanCreated(address borrower, uint256 amount, uint256 deadline);
@@ -61,11 +55,14 @@ contract DecentralizedFinance is ERC20 {
         // ensure contract has funds
         require(balanceOf(address(this)) >= dexAmount, "Contract does not have enough DEX in stock");
 
+        // update balance
+        uint256 cost = dexAmount * dexSwapRate;
+        balance += cost;
+
         // transfer dex amount to buyer
         _transfer(address(this), msg.sender, dexAmount);
 
         // Return any excess ETH
-        uint256 cost = dexAmount * dexSwapRate;
         uint256 refund = msg.value - cost;
 
         if (refund > 0) {
@@ -85,6 +82,8 @@ contract DecentralizedFinance is ERC20 {
         // transfer dex from user to contract
         _transfer(msg.sender, address(this), dexAmount);
 
+        balance -= ethAmount; // updated balance
+        
         // pay in eth to user
         (bool success, ) = msg.sender.call{value: ethAmount}("");
         require(success, "ETH transfer failed");
@@ -97,11 +96,8 @@ contract DecentralizedFinance is ERC20 {
 
         // computes and validates collateral amount (eth)
         uint256 collateralEth = dexAmount * dexSwapRate; 
-        uint256 loanAmount = collateralEth / 2; // only 50% can be borrowed
+        uint256 loanAmount = collateralEth / 2; // only 50% can be borrowed //change to percentage since int division
         require(address(this).balance >= loanAmount, "Contract doesn't have enough ETH"); // checks if amount in contract is enough for loan
-
-        //uint256 interestPerCycle = (loanAmount * interest) / deadline;
-        //require(interestPerCycle > 0, "Interest per cycle too small"); // since 0 interest can break the loan cycle
         
         // sends collateral to contract
         _transfer(msg.sender, address(this), dexAmount);
@@ -115,12 +111,12 @@ contract DecentralizedFinance is ERC20 {
         nextPayment[loanID] = block.timestamp + paymentCycle;
         active[loanID] = true;
         cyclesPaid[loanID] = 0;
-        
+
+        balance -= loanAmount; //update balance
+
         // tranfer loan amount to borrower
         (bool success, ) = msg.sender.call{value: loanAmount}(""); 
         require(success, "ETH transfer failed");
-
-        balance -= loanAmount; //update balance
 
         emit loanCreated(msg.sender, loanAmount, deadline); //event emission
         return loanID;
@@ -144,18 +140,64 @@ contract DecentralizedFinance is ERC20 {
 
         require(msg.value == requiredAmount, "Incorrect payment amount");
        
+        balance += requiredAmount;       
         cyclesPaid[loanID]++;
         balance += msg.value; //tracks wei in contract
 
         if (cyclesPaid[loanID] == loans[loanID].deadline) { //sucessfull loan payment
             active[loanID] = false;
-            _transfer(address(this), currentLoan.borrower, currentLoan.amount); // send collateral back
+            _transfer(address(this), currentLoan.borrower, currentLoan.collateral); // send collateral back
             emit loanFinished(currentLoan.borrower, currentLoan.amount);
         } 
         else { // next deadline
             nextPayment[loanID] += paymentCycle;
         }
     }
+
+    function terminateLoan(uint256 loanID) external payable {
+        Loan storage currentLoan = loans[loanID];
+        require(currentLoan.borrower != address(0), "Loan does not exist");
+        require(active[loanID], "Loan is not active");
+        require(msg.sender == currentLoan.borrower, "Only borrower can terminate");
+        require(block.timestamp <= nextPayment[loanID], "Payment deadline passed");
+
+        uint256 totalDue = currentLoan.amount + termination;
+        require(msg.value >= totalDue, "Insufficient repayment");
+        
+        active[loanID] = false;
+        
+        // Return the DEX collateral to the user
+        _transfer(address(this), msg.sender, currentLoan.collateral);
+
+        uint256 excess = msg.value - totalDue;
+
+        if (excess > 0) {
+            (bool success, ) = payable(msg.sender).call{value: excess}("");
+            require(success, "Refund failed");
+        }
+
+        emit loanFinished(msg.sender, currentLoan.amount);
+    }
+
+    function terminateLoan2(uint256 loanID) external payable {
+        Loan storage currentLoan = loans[loanID];
+
+        require(currentLoan.borrower != address(0), "Loan does not exist");
+        require(active[loanID], "Loan is not active");
+        require(msg.sender == currentLoan.borrower, "Only borrower can terminate early");
+
+        // User pays back the full principal + the termination fee
+        uint256 requiredAmount = currentLoan.amount + termination;
+        require(msg.value == requiredAmount, "Incorrect termination payment amount");
+
+        active[loanID] = false;
+
+        // Return the DEX collateral to the user
+        _transfer(address(this), msg.sender, currentLoan.collateral);
+        
+        emit loanFinished(msg.sender, currentLoan.amount);
+    }
+
 
     function checkLoan(uint256 loanID) external onlyOwner returns (string memory status, Loan memory) {
         require(loans[loanID].borrower != address(0), "Loan does not exist");
@@ -178,13 +220,10 @@ contract DecentralizedFinance is ERC20 {
     }
 
     function getBalance() external view onlyOwner returns (uint256) {
-        return address(this).balance;
+        return balance;
     }
 
     function getDexBalance() external view returns (uint256) {
         return balanceOf(msg.sender);
-    }
-
-    
-   
+    }  
 }
