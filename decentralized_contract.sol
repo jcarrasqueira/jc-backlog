@@ -159,18 +159,18 @@ contract DecentralizedFinance is ERC20 {
         require(currentLoan.borrower != address(0), "Loan does not exist");
         require(active[loanID], "Loan is not active");
         require(msg.sender == currentLoan.borrower, "Only borrower can terminate");
-        require(block.timestamp <= nextPayment[loanID], "Payment deadline passed");
+        //require(block.timestamp <= nextPayment[loanID], "Payment deadline passed");
 
         uint256 totalDue = currentLoan.amount + termination;
         require(msg.value >= totalDue, "Insufficient repayment");
         
+        balance += totalDue;
         active[loanID] = false;
         
         // Return the DEX collateral to the user
         _transfer(address(this), msg.sender, currentLoan.collateral);
 
         uint256 excess = msg.value - totalDue;
-
         if (excess > 0) {
             (bool success, ) = payable(msg.sender).call{value: excess}("");
             require(success, "Refund failed");
@@ -178,26 +178,6 @@ contract DecentralizedFinance is ERC20 {
 
         emit loanFinished(msg.sender, currentLoan.amount);
     }
-
-    function terminateLoan2(uint256 loanID) external payable {
-        Loan storage currentLoan = loans[loanID];
-
-        require(currentLoan.borrower != address(0), "Loan does not exist");
-        require(active[loanID], "Loan is not active");
-        require(msg.sender == currentLoan.borrower, "Only borrower can terminate early");
-
-        // User pays back the full principal + the termination fee
-        uint256 requiredAmount = currentLoan.amount + termination;
-        require(msg.value == requiredAmount, "Incorrect termination payment amount");
-
-        active[loanID] = false;
-
-        // Return the DEX collateral to the user
-        _transfer(address(this), msg.sender, currentLoan.collateral);
-        
-        emit loanFinished(msg.sender, currentLoan.amount);
-    }
-
 
     function checkLoan(uint256 loanID) external onlyOwner returns (string memory status, Loan memory) {
         require(loans[loanID].borrower != address(0), "Loan does not exist");
