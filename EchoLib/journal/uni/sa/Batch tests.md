@@ -1,6 +1,6 @@
 
-python3 logappend.py -T 1 -K secret -A -E Alex jc
-
+python3 logappend.py -B test
+-T 1 -K secret -A -E Alex jc
 -T 2 -K secret -A -G Jill jc
 -T 3 -K secret -A -E Alex -R 1 jc
 -T 4 -K secret -A -G Jill -R 2 jc

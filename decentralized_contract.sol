@@ -10,7 +10,7 @@ contract DecentralizedFinance is ERC20 {
     uint256 public paymentCycle; // payment cycle duration  == periocity
     uint256 public interest; // interest rate -> 10 = 10%
     uint256 public termination; // termination fee
-    uint256 public maxLoanDuration; // in cycles
+    uint256 public maxLoanDuration = 10; // in cycles
     uint256 public dexSwapRate; // how many Wei a DEX costs
     
     uint256 public nextLoanId = 1;
@@ -51,7 +51,7 @@ contract DecentralizedFinance is ERC20 {
         // ensure contract has funds
         require(balanceOf(address(this)) >= dexAmount, "Contract does not have enough DEX in stock");
 
-        // transfer amount to buyes
+        // transfer dex amount to buyer
         _transfer(address(this), msg.sender, dexAmount);
 
         // Return any excess ETH
@@ -64,22 +64,26 @@ contract DecentralizedFinance is ERC20 {
         }
     }
     
-    function sellDex() external { //uint256 dexAmount
-        uint256 dexAmount = balanceOf(msg.sender);
-        require(dexAmount >= 0, "Insufficient DEX to sell");
+    function sellDex(uint256 dexAmount) external { 
+        require(dexAmount > 0, "Insufficient DEX to sell");
+        require(balanceOf(msg.sender) >= dexAmount, "Insufficient funds (DEX)");
 
+        // amount of eth for the user to receive
         uint256 ethAmount = dexAmount * dexSwapRate;
         require(address(this).balance >= ethAmount, "Contract does not have enough ETH");
 
+        // transfer dex from user to contract
         _transfer(msg.sender, address(this), dexAmount);
 
-        payable(msg.sender).transfer(ethAmount);
+        // pay in eth to user
+        (bool success, ) = msg.sender.call{value: ethAmount}("");
+        require(success, "ETH transfer failed");
     }
 
-    function loan(uint256 dexAmount, uint256 deadline) external {
+    //function loan(uint256 dexAmount, uint256 deadline) external {
         // TODO: implement this
 
-    }
+    //}
 
     //TODO: implement the rest
 

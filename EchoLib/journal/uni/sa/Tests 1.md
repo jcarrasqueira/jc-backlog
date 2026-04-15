@@ -173,20 +173,19 @@ python3 logappend.py -T 14 -K wrongtoken -A -E Ian errors
 ```
 
 
-Batch mode: invalid lines must NOT stop the batch
--K secret -T 0 -A -E John jc
--K secret -T 1 -A -R 0 -E John jc
--K secret -T 2 -A -G James jc
--K secret -T 3 -A -R 0 -G James jc
+# Testes de integridade (MAC chain / rename attack) X
+```
+python3 logappend.py -T 1 -K secret -A -E Bob f1
+```
 
-expected
-invalid
-invalid
+```
+python3 logappend.py -T 1 -K secret -A -E Bob f2
+```
 
+em logs -> mv f2 f1
+```
+python3 logread.py -K secret -S f1
+```
+integrity violation
 
-valid batch
--K secret -T 1 -A -E John jc
--K secret -T 2 -A -R 0 -E John jc
--K secret -T 3 -A -G James jc
--K secret -T 4 -A -R 0 -G James jc
 
