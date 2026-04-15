@@ -28,13 +28,14 @@ contract DecentralizedFinance is ERC20 {
 
     mapping(uint256 => Loan) public loans;
     
-    mapping(uint256 => bool) public active;
-    mapping(uint256 => uint256) public startTime;
+    mapping(uint256 => bool) public active;              // whether loan is active or not
+    mapping(uint256 => uint256) public startTime;        // time loan started
     mapping(uint256 => uint256) public nextPayment;      // timestamp when next interest payment is due
     mapping(uint256 => uint256) public paymentAmount;    // interest payment owed each cycle (in wei)
     mapping(uint256 => uint256) public cyclesPaid;       // how many cycles have been paid so far
 
     event loanCreated(address borrower, uint256 amount, uint256 deadline);
+    event loanFinished(address borrower, uint256 amount);
 
     constructor(uint256 _dexSwapRate, uint256 _paymentCycle, uint256 _interest, uint256 _termination) ERC20("DEX", "DEX") {
         owner = msg.sender;
@@ -45,6 +46,11 @@ contract DecentralizedFinance is ERC20 {
         termination = _termination;
 
         _mint(address(this), 10**18);
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only contract owner can call this function.");
+        _;
     }
 
     function buyDex() external payable {
@@ -94,10 +100,10 @@ contract DecentralizedFinance is ERC20 {
         // computes and validates collateral amount (eth)
         uint256 collateralEth = dexAmount * dexSwapRate; 
         uint256 loanAmount = collateralEth / 2; // only 50% can be borrowed
+        uint256 interestPerCycle = (loanAmount * interest) / deadline;
 
         require(address(this).balance >= loanAmount, "Contract doesn't have enough ETH"); // checks if amount in contract is enough for loan
-
-        // later check if any cycle validation/calcs needed (interest per cycle)
+        require(interestPerCycle > 0, "Interest per cycle too small"); // since 0 interest can break the loan cycle
         
         _transfer(msg.sender, address(this), dexAmount);
 
@@ -108,7 +114,7 @@ contract DecentralizedFinance is ERC20 {
 
         // auxiliary mappings
         nextPayment[loanID] = block.timestamp + paymentCycle;
-        paymentAmount[loanID] = (loanAmount * interest) / deadline;
+        paymentAmount[loanID] = interestPerCycle;
         startTime[loanID] = block.timestamp;
         active[loanID] = true;
         cyclesPaid[loanID] = 0;
@@ -116,11 +122,63 @@ contract DecentralizedFinance is ERC20 {
         emit loanCreated(msg.sender, loanAmount, deadline); //event emission
         
         return loanID;
-
     }
 
+    function makePayment(uint256 loanId) external payable  {
+        Loan current_loan = loans[loanId];
+        require(!ln.isBasedNft, "Should not be nft loan");
+        require(ln.amount > 0, "Loan is not active");
+        //require(msg.sender == ln.borrower, "Not your loan to pay");
+        require(cyclesPaid[loanId] < totalCycles[loanId], "All cycles already paid");
+        require(block.timestamp <= ln.deadline, "Loan past deadline");
 
+        uint256 dueTime = nextPayment[loanId];
+        //require(block.timestamp >= dueTime, "Too early for this payment");
+        uint256 dueAmount = paymentAmount[loanId];
+        require(msg.value == dueAmount, "Incorrect interest payment amount");
+
+        cyclesPaid[loanId] += 1;
+
+        if (cyclesPaid[loanId] < totalCycles[loanId]) {
+            nextPayment[loanId] = dueTime + periodicity;
+        }
+    }
+
+    function checkLoan(uint256 loanId) external  onlyOwner returns (Loan memory) {
+        require(loans[loanId].borrower != address(0), "Loan does not exist");
+
+        uint256 paymentDeadline = startTime[loanId] + (loans[loanId].deadline * paymentCycle);
+
+        if(block.timestamp > paymentDeadline && active[loanId]){
+            Loan memory expiredLoan = loans[loanId];
+
+           delete loans[loanId];
+
+           delete active[loanId];
+           delete startTime[loanId];
+           delete nextPayment[loanId];
+           delete paymentAmount[loanId];
+           delete cyclesPaid[loanId];
+
+            return expiredLoan;
+
+        }else{
+            return loans[loanId];
+        }
+    }
+
+    function getBalance() external view onlyOwner returns (uint256) {
+        return address(this).balance;
+    }
+
+    function getDexBalance() external view returns (uint256) {
+        return balanceOf(msg.sender);
+    }
+
+    function checkLoan(uint256 loanId) external view onlyOwner returns (Loan memory) {
+        require(loans[loanId].borrower != address(0), "Loan does not exist");
+        return loans[loanId];
+    }
     
-    //TODO: implement the rest
-
+   
 }
