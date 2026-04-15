@@ -142,7 +142,6 @@ contract DecentralizedFinance is ERC20 {
        
         balance += requiredAmount;       
         cyclesPaid[loanID]++;
-        balance += msg.value; //tracks wei in contract
 
         if (cyclesPaid[loanID] == loans[loanID].deadline) { //sucessfull loan payment
             active[loanID] = false;
