@@ -225,3 +225,28 @@ Expected:
 - If payments missing → collateral seized
     
 - If fully paid → nothing happens
+
+
+
+
+| parameter      | description                                              |
+| -------------- | -------------------------------------------------------- |
+| *dexSwapRate*  | price of 1 DEX in wei                                    |
+| *paymentCycle* | Time between payments in seconds (e.g 180 for 3 minutes) |
+| *interest*     | interest rate (e.g 10 for 10%)                           |
+| *termination*  | fixed termination fee of loan                            |
+
+
+| parameter      | test values                 |
+| -------------- | --------------------------- |
+| *dexSwapRate*  | 100 (1 DEX costs 100 Wei)   |
+| *paymentCycle* | 30 to 60 (for a rapid test) |
+| *interest*     | 10                          |
+| *termination*  | 50                          |
+
+
+| **Step**      | **Function**   | **Required msg.value** | **Explanation**                       |
+| ------------- | -------------- | ---------------------- | ------------------------------------- |
+| **Payment 1** | makePayment(1) | **166 Wei**            | Cycle 1 Interest ($50 \times 10 / 3$) |
+| **Payment 2** | makePayment(1) | **166 Wei**            | Cycle 2 Interest                      |
+| **Final Pay** | makePayment(1) | **216 Wei**            | Cycle 3 Interest + 50 Wei Principal   |
