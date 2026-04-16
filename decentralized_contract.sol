@@ -178,7 +178,7 @@ contract DecentralizedFinance is ERC20 {
         emit loanFinished(msg.sender, currentLoan.amount);
     }
 
-    function checkLoan(uint256 loanID) external onlyOwner returns (string memory status, Loan memory) {
+    function checkLoan2(uint256 loanID) external onlyOwner returns (string memory status, Loan memory) {
         require(loans[loanID].borrower != address(0), "Loan does not exist");
         
         if(block.timestamp > nextPayment[loanID] && active[loanID]){
@@ -196,6 +196,22 @@ contract DecentralizedFinance is ERC20 {
             status = "Terminated";
             return (status, loans[loanID]);
         }
+    }
+
+    function checkLoan(uint256 loanID) external onlyOwner returns (string memory status,uint256 deadline,uint256 cycles){
+        require(loans[loanID].borrower != address(0), "Loan does not exist");
+
+        if (block.timestamp > nextPayment[loanID] && active[loanID]) {
+            active[loanID] = false;
+            status = "Terminated - Collateral Lost";
+        } else if (active[loanID]) {
+            status = "Active";
+        } else {
+            status = "Terminated";
+        }
+
+        deadline = loans[loanID].deadline;
+        cycles = cyclesPaid[loanID];
     }
 
     function getBalance() external view onlyOwner returns (uint256) {
