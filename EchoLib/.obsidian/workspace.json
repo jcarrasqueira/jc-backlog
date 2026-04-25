@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journal/uni/sa/resumos/Untitled.md",
+                "file": "journal/uni/cloud computing/2026-04-25.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Untitled"
+              "title": "2026-04-25"
             }
           }
         ]
@@ -180,8 +180,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -199,13 +198,14 @@
   },
   "active": "641eee0e7feb1a5b",
   "lastOpenFiles": [
+    "journal/uni/cloud computing/2026-04-19.md",
+    "journal/uni/cloud computing/2026-04-25.md",
     "journal/uni/sa/resumos/Untitled.md",
     "journal/uni/sa/resumos",
     "Phase5-64414.md",
     "phase5.md",
     "EchoLib.md",
     "Untitled 1.md",
-    "journal/uni/cloud computing/2026-04-19.md",
     "journal/uni/cloud computing/phase4.md",
     "journal/uni/sa/Tests 1.md",
     "journal/uni/sa/Tests.md",
@@ -226,7 +226,6 @@
     "journal/uni/ti/2026-04-15.md",
     "journal/uni/cloud computing/2026-03-01.md",
     "journal/uni/cloud computing/2026-03-02.md",
-    "journal/uni/cloud computing/2026-03-08.md",
     "journal/uni/cloud computing/project/phase1/cloud_entrega1_tiagopina.pdf",
     "journal/uni/cloud computing/project/phase1/Computacao_na_Nuvem_1_Checkpoint_Tiago_Pereira.pdf",
     "journal/uni/cloud computing/project/phase1/Phase1_Cloud_Computing.pdf",
