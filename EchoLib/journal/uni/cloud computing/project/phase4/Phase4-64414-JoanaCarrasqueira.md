@@ -5,7 +5,9 @@ The microservices implement in this phase were the following:
 - **Review Service** (Review system): manages user reviews, ratings, sentiment, and topic metadata 
 - **Recommendation Service**: generates personalized movie recommendations based on preferences, reference movies, and genre families
 
-Both services are fully isolated, own their respective data, and expose REST (FastAPI) and gRPC interfaces.
+Both services are fully isolated, own their respective data, and expose REST (FastAPI) and gRPC interfaces. 
+
+Recommendations interacts with Review Service in the endpoint recommendations, where **GetUserRatings** gRPCmethod is called in **rating_client** module (*recommendations/ratings/rating_client.py*).
 
 The system is backed by a PostgreSQL database populated via another container (*populate-db*)
 
@@ -23,7 +25,7 @@ This approach was time consuming and heavy, which is why it was altered.
 With the previous setup was created a dump file of the database with
 
 ```
-docker exec -t postgres pg_dump -U {username} -Fc [db_name] > migration_backup.dump
+docker exec -t postgres pg_dump -U [db_user] -Fc [db_name] > backup.dump
 ```
 
 Now we use the generated dump and created a new image based on it:
@@ -32,6 +34,39 @@ Now we use the generated dump and created a new image based on it:
 - **image created and published:** jrcarrasqueira/populate-db-phase5: v3.0
 
 This not only is faster but allows for a backup of the database with the dump file.
+
+## Implemented
+### Use cases 
+The following use cases have been ensured in this phase
+
+| **Use Case**                          | **Implementation Details**                                                                               |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **UC1. Initial Profile Creation**     | Users can select genre preferences (likes/dislikes) and 3–5 reference movies.                            |
+| **UC7. Personalized Recommendations** | The new algorithm calculates scores based on rating history, explicit preferences, and reference titles. |
+| **UC10. Rate and Review a Title**     | Implemented in the Review Service with support for ratings (1-5), text, and tags.                        |
+
+### Functional Requirements
+The following functional requirements were met:
+
+| **Requirement**               | **Description**                                                                                                 | **Related Use Case** |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------- |
+| **FR8. Rating CRUD**          | System must allow users to Create, Read, Update, and Delete movie reviews.                                      | UC10                 |
+| **FR9. Review Retrieval**     | System must support fetching ratings filtered by `movie_id` or `user_id`.                                       | UC10                 |
+| **FR20. Profile Setup**       | System must capture explicit genre preferences (likes/dislikes) and 3-5 reference movies.                       | UC1                  |
+| **FR23. Personalized Engine** | System must generate a top-5 list of movies based on aggregated scoring of genres from history and preferences. | UC7                  |
+| **FR24. Cold Start Fallback** | System must return top-rated global movies if no user-specific data is available.                               | UC7                  |
+
+## Recommendation Algorithm
+The algorithm to get the recommendations for a user uses a weighted scoring system:
+1. Fetches ratings from the **Review Service** via gRPC
+2. Only **positive ratings** are considered, in this case ratings equal or above 3.0
+3. Score weights:
+   - **user ratings** - the value of the rating is added to the score.
+   - **genre preferences** (user preferences) - liked genres add **+2.0** to the score, while disliked genres penalize by **-3.0**
+   - **reference movies** - genres of reference movies add +1.5 to the score
+4. Then movies are called and only the top 5 are returned in the recommendations
+5. If no user data exists the system returns the top 5 rated movies (*get_top_rated_movies*)
+
 ## Running Locally
 ### 1. Create .env file
 Create .env file in project's base folder (`CC2526-Group8`) with the structure provided in `.env.example` provided in base directory.
@@ -205,7 +240,9 @@ DELETE http://localhost:<recommendation-rest-port>/users/1/reference-movies/18
 ```
 
 ###### Get recommendations
-
+```
+GET http://localhost:<recommendation-rest-port>/recommendations/90
+```
 
 #### GRPC
 | gRPC Method Name         | Description                                         |
@@ -230,4 +267,3 @@ python grpc/recommendations_test.py
 what should appear:
 ![[rec_test.png|500]]
 
-## Use cases and functional requirements implemented
