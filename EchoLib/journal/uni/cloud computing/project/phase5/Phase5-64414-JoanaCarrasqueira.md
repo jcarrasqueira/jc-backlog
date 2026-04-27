@@ -24,14 +24,7 @@ gcloud services enable container.googleapis.com
 - A running GKE cluster with `kubectl` configured to point at it:
    - cluster applied:
 ```
-gcloud container clusters create group8-cluster \ 
---zone europe-west1-b \ 
---num-nodes 2 \ 
---machine-type e2-standard-2 \ 
---disk-type pd-standard \ 
---disk-size 30 \ 
---enable-ip-alias \ 
---release-channel regular
+gcloud container clusters create group8-cluster --zone europe-west1-b --num-nodes 2 --machine-type e2-standard-2 --disk-type pd-standard --disk-size 30 --enable-ip-alias --release-channel regular
 ```
 
 - to point the cluster: 
@@ -46,11 +39,13 @@ kubectl create namespace group8
 kubectl config set-context --current --namespace=group8
 ```
 
+- Upload files in *k8s/* in cloud shell
+
 ### Apply the Manifests in Order
 ```shell
-kubectl apply -f k8s/00-configmap.yaml
-kubectl apply -f k8s/01-secret.yaml
-kubectl apply -f k8s/02-postgres.yaml
+kubectl apply -f 00-configmap.yaml
+kubectl apply -f 01-secret.yaml
+kubectl apply -f 02-postgres.yaml
 ```
 
 Wait for PostgreSQL to become ready before continuing:
@@ -62,7 +57,7 @@ kubectl wait --for=condition=Ready pod -l app=postgres --timeout=120s
 Then run the database population job:
 
 ```shell
-kubectl apply -f k8s/03-populate-db-phase5.yaml
+kubectl apply -f 03-populate-db-phase5.yaml
 ```
 
 Wait for job to complete:
@@ -85,10 +80,10 @@ To test locally while the pods are running, use port-forwarding:
 
 ```shell
 # Users service
-kubectl port-forward service/reviews-service 8080:8003
+kubectl port-forward service/review-service 8080:8003
 
 # Movies service
-kubectl port-forward svc/recommendations-service 8080:8004
+kubectl port-forward service/recommendations-service 8080:8004
 ```
 
 Then click on webpreview of cloudshell, remove from the link  *?authuser=0* and add *docs*, giving access to fastapi swagger to test the microservice. 

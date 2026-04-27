@@ -25,7 +25,13 @@ This approach was time consuming and heavy, which is why it was altered.
 With the previous setup was created a dump file of the database with
 
 ```
-docker exec -t postgres pg_dump -U [db_user] -Fc [db_name] > backup.dump
+docker exec -t postgres pg_dump -U [db-user] -Fc -f /tmp/backup.dump [db-name]
+docker cp postgres:/tmp/backup.dump ./backup.dump
+```
+
+to test if dump file was created successfully:
+```
+docker exec -t postgres pg_restore -l /tmp/backup.dump
 ```
 
 Now we use the generated dump and created a new image based on it:
@@ -180,11 +186,8 @@ docker exec -it review-service bash
 
 then run the test client inside the container:
 ```
-python grpc/rating_test.py
+python -m grpc_files.rating_test
 ```
-
-what should appear:
-![[rating_test.png|500]]
 
 ### Recommendation Service
 #### REST
@@ -261,9 +264,5 @@ docker exec -it recommendations-service bash
 
 then run the test client inside the container:
 ```
-python grpc/recommendations_test.py
+python grpc_files/recommendations_test.py
 ``` 
-
-what should appear:
-![[rec_test.png|500]]
-
