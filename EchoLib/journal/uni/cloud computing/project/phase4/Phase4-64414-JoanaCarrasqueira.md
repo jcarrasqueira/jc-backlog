@@ -264,5 +264,5 @@ docker exec -it recommendations-service bash
 
 then run the test client inside the container:
 ```
-python grpc_files/recommendations_test.py
+python -m grpc_files.recommendations_test
 ``` 
