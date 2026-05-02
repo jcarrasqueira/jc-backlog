@@ -20,6 +20,10 @@ Bash
 ./logappend -T 2 -K secret_token -A -E Bob log_trunc
 ```
 
+
+python3 logappend.py -T 1 -K secret -A -E Alice trunc2
+python3 logappend.py -T 2 -K secret -A -E Bob trunc2
+
 **Step 2: Tamper with the log file (Without the token)**
 
 Since the code only encrypts line-by-line and doesn't authenticate the total file length, you can just delete the last line. Use the `head` command to strip the last line and overwrite the file:
@@ -29,6 +33,7 @@ Bash
 ```
 head -n -1 log_trunc > temp_log && mv temp_log log_trunc
 ```
+head -n -1 trunc > tmp && mv tmp trunc
 
 **Step 3: Prove the vulnerability**
 
@@ -39,6 +44,8 @@ Bash
 ```
 ./logread -K secret_token -S log_trunc
 ```
+
+python3 logread.py -K secret -S trunc
 
 - **What happens:** It prints `Alice` and exits with code 0.
     
@@ -383,6 +390,8 @@ wc -c log_names_short log_names_long
 # Result: You will see log_names_long is larger, leaking the guest's name length.
 ```
 
+python logappend.py -T 1 -K secret -A -G Ed log_names_short
+
 **2. Action Type Leakage (Room vs. Gallery)**
 
 Bash
@@ -397,6 +406,8 @@ wc -c log_gallery log_room
 # Result: The gallery log will be larger because 'null' (4 chars) is longer than '1' (1 char).
 ```
 
+python logappend.py -T 1 -K secret -A -G Alice log_gallery
+python logappend.py -T 1 -K secret -A -G Alice -R 1 log_room
 **3. Timestamp Magnitude Inference**
 
 Bash
