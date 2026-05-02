@@ -24,7 +24,7 @@ A confidentiality violation means you can infer information about the log's cont
     4. Look at the Base64 string on the second line of both files.
     5. **Result:** The Base64 string in `logB` will be physically longer (more characters) than the string in `logA`. You can write in your report that an attacker can successfully monitor file size changes to deduce if short-named individuals or long-named individuals are moving through the gallery, effectively bypassing the encryption
 
-### . Crash Violation: Unhandled Permission OS Errors
+### . Crash Violation: Unhandled Permission OS Errors (works)
 A crash occurs when the program terminates via a stack trace instead of gracefully printing "invalid" and exiting with code 111.
 - **The Vulnerability:** Uncaught `PermissionError` during file operations.
     
