@@ -24,6 +24,52 @@ A confidentiality violation means you can infer information about the log's cont
     4. Look at the Base64 string on the second line of both files.
     5. **Result:** The Base64 string in `logB` will be physically longer (more characters) than the string in `logA`. You can write in your report that an attacker can successfully monitor file size changes to deduce if short-named individuals or long-named individuals are moving through the gallery, effectively bypassing the encryption
 
+This attack exploits the lack of **padding** in the encryption process, where the length of the ciphertext leaks the length of the underlying JSON plaintext. Because the implementation uses `AES.MODE_CCM`, which is a stream-based mode, the ciphertext length is directly proportional to the input length.
+
+### Execution Commands
+
+Follow these steps to demonstrate the **Unpadded Ciphertext Leakage**:
+
+1. **Initialize the "Short Name" Log:** Create a log where a guest with a short name ("Al") enters.
+    
+    Bash
+    
+    ```
+    python3 logappend.py -T 1 -K secret -A -G Al logA
+    
+    ```
+    
+
+```
+
+2.  **Initialize the "Long Name" Log:**
+    Create a second log where a guest with a long name ("Christopher") enters[cite: 2, 7].
+    ```bash
+    python3 logappend.py -T 1 -K secret -A -G Christopher logB
+    ```
+
+3.  **Inspect and Compare File Lengths:**
+    Use standard Linux tools to observe the difference in the encrypted data size[cite: 7].
+    ```bash
+    # Show the length of the first entry in logA
+    tail -n 1 logA | wc -c
+    
+    # Show the length of the first entry in logB
+    tail -n 1 logB | wc -c
+    ```
+
+### Why the Attack Works
+
+*   **Fixed Overhead:** Every entry in your implementation adds a fixed 27-byte overhead (11-byte nonce + 16-byte tag) plus the Base64 encoding expansion[cite: 1, 3].
+*   **JSON Serialization:** The `LogEntry` is converted to a dictionary and then a JSON string: `{"T": 1, "kind": "G", "name": "Al", "action": "A", "room": null}`[cite: 3, 5].
+*   **Direct Leakage:** Because there is no padding to a fixed block size (e.g., 128 bytes), the name "Christopher" (11 characters) results in a JSON string that is 9 characters longer than the one for "Al" (2 characters)[cite: 3, 5].
+*   **Confidentiality Violation:** The **SRSD_project.pdf** defines a violation as an attacker learning facts about names or contents by inspecting the log itself[cite: 7]. By simply measuring the ciphertext, an attacker can distinguish between different people or room numbers without ever needing the token[cite: 7].
+
+### Summary of Observation
+When you run the `wc -c` commands above, you will see that `logB` is significantly larger than `logA`[cite: 7]. An attacker monitoring the gallery in real-time could use this "side-channel" to identify who is entering or leaving based on the known lengths of suspected names[cite: 7].
+```
+
+
 ### . Crash Violation: Unhandled Permission OS Errors (works)
 A crash occurs when the program terminates via a stack trace instead of gracefully printing "invalid" and exiting with code 111.
 - **The Vulnerability:** Uncaught `PermissionError` during file operations.
@@ -264,3 +310,25 @@ Here is how many combinations your computer has to generate and hash based on th
 If the team who built `gallerylog1` used a token like `password` (8 characters), a brute-force approach would take forever. But a dictionary approach using `rockyou.txt` would find it instantly, because "password" is near the very top of that file.
 
 If you are writing a cracking script for your report, it is standard practice to do a **hybrid approach**: try a dictionary list first, and if that fails, try brute-forcing lengths 1 through 4.
+
+
+### 2.3. Crash Violation: Argument Overflow (Exemplo)
+
+_Nota: Substituir pelo comportamento real do G12 se detetado._
+
+- **Vulnerabilidade:** O programa falha ao processar _strings_ extremamente longas no argumento `-E` ou `-G`.
+    
+- **Justificação:** Em vez de retornar "invalid" (código 111), o programa termina com um erro de sistema, indicando falta de sanitização de inputs.
+    
+- **Testcase:**
+    
+    Bash
+    
+    ```
+    python3 logappend.py -T 1 -K token -A -E $(python3 -c "print('A'*10000)") log_crash
+    ```
+    
+
+---
+
+Desejas que estruture de forma idêntica a secção para o Grupo 16?

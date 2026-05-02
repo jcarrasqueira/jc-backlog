@@ -25,6 +25,30 @@
             "id": "814487a8b497eaf2",
             "type": "leaf",
             "state": {
+              "type": "pdf",
+              "state": {
+                "file": "journal/uni/sa/SRSD_project.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "SRSD_project"
+            }
+          },
+          {
+            "id": "6d8c3ecf81b8bf65",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "journal/uni/sa/SRSD_project.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "SRSD_project"
+            }
+          },
+          {
+            "id": "c7d22c93040b2564",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
                 "file": "journal/uni/sa/Untitled.md",
@@ -36,21 +60,35 @@
             }
           },
           {
-            "id": "6d8c3ecf81b8bf65",
+            "id": "fbe877198282386d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journal/uni/sa/2026-05-02.md",
+                "file": "journal/uni/sa/java.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-05-02"
+              "title": "java"
+            }
+          },
+          {
+            "id": "6d4aa7cd7204c17d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Untitled"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -225,28 +263,31 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "6d8c3ecf81b8bf65",
+  "active": "6d4aa7cd7204c17d",
   "lastOpenFiles": [
-    "Pasted image 20260502154723.png",
+    "journal/uni/sa/java.md",
+    "Untitled.md",
     "journal/uni/sa/Untitled.md",
     "journal/uni/sa/2026-05-02.md",
+    "journal/uni/sa/2026-04-30.md",
+    "journal/uni/sa/SRSD_project.pdf",
+    "journal/uni/sa/phase1/Tests 1.md",
+    "Pasted image 20260502203301.png",
+    "journal/uni/sa/2026-04-13.md",
+    "journal/uni/sa/Untitled 7.md",
+    "Pasted image 20260502154723.png",
     "Pasted image 20260502152835.png",
     "Pasted image 20260502152745.png",
     "Pasted image 20260502152627.png",
     "Pasted image 20260502144240.png",
     "journal/uni/sa/phase1/Untitled.md",
-    "journal/uni/sa/Untitled 7.md",
-    "journal/uni/sa/phase1/Tests 1.md",
     "Pasted image 20260502135228.png",
     "Pasted image 20260502133423.png",
     "Pasted image 20260502133252.png",
     "Pasted image 20260502133158.png",
-    "Pasted image 20260502133115.png",
-    "Pasted image 20260502133000.png",
     "journal/uni/sa/phase1/Tests.md",
     "journal/uni/sa/phase1/notes 1.md",
     "journal/uni/sa/phase1/Batch tests.md",
-    "journal/uni/sa/2026-04-30.md",
     "journal/uni/sa/phase1/Notes.md",
     "journal/uni/cloud computing/Untitled 4.md",
     "journal/uni/ti/work2/Untitled 3.md",
@@ -260,11 +301,8 @@
     "journal/uni/cloud computing/env.md",
     "journal/uni/cloud computing/README.md",
     "journal/uni/cloud computing/Untitled 6.md",
-    "journal/uni/sa/SRSD_project.pdf",
     "journal/uni/sa/TP_Md5.pdf",
-    "journal/uni/sa/2026-04-13.md",
     "journal/uni/sa/phase1/Untitled 3.md",
-    "journal/uni/sa/phase1/Untitled 5.md",
     "journal/uni/sa/phase1",
     "journal/uni/ti/work2",
     "journal/uni/cloud computing/project/phase1/Phase1_Cloud_Computing.pdf",
