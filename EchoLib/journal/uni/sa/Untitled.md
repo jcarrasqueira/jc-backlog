@@ -43,7 +43,7 @@ A crash occurs when the program terminates via a stack trace instead of graceful
     4. **Result:** The system crashes with `PermissionError: [Errno 13] Permission denied` instead of safely handling the error.
         
 
-### 2. Integrity Violation: Whitespace / Newline Injection
+### 2. Integrity Violation: Whitespace / Newline Injection (works using script to ensure right values are added)
 
 An integrity violation occurs when you modify the file without the token, and the system fails to detect it (meaning it does not print "integrity violation").
 
