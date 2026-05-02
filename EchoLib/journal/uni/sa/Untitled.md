@@ -68,7 +68,23 @@ An integrity violation occurs when you modify the file without the token, and th
     4. Run `python3 logread.py -K token -S log_white`
         
     5. **Result:** The program outputs `Eve` and `Frank` perfectly, returning `0`. You successfully modified the file bytes without the token, and the cryptographic verification completely failed to detect your tampered lines.
-        
+```
+#!/bin/bash
+# Extract the salt/verifier header (first 48 bytes)
+head -c 48 log_white > log_tampered
+
+# Get the encrypted lines
+mapfile -t lines < <(tail -c +49 log_white)
+
+# Rebuild the file with injected blank lines
+echo "${lines[0]}" >> log_tampered
+echo "" >> log_tampered            # Injected newline
+echo "   " >> log_tampered         # Injected spaces
+echo "${lines[1]}" >> log_tampered
+echo "" >> log_tampered            # Injected trailing newline
+
+mv log_tampered log_white
+```
 
 ### 3. Confidentiality Violation: Fast Offline Token Cracking
 
