@@ -1,173 +1,456 @@
-## 1. Ataques de Crash (Disponibilidade)
+Here is the complete, step-by-step implementation guide including all the code, files, and commands needed to implement the event-driven LLM architecture for Phase 6/7.
 
-Estes ataques exploram falhas na gestão de recursos ou na validação de entradas para forçar a terminação do programa.
+### 1. GCP and Kubernetes Setup Commands
 
-- Null Pointer Exception no `readIntersection`:
-    
-    - **Ataque:** Invocar o `logread -I` passando um nome que não existe no log.
-        
-    - **Explicação:** O método `readIntersection` chama `buildQueryIndex`. Se um dos nomes fornecidos não for encontrado no log, o `history` pode não ser preenchido corretamente. Embora o código tenha algumas verificações, a lógica de `pickSeedSubject` ou `historyFor` pode retornar `null` se não houver entradas para um dos sujeitos, levando a um crash quando o programa tenta aceder a métodos nesse objeto.
-        
-- Ataque de Recursividade/Batch Infinito (Batch Loop):
-    
-    - **Ataque:** Criar um ficheiro de batch que aponta para si mesmo (se o sistema de ficheiros permitir links) ou um batch extremamente longo que causa estouro de pilha.
-        
-    - **Explicação:** Embora o `LogAppend` proíba o comando `-B` dentro de um ficheiro de batch, um atacante pode tentar explorar a forma como o `BufferedReader` lida com ficheiros especiais ou pipes nomeados para bloquear a execução indefinidamente ou causar um crash por exaustão de descritores de ficheiro.
-        
-
----
-
-## 2. Ataques de Integridade
-
-Estes ataques visam enganar o `logread` para aceitar dados falsos como válidos sem possuir o token.
-
-- Ataque de Replay de Registos Individuais:
-    
-    - **Ataque:** Copiar uma linha cifrada legítima de um log e colá-la novamente no final do mesmo log (ou num log diferente com o mesmo token inicial).
-        
-    - **Explicação:** O sistema utiliza `lastEntryHash` para validar a cadeia. No entanto, se o atacante capturar uma linha que foi gerada exatamente após o estado atual do log, ele pode reinseri-la.
-        
-    - **Falha Específica:** Como o IV é derivado de um `Random` com semente previsível (tempo), se o atacante conseguir prever o momento em que o hash anterior coincide, ele pode reinjetar comandos antigos (ex: fazer um funcionário "entrar" novamente).
-        
-- Injeção de Linhas em Branco/Comentários:
-    
-    - **Ataque:** Inserir linhas com espaços ou caracteres invisíveis entre as entradas legítimas.
-        
-    - **Explicação:** No `FileManager.java`, o método `readRecords` lança uma `IntegrityViolationException` se encontrar uma linha em branco (`line.isBlank()`). Um atacante pode usar isto para causar uma negação de serviço de integridade, impedindo que o administrador consiga ler o log legítimo, apenas inserindo um único espaço numa linha nova.
-        
-
----
-
-## 3. Ataques de Confidencialidade
-
-Estes ataques visam inferir dados sensíveis (nomes, tempos, salas) sem o token `-K`.
-
-- Vazamento de Timestamp via Metadados do Ficheiro:
-    
-    - **Ataque:** Observar as propriedades de modificação do ficheiro (`mtime`) no sistema operativo após cada execução do `logappend`.
-        
-    - **Explicação:** O comando `-T timestamp` é cifrado dentro do registo. No entanto, o `logappend` atualiza o ficheiro no disco imediatamente após a invocação. Um atacante que monitorize o sistema de ficheiros pode correlacionar a hora real da escrita com os eventos, quebrando o anonimato temporal pretendido pela cifragem do timestamp.
-        
-- Ataque de Dicionário de Nomes (Brute Force de Texto Cifrado):
-    
-    - **Ataque:** Comparar o tamanho do `cipherText` Base64 com tamanhos conhecidos de nomes comuns.
-        
-    - **Explicação:** O `Record` é serializado de forma determinística antes de ser cifrado. O campo nome tem um tamanho fixo de prefixo (2 bytes para o comprimento) seguido dos bytes do nome.
-        
-    - **Inferência:** Se o atacante souber que o log contém apenas os nomes "Eva" ou "Bernardino", ele pode distinguir instantaneamente quem é quem pelo tamanho da entrada no ficheiro Base64, pois a cifragem AES-GCM não esconde o comprimento do texto limpo (apenas adiciona o overhead fixo da tag e IV).
-        
-- Quebra da Chave por Reutilização de Salt:
-    
-    - **Ataque:** Tentar quebrar o token `-K` usando Rainbow Tables.
-        
-    - **Explicação:** A classe `KeyDerivation` utiliza um `BASE_SALT` fixo ("Salt") para todos os logs.
-        
-    - **Vulnerabilidade:** Um atacante pode pré-computar chaves para tokens comuns (ex: "12345", "password", "admin") uma única vez e testá-las em qualquer log de qualquer grupo que use esta implementação, uma vez que o salt não é único por ficheiro ou por utilizador.
-      
-## 1. Ataques de Crash (Disponibilidade)
-
-### Vetor: Esgotamento de Memória (Heap Exhaustion)
-
-Este ataque foca-se no comando `-I` (interseção), que tenta carregar todos os intervalos de tempo de múltiplos utilizadores na memória RAM.
-
-**Comandos:**
+Run these commands in your Google Cloud Shell or terminal to set up the infrastructure.
 
 Bash
 
 ```
-# 1. Primeiro, assumindo que já existe um log muito grande (ex: log_gigante.db)
-# 2. Executar o logread pedindo a interseção de vários utilizadores que tenham muitos movimentos
-./logread -K token_valido -I -E FuncionarioA -E FuncionarioB -G VisitanteC log_gigante.db
+# 1. Enable APIs
+gcloud services enable aiplatform.googleapis.com pubsub.googleapis.com
+
+# 2. Create Pub/Sub Topic and Subscription
+gcloud pubsub topics create review-created
+gcloud pubsub subscriptions create review-worker-sub --topic=review-created --ack-deadline=60
+
+# 3. Create Service Account & Assign Roles
+gcloud iam service-accounts create review-intelligence-sa --display-name="Review Intelligence SA"
+PROJECT_ID=$(gcloud config get-value project)
+SA_EMAIL="review-intelligence-sa@${PROJECT_ID}.iam.gserviceaccount.com"
+
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:${SA_EMAIL}" --role="roles/aiplatform.user"
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:${SA_EMAIL}" --role="roles/pubsub.publisher"
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:${SA_EMAIL}" --role="roles/pubsub.subscriber"
+
+# 4. Generate Key and Create Kubernetes Secret
+gcloud iam service-accounts keys create sa-key.json --iam-account=${SA_EMAIL}
+kubectl create secret generic gcp-sa-secret --from-file=sa-key.json=./sa-key.json -n group8
+rm sa-key.json
 ```
-
-- **O que acontece:** O programa tenta construir um `QueryIndex`. Se o ficheiro tiver milhares de entradas, a JVM lançará um `OutOfMemoryError` e o programa terminará abruptamente (crash).
-    
-
-### Vetor: Manipulação de Formato (Base64 Inválido)
-
-Explora a falta de tratamento de exceções robusto na leitura do ficheiro.
-
-**Comandos:**
-
-Bash
-
-```
-# 1. Criar um log legítimo
-./logappend -T 1 -K segredo -A -E Alice log_teste.db
-
-# 2. Corromper manualmente o ficheiro (ex: adicionar caracteres não-base64 como "#$!")
-echo "!!!ESTE_CONTEUDO_INVALIDO!!!" >> log_teste.db
-
-# 3. Tentar ler o log
-./logread -K segredo -S log_teste.db
-```
-
-- **O que acontece:** O método `Base64.getDecoder().decode()` lançará uma `IllegalArgumentException`. Como o `FileManager` não captura especificamente este erro de formato, o programa crasha com um "stack trace" em vez de uma mensagem de erro controlada.
-    
 
 ---
 
-## 2. Ataques de Integridade
+### 2. Review Service Updates
 
-### Vetor: Truncagem de Log (Sufixo)
+This service needs to publish to Pub/Sub and aggregate the database results.
 
-Demonstra que é possível apagar os eventos mais recentes sem que o sistema detete a violação de integridade.
+**File: `review-system/requirements.txt`** Add the following line to your existing requirements:
 
-**Comandos:**
-
-Bash
+Plaintext
 
 ```
-# 1. Gerar três eventos
-./logappend -T 1 -K segredo -A -E Bob log_corrompido.db
-./logappend -T 2 -K segredo -A -E Bob -R 1 log_corrompido.db
-./logappend -T 3 -K segredo -L -E Bob -R 1 log_corrompido.db
-
-# 2. Remover a última linha do ficheiro (o evento T=3 onde o Bob sai da sala)
-# No Linux/macOS pode usar 'sed' para remover a última linha:
-sed -i '$d' log_corrompido.db
-
-# 3. Verificar o estado
-./logread -K segredo -S log_corrompido.db
+google-cloud-pubsub==2.19.0
 ```
 
-- **Resultado esperado:** O programa retorna `0` (sucesso) e diz que o Bob ainda está na sala `1`, provando que o atacante conseguiu apagar o registo de saída sem disparar o erro "integrity violation".
+**File: `review-system/config.py`** Add the new SQLAlchemy models to map to your database schema:
+
+Python
+
+```
+from sqlalchemy import Column, Integer, String, Numeric, DateTime, ForeignKey, func
+
+class ReviewSentiment(Base):
+    __tablename__ = 'review_sentiment'
+    sentiment_id = Column(Integer, primary_key=True)
+    rating_id = Column(Integer, ForeignKey('ratings.rating_id'))
+    sentiment_label = Column(String(20), nullable=False)
+    sentiment_score = Column(Numeric(4,3))
+    created_at = Column(DateTime, default=func.now())
+
+class Topic(Base):
+    __tablename__ = 'topics'
+    topic_id = Column(Integer, primary_key=True)
+    name = Column(String(100), unique=True, nullable=False)
+
+class RatingTopic(Base):
+    __tablename__ = 'rating_topics'
+    rating_topic_id = Column(Integer, primary_key=True)
+    rating_id = Column(Integer, ForeignKey('ratings.rating_id'))
+    topic_id = Column(Integer, ForeignKey('topics.topic_id'))
+    relevance_score = Column(Numeric(4,3))
+```
+
+**File: `review-system/review_system_server.py`** Add the Pub/Sub logic and the new summary endpoint. Add these imports and initializations at the top:
+
+Python
+
+```
+import os
+import json
+from google.cloud import pubsub_v1
+from config import ReviewSentiment, Topic, RatingTopic # Add to your config imports
+
+# Pub/Sub Setup
+PROJECT_ID = os.getenv("GCP_PROJECT_ID")
+TOPIC_ID = os.getenv("PUBSUB_TOPIC", "review-created")
+publisher = pubsub_v1.PublisherClient()
+topic_path = publisher.topic_path(PROJECT_ID, TOPIC_ID) if PROJECT_ID else None
+
+def publish_review_event(rating_id: int, review_text: str):
+    if not topic_path:
+        print("Pub/Sub not configured.")
+        return
+    data = json.dumps({"rating_id": rating_id, "review": review_text}).encode("utf-8")
+    future = publisher.publish(topic_path, data)
+    print(f"Published review event: {future.result()}")
+```
+
+Modify the `create_rating` (and `create_movie_rating`) endpoint to publish the event before returning:
+
+Python
+
+```
+        # Inside create_rating, right after: db.refresh(new_rating)
+        if new_rating.review:
+            try:
+                publish_review_event(new_rating.rating_id, new_rating.review)
+            except Exception as e:
+                print(f"Failed to publish to Pub/Sub: {e}")
+                
+        return new_rating
+```
+
+Add the new summary endpoint:
+
+Python
+
+```
+@app.get("/movies/{movie_id}/review-summary")
+def get_review_summary(movie_id: int = Path(...), db: Session = Depends(get_db)):
+    # Verify movie exists
+    movie = db.query(Movie).filter(Movie.movie_id == movie_id).first()
+    if not movie:
+        raise HTTPException(status_code=404, detail="Movie not found")
+
+    # Get all rating IDs for this movie
+    rating_ids = [r.rating_id for r in db.query(RatingTable.rating_id).filter(RatingTable.movie_id == movie_id).all()]
     
+    if not rating_ids:
+        raise HTTPException(status_code=404, detail="No analyzed reviews exist for this movie")
+
+    # Aggregate Sentiment
+    sentiments = db.query(
+        ReviewSentiment.sentiment_label, 
+        func.count(ReviewSentiment.sentiment_id).label('count')
+    ).filter(ReviewSentiment.rating_id.in_(rating_ids)).group_by(ReviewSentiment.sentiment_label).all()
+    
+    sentiment_breakdown = {s.sentiment_label: s.count for s in sentiments}
+
+    # Aggregate Topics
+    topics = db.query(
+        Topic.name, 
+        func.count(RatingTopic.rating_topic_id).label('count')
+    ).join(RatingTopic, Topic.topic_id == RatingTopic.topic_id)\
+     .filter(RatingTopic.rating_id.in_(rating_ids))\
+     .group_by(Topic.name).order_by(func.count(RatingTopic.rating_topic_id).desc()).limit(5).all()
+
+    top_topics = [t.name for t in topics]
+    total_reviews = db.query(ReviewSentiment).filter(ReviewSentiment.rating_id.in_(rating_ids)).count()
+
+    if total_reviews == 0:
+        raise HTTPException(status_code=404, detail="No analyzed reviews exist for this movie")
+
+    return {
+        "movie_id": movie_id,
+        "total_reviews": total_reviews,
+        "sentiment_breakdown": sentiment_breakdown,
+        "top_topics": top_topics
+    }
+```
 
 ---
 
-## 3. Ataques de Confidencialidade
+### 3. Recommendations Service Updates
 
-### Vetor: Inferência por Tamanho de Mensagem
+This service needs to talk to Vertex AI synchronously.
 
-Mesmo cifrado, o tamanho do ficheiro revela o comprimento do nome da pessoa.
+**File: `recommendations/requirements.txt`** Add the following line:
 
-**Comandos:**
-
-Bash
+Plaintext
 
 ```
-# 1. Criar duas entradas com nomes de tamanhos diferentes
-./logappend -T 1 -K segredo -A -E Ana log_confidencial.db
-./logappend -T 2 -K segredo -A -E Bernardino log_confidencial.db
-
-# 2. Listar o ficheiro e contar os bytes de cada linha
-ls -l log_confidencial.db
-# Ou ver as linhas em Base64
-cat log_confidencial.db
+google-cloud-aiplatform==1.38.1
 ```
 
-- **Análise:** A linha de "Bernardino" será significativamente maior que a de "Ana" devido à serialização em `Encryption.java`. O atacante sabe quem entrou apenas pelo tamanho da string Base64, violando a confidencialidade do nome.
+**File: `recommendations/recomendations_server.py`** Add Vertex AI initialization and the new endpoint.
+
+Python
+
+````
+import os
+import vertexai
+from vertexai.generative_models import GenerativeModel
+
+# Initialize Vertex AI
+PROJECT_ID = os.getenv("GCP_PROJECT_ID")
+REGION = os.getenv("GCP_REGION", "europe-west1")
+if PROJECT_ID:
+    vertexai.init(project=PROJECT_ID, location=REGION)
+    llm = GenerativeModel("gemini-1.5-flash")
+else:
+    llm = None
+
+@app.get("/recommendations/{user_id}/explained")
+async def get_explained_recommendations(
+    user_id: int, 
+    db: Session = Depends(get_db), 
+    review: ReviewGrpcClient = Depends(get_review_client)
+):
+    # 1. Reuse existing recommendation logic to get top 5 movies
+    recommendations = await get_recommendations(user_id, db, review)
     
+    if not recommendations:
+        return []
 
-### Vetor: Previsibilidade de IV (Nonce Reuse)
-
-A semente do gerador de números aleatórios é baseada no tempo atual.
-
-**Procedimento:**
-
-1. O atacante executa um script que tenta adivinhar o `System.currentTimeMillis() / 10` do momento em que o log foi criado.
+    # 2. Build prompt for Vertex AI
+    movie_titles = [rec.title for rec in recommendations]
+    prompt = f"""
+    You are a movie recommendation expert. I am recommending the following movies to a user based on their past likes and highly-rated genres:
+    {', '.join(movie_titles)}.
     
-2. Como o `Random` de Java é determinístico, se a semente for igual, todos os IVs gerados serão iguais.
+    Provide a brief, 1-sentence plain-language explanation for WHY each movie is recommended. 
+    Format your response strictly as a JSON array of objects with keys "title" and "explanation".
+    """
+
+    explained_recs = []
+    try:
+        if llm:
+            response = llm.generate_content(prompt)
+            # Clean markdown formatting if Gemini returns it
+            clean_text = response.text.replace('```json', '').replace('
+```', '').strip()
+            ai_explanations = json.loads(clean_text)
+            
+            # Map explanations back to recommendations
+            exp_dict = {item['title']: item['explanation'] for item in ai_explanations}
+            
+            for rec in recommendations:
+                explained_recs.append({
+                    "movie_id": rec.movie_id,
+                    "title": rec.title,
+                    "explanation": exp_dict.get(rec.title, "Recommended based on your recent activity.")
+                })
+        else:
+            raise Exception("Vertex AI not initialized.")
+    except Exception as e:
+        print(f"Vertex AI Error: {e}")
+        # Fallback if LLM fails
+        for rec in recommendations:
+            explained_recs.append({
+                "movie_id": rec.movie_id,
+                "title": rec.title,
+                "explanation": "Recommended based on your genre preferences."
+            })
+
+    return explained_recs
+````
+
+---
+
+### 4. New Review Worker Service
+
+Create a new folder named `review-worker` in your project root.
+
+**File: `review-worker/requirements.txt`**
+
+Plaintext
+
+```
+google-cloud-pubsub==2.19.0
+google-cloud-aiplatform==1.38.1
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.25
+python-dotenv==1.0.0
+```
+
+**File: `review-worker/main.py`**
+
+Python
+
+```
+import os
+import json
+import time
+import vertexai
+from vertexai.generative_models import GenerativeModel
+from google.cloud import pubsub_v1
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+
+# DB Setup
+DB_URL = os.getenv("DB_URL")
+engine = create_engine(DB_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# GCP Setup
+PROJECT_ID = os.getenv("GCP_PROJECT_ID")
+REGION = os.getenv("GCP_REGION", "europe-west1")
+SUB_ID = os.getenv("PUBSUB_SUBSCRIPTION", "review-worker-sub")
+
+vertexai.init(project=PROJECT_ID, location=REGION)
+llm = GenerativeModel("gemini-1.5-flash")
+
+subscriber = pubsub_v1.SubscriberClient()
+subscription_path = subscriber.subscription_path(PROJECT_ID, SUB_ID)
+
+def process_review(rating_id, review_text):
+    print(f"Processing rating_id: {rating_id}")
+    prompt = f"""
+    Analyze the following movie review: "{review_text}"
+    Extract the overall sentiment (choose exactly one: "positive", "negative", or "neutral") 
+    and extract up to 5 main topics discussed (e.g., "acting", "plot", "special effects").
+    Format strictly as JSON: {{"sentiment": "positive", "topics": ["topic1", "topic2"]}}
+    """
     
-3. **Ataque:** Ao prever o IV e o hash anterior (que é guardado em texto limpo no ficheiro), o atacante pode usar técnicas de criptoanálise para recuperar o conteúdo original ou a chave GHASH do AES-GCM.      
+    try:
+        response = llm.generate_content(prompt)
+        clean_text = response.text.replace('```json', '').replace('```', '').strip()
+        result = json.loads(clean_text)
+        
+        sentiment = result.get('sentiment', 'neutral').lower()
+        topics = result.get('topics', [])
+
+        db = SessionLocal()
+        try:
+            # 1. Insert Sentiment
+            db.execute(text(
+                "INSERT INTO review_sentiment (rating_id, sentiment_label, created_at) "
+                "VALUES (:r_id, :lbl, NOW())"
+            ), {"r_id": rating_id, "lbl": sentiment})
+
+            # 2. Process Topics
+            for t_name in topics[:5]:
+                t_name = t_name.lower().strip()
+                # Insert topic if not exists, get ID
+                db.execute(text(
+                    "INSERT INTO topics (name) VALUES (:name) ON CONFLICT (name) DO NOTHING"
+                ), {"name": t_name})
+                
+                t_result = db.execute(text("SELECT topic_id FROM topics WHERE name = :name"), {"name": t_name}).fetchone()
+                if t_result:
+                    db.execute(text(
+                        "INSERT INTO rating_topics (rating_id, topic_id) VALUES (:r_id, :t_id)"
+                    ), {"r_id": rating_id, "t_id": t_result[0]})
+
+            db.commit()
+            print(f"Successfully saved analysis for rating_id {rating_id}")
+        except Exception as db_e:
+            db.rollback()
+            print(f"Database error: {db_e}")
+        finally:
+            db.close()
+
+    except Exception as e:
+        print(f"Vertex AI Error: {e}")
+
+def callback(message):
+    try:
+        data = json.loads(message.data.decode("utf-8"))
+        process_review(data['rating_id'], data['review'])
+        message.ack()
+    except Exception as e:
+        print(f"Failed to process message: {e}")
+        message.nack()
+
+print(f"Listening for messages on {subscription_path}...")
+streaming_pull_future = subscriber.subscribe(subscription_path, callback=callback)
+
+with subscriber:
+    try:
+        streaming_pull_future.result()
+    except KeyboardInterrupt:
+        streaming_pull_future.cancel()
+```
+
+**File: `review-worker/Dockerfile`**
+
+Dockerfile
+
+```
+FROM python:3.11-slim
+
+WORKDIR /review-worker
+
+COPY requirements.txt .
+
+# Install dependencies (psycopg2 requires build-essential and libpq-dev)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# We don't need a start.sh script here, we can just run the worker directly
+CMD ["python", "-u", "main.py"]
+```
+
+```
+FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY main.py .
+CMD ["python", "-u", "main.py"]
+```
+
+---
+
+### 5. Kubernetes Configurations
+
+**File: `k8s/00-configmap.yaml`** (Add to bottom of existing file)
+
+YAML
+
+```
+  GCP_PROJECT_ID: "<YOUR_PROJECT_ID_HERE>"
+  GCP_REGION: "europe-west1"
+  PUBSUB_TOPIC: "review-created"
+  PUBSUB_SUBSCRIPTION: "review-worker-sub"
+```
+
+**File: `k8s/11-review-worker.yaml`** (Create this new file)
+
+YAML
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-worker
+  namespace: group8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: review-worker
+  template:
+    metadata:
+      labels:
+        app: review-worker
+    spec:
+      containers:
+        - name: review-worker
+          image: jrcarrasqueira/review-worker:v1.0
+          envFrom:
+            - configMapRef:
+                name: group8-config
+            - secretRef:
+                name: group8-secrets
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/var/secrets/google/sa-key.json"
+          volumeMounts:
+            - name: gcp-sa-secret
+              mountPath: /var/secrets/google
+              readOnly: true
+      volumes:
+        - name: gcp-sa-secret
+          secret:
+            secretName: gcp-sa-secret
+```
+
+_Note: Make sure to add the `env` block and `volumes` block exactly like above to your existing `09-reviews-service.yaml` and `10-recommendations-service.yaml` as well so they can authenticate._

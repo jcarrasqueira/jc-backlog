@@ -12,6 +12,15 @@ A confidentiality violation occurs if you can infer facts about the log's conten
         
     3. **Result:** The Base64 string in `logB` will be visibly longer than the string in `logA`. You can successfully prove in your report that an attacker can monitor the file size to deduce whether short names (like "Al") or long names (like "Christopher") are entering the gallery, completely bypassing the AES encryption.
 
+
+## Violação de Confidencialidade: Fuga de Comprimento do Texto Cifrado
+
+### Descrição da vulnerabilidade
+
+Esta vulnerabilidade ocorre porque o programa não aplica _padding_ (enchimento) aos dados antes da cifragem em `log_format.py`. O modo **AES-CCM** utilizado em `crypto.py` comporta-se como uma cifra de fluxo (_stream cipher_) no que toca ao comprimento: o tamanho do texto cifrado é exatamente igual ao do texto em claro, acrescido apenas do _nonce_ e da _tag_ de autenticação.
+
+Como o objeto `LogEntry` é serializado para JSON em `log_format.py` antes de ser cifrado, o comprimento final da linha no ficheiro de log é diretamente proporcional ao comprimento dos dados variáveis, como o nome do funcionário ou visitante (`-E` ou `-G`). Um atacante pode monitorizar o crescimento do ficheiro e, comparando o número de caracteres na string Base64, deduzir se um indivíduo com um nome curto (ex: "Bo") ou longo (ex: "Christopher") entrou ou saiu da galeria, quebrando o anonimato garantido pela cifra.
+
 ### Confidentiality Violation: Ciphertext Character-Counting
 A confidentiality violation means you can infer information about the log's contents (like names) without possessing the token.
 - **The Vulnerability:** Stream Cipher Data Leakage (No JSON Padding).
