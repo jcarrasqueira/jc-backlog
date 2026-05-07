@@ -186,9 +186,12 @@ docker exec -it review-service bash
 
 then run the test client inside the container:
 ```
-python -m grpc_files.rating_test
+python grpc_files.rating_test
 ```
 
+```
+python grpc_files/rating_test.py
+```
 ### Recommendation Service
 #### REST
 | Method | Endpoint                                     | Description                                                                                                                                                                                                        |
